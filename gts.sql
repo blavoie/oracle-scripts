@@ -17,7 +17,7 @@
 */
 
 prompt Gather Table Statistics for table &1....
-exec dbms_stats.gather_table_stats(ownname => user, tabname => upper('&1'), method_opt=> 'FOR ALL COLUMNS SIZE AUTO', cascade=>true, estimate_percent => dbms_stats.auto_sample_size);
+exec dbms_stats.gather_table_stats(ownname => sys_context('userenv','current_schema'), tabname => upper('&1'), method_opt=> 'FOR ALL COLUMNS SIZE AUTO', cascade=>true, estimate_percent => dbms_stats.auto_sample_size);
 --exec dbms_stats.gather_table_stats(user, upper('&1'), null, method_opt=> 'FOR ALL COLUMNS SIZE REPEAT', cascade=>true);
 --exec dbms_stats.gather_table_stats(user, upper('&1'), null, method_opt=> 'FOR ALL COLUMNS SIZE 0', cascade=>true);
 
