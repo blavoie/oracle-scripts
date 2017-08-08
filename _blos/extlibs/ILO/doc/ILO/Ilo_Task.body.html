@@ -1,0 +1,900 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+ <LINK REL="STYLESHEET" TYPE="text/css" HREF="../plsqldoc.css">
+ <TITLE>Package body Ilo_Task</TITLE>
+ <META name="object" content="PACKAGE BODY">
+ <META name="name" content="ILO.Ilo_Task">
+ <META name="description" content="Contains procedures for defining tasks, setting the MODULE, ACTION, and CLIENT_ID, and for measuring tasks using SQL trace.">
+</HEAD>
+<BODY>
+<TABLE WIDTH="100%"><TR>
+<TD><P ALIGN="LEFT"><STRONG><SMALL>ILO</SMALL></STRONG></TD>
+<TD><P ALIGN="RIGHT"><STRONG><SMALL><A HREF="../index.html">index</A></SMALL></STRONG></TD>
+</TR></TABLE>
+<TABLE CLASS="MAIN_TABLE"><TR><TD CLASS="DESC_TEXT">
+<P CLASS="MAIN_TITLE">Package body Ilo_Task</P>
+Contains procedures for defining tasks, setting the MODULE, ACTION, and CLIENT_ID, and for measuring tasks using SQL trace.<br>
+&nbsp;<br>
+&nbsp;<br>
+Instrumentation Library for Oracle Copyright (C) 2006 - 2008&nbsp; Method R Corporation. All rights reserved.<br>
+&nbsp;<br>
+This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation; either version 2.1 of the License, or (at your option) any later version.<br>
+&nbsp;<br>
+This library is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&nbsp; See the GNU Lesser General Public License for more details.<br>
+&nbsp;<br>
+You should have received a copy of the GNU Lesser General Public License along with this library; if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA&nbsp; 02110-1301&nbsp; USA<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+Naming Standards<br>
+&nbsp;v_ &lt;&gt; Variables<br>
+&nbsp;c_&lt;&gt;&nbsp; Constants<br>
+&nbsp;g_&lt;&gt;&nbsp; Package Globals<br>
+&nbsp;ex_&nbsp;&nbsp; User defined Exceptions<br>
+&nbsp;r_&lt;&gt;&nbsp; Records<br>
+&nbsp;cs_&lt;&gt; Cursors<br>
+&nbsp;csp_&lt;&gt;&nbsp;&nbsp; Cursor Parameters<br>
+&nbsp;&lt;&gt;_T&nbsp; Types<br>
+&nbsp;&lt;&gt;_O&nbsp; Object Types<br>
+
+<BR>
+</TD></TR></TABLE>
+<HR>
+<A NAME="Program units"></A>
+<TABLE CLASS="SUB_TABLE"><TR><TD CLASS="SUB_TITLE">
+Program units
+</TD></TR></TABLE>
+<TABLE CLASS="SUB_TABLE">
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#process_string">process_string</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+&lt; Process_String &gt;
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#set_is_apps">set_is_apps</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+&lt; set_is_apps &gt;
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#get_is_apps">get_is_apps</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+&lt; get_is_apps &gt;
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#set_nesting_level">set_nesting_level</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+&lt; set_nesting_level &gt;
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#get_nesting_level">get_nesting_level</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+&lt; get_nesting_level &gt;
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#set_config">set_config</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+&lt; set_config &gt;
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#get_config">get_config</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+&lt; get_config &gt;
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#get_trace">get_trace</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+&lt; get_trace &gt;
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#get_write_wall_time">get_write_wall_time</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+&lt; get_write_wall_time &gt;
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#begin_task">begin_task</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+&lt; begin_task &gt;
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#get_current_task">get_current_task</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+&lt; Get_current_task&gt;
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#get_task_stack">get_task_stack</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+&lt; Get_task_stack&gt;
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#end_task">end_task</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+&lt; end_task &gt;
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#end_all_tasks">end_all_tasks</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+&lt; end_all_tasks &gt;
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#get_version">get_version</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+&lt; Get_Version&gt;
+</TD></TR>
+</TABLE>
+<BR>
+<A NAME="Variables"></A>
+<TABLE CLASS="SUB_TABLE"><TR><TD CLASS="SUB_TITLE">
+Variables
+</TD></TR></TABLE>
+<TABLE CLASS="SUB_TABLE">
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#g_trace">g_trace</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+&lt; PRIVATE TYPES AND GLOBALS &gt;
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#g_write_wall_time">g_write_wall_time</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#g_is_apps">g_is_apps</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#g_emit_rtime">g_emit_rtime</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#g_stack">g_stack</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+The global stack.
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#g_module">g_module</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#g_action">g_action</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#g_client_id">g_client_id</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+</TABLE>
+<BR>
+<HR>
+<A NAME="g_trace"></A>
+<P CLASS="TYPE_TITLE">
+g_trace
+</P>
+<PRE CLASS="DECL_TEXT">
+g_trace             BOOLEAN          DEFAULT FALSE;
+</PRE>
+<P CLASS="DESC_TEXT">
+&lt; PRIVATE TYPES AND GLOBALS &gt;<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="g_write_wall_time"></A>
+<P CLASS="TYPE_TITLE">
+g_write_wall_time
+</P>
+<PRE CLASS="DECL_TEXT">
+g_write_wall_time   BOOLEAN          DEFAULT FALSE;
+</PRE>
+<HR>
+<A NAME="g_is_apps"></A>
+<P CLASS="TYPE_TITLE">
+g_is_apps
+</P>
+<PRE CLASS="DECL_TEXT">
+g_is_apps           BOOLEAN          DEFAULT FALSE;
+</PRE>
+<HR>
+<A NAME="g_emit_rtime"></A>
+<P CLASS="TYPE_TITLE">
+g_emit_rtime
+</P>
+<PRE CLASS="DECL_TEXT">
+g_emit_rtime        BOOLEAN          DEFAULT FALSE;
+</PRE>
+<HR>
+<A NAME="g_stack"></A>
+<P CLASS="TYPE_TITLE">
+g_stack
+</P>
+<PRE CLASS="DECL_TEXT">
+g_stack             stack_t          := stack_t ();
+</PRE>
+<P CLASS="DESC_TEXT">
+The global stack.<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="g_module"></A>
+<P CLASS="TYPE_TITLE">
+g_module
+</P>
+<PRE CLASS="DECL_TEXT">
+g_module            VARCHAR2 (32767);
+</PRE>
+<HR>
+<A NAME="g_action"></A>
+<P CLASS="TYPE_TITLE">
+g_action
+</P>
+<PRE CLASS="DECL_TEXT">
+g_action            VARCHAR2 (32767);
+</PRE>
+<HR>
+<A NAME="g_client_id"></A>
+<P CLASS="TYPE_TITLE">
+g_client_id
+</P>
+<PRE CLASS="DECL_TEXT">
+g_client_id         VARCHAR2 (32767);
+</PRE>
+<HR>
+<A NAME="process_string"></A>
+<P CLASS="TYPE_TITLE">
+process_string
+</P>
+<PRE CLASS="DECL_TEXT">
+Function process_string(p_string IN VARCHAR2) RETURN VARCHAR2
+</PRE>
+<P CLASS="DESC_TEXT">
+&lt; Process_String &gt;<br>
+&nbsp;<br>
+&nbsp; Purpose: Since we enclose the passed strings with [], we need<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; to replace any ']' characters in the comment text with<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '\]' so they won't be mistaken for the end of string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; delimiter<br>
+&nbsp;<br>
+&nbsp; comments<br>
+&nbsp;<br>
+&nbsp; If we need to do any other &quot;string processing&quot; on the parameters<br>
+&nbsp; sent to us by the user, this is where we should do it.<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="set_is_apps"></A>
+<P CLASS="TYPE_TITLE">
+set_is_apps
+</P>
+<PRE CLASS="DECL_TEXT">
+Procedure set_is_apps(is_apps boolean)
+</PRE>
+<P CLASS="DESC_TEXT">
+&lt; set_is_apps &gt;<br>
+&nbsp;<br>
+&nbsp; Purpose: This lets ILO know that the instrumented application is part of Oracle E-Business Suite.<br>
+&nbsp; In this instance, ILO should not change the current MODULE, ACTION, or CLIENT_ID in the V$* tables<br>
+&nbsp; as this could interrupt the correct flow of Oracle Apps.<br>
+
+<BR>
+</P>
+<A NAME="Parameters"></A>
+<TABLE CLASS="LIST_TABLE"><TR><TD CLASS="LIST_TITLE">
+Parameters
+</TD></TR></TABLE>
+<TABLE CLASS="LIST_TABLE">
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+IS_APPS&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+BOOLEAN Value that indicates whether the session is running as part of Oracle E-Business Suite.<br>
+
+</TD></TR>
+</TABLE>
+<BR>
+<A NAME="Usage Notes"></A>
+<TABLE CLASS="LIST_TABLE"><TR><TD CLASS="LIST_TITLE">
+Usage Notes
+</TD></TR></TABLE>
+<TABLE CLASS="LIST_TABLE">
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+<li> The default for IS_APPS is FALSE, and therefore when <A HREF=#begin_task>BEGIN_TASK</A> is called ILO will set the V$* values for MODULE, ACTION and CLIENT_ID<br>
+
+</TD></TR>
+</TABLE>
+<BR>
+<HR>
+<A NAME="get_is_apps"></A>
+<P CLASS="TYPE_TITLE">
+get_is_apps
+</P>
+<PRE CLASS="DECL_TEXT">
+Function get_is_apps RETURN boolean
+</PRE>
+<P CLASS="DESC_TEXT">
+&lt; get_is_apps &gt;<br>
+&nbsp;<br>
+&nbsp; Return the current value for IS_APPS<br>
+
+<BR>
+</P>
+<A NAME="Parameters"></A>
+<TABLE CLASS="LIST_TABLE"><TR><TD CLASS="LIST_TITLE">
+Parameters
+</TD></TR></TABLE>
+<TABLE CLASS="LIST_TABLE">
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+None&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+</TABLE>
+<BR>
+<A NAME="Returns"></A>
+<TABLE CLASS="LIST_TABLE"><TR><TD CLASS="LIST_TITLE">
+Returns
+</TD></TR></TABLE>
+<TABLE CLASS="LIST_TABLE">
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+BOOLEAN<br>
+
+</TD></TR>
+</TABLE>
+<BR>
+<A NAME="Usage Notes"></A>
+<TABLE CLASS="LIST_TABLE"><TR><TD CLASS="LIST_TITLE">
+Usage Notes
+</TD></TR></TABLE>
+<TABLE CLASS="LIST_TABLE">
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+<li> Returns the value of IS_APPS set by the user. If the user has not called the SET_IS_APP method, the default is FALSE.<br>
+
+</TD></TR>
+</TABLE>
+<BR>
+<HR>
+<A NAME="set_nesting_level"></A>
+<P CLASS="TYPE_TITLE">
+set_nesting_level
+</P>
+<PRE CLASS="DECL_TEXT">
+Procedure set_nesting_level(nesting_level IN NUMBER)
+</PRE>
+<P CLASS="DESC_TEXT">
+&lt; set_nesting_level &gt;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp; DEPRECATED AS OF 2.0<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp; Purpose: This procedure was used to set the nesting level to be used by ILO to track statistics and emit trace data.<br>
+&nbsp; <A HREF=#begin_task>ILO_TASK.BEGIN_TASK</A> now calls ILO_TIMER.GET_CONFIG to determine the appropriate nesting level.<br>
+&nbsp;<br>
+&nbsp; AS OF 2.0, this procedure has no effect.<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="get_nesting_level"></A>
+<P CLASS="TYPE_TITLE">
+get_nesting_level
+</P>
+<PRE CLASS="DECL_TEXT">
+Function get_nesting_level RETURN NUMBER
+</PRE>
+<P CLASS="DESC_TEXT">
+&lt; get_nesting_level &gt;<br>
+&nbsp;<br>
+&nbsp; Return the NESTING_LEVEL currently active.<br>
+&nbsp;<br>
+&nbsp; DEPRECATED AS OF 2.0<br>
+
+<BR>
+</P>
+<A NAME="Parameters"></A>
+<TABLE CLASS="LIST_TABLE"><TR><TD CLASS="LIST_TITLE">
+Parameters
+</TD></TR></TABLE>
+<TABLE CLASS="LIST_TABLE">
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+None&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+</TABLE>
+<BR>
+<A NAME="Returns"></A>
+<TABLE CLASS="LIST_TABLE"><TR><TD CLASS="LIST_TITLE">
+Returns
+</TD></TR></TABLE>
+<TABLE CLASS="LIST_TABLE">
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+NUMBER<br>
+
+</TD></TR>
+</TABLE>
+<BR>
+<A NAME="Usage Notes"></A>
+<TABLE CLASS="LIST_TABLE"><TR><TD CLASS="LIST_TITLE">
+Usage Notes
+</TD></TR></TABLE>
+<TABLE CLASS="LIST_TABLE">
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+<li> Returns the value of NESTING_LEVEL set by the user. If the user has not called the <A HREF=#set_nesting_level>SET_NESTING_LEVEL</A> method, the default is 0. <li> DEPRECATED: AS OF 2.0, this function always returns 0.<br>
+
+</TD></TR>
+</TABLE>
+<BR>
+<HR>
+<A NAME="set_config"></A>
+<P CLASS="TYPE_TITLE">
+set_config
+</P>
+<PRE CLASS="DECL_TEXT">
+Procedure set_config(TRACE IN BOOLEAN, write_wall_time IN BOOLEAN)
+</PRE>
+<P CLASS="DESC_TEXT">
+&lt; set_config &gt;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp; DEPRECATED AS OF 2.0<br>
+&nbsp;<br>
+&nbsp; Purpose: This procedure was used to express the user's intention to begin tracing.<br>
+&nbsp; ILO.BEGIN_TASK now calls ILO_TIMER.GET_CONFIG to determine whether to trace or not.<br>
+&nbsp;<br>
+&nbsp; AS OF 2.0, this procedure calls the new SET_MARK_ALL_TASKS_INTERESTING procedure.<br>
+&nbsp; This is only temporary, and will be phased out in future release.<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="get_config"></A>
+<P CLASS="TYPE_TITLE">
+get_config
+</P>
+<PRE CLASS="DECL_TEXT">
+Procedure get_config(TRACE OUT BOOLEAN, write_wall_time OUT BOOLEAN)
+</PRE>
+<P CLASS="DESC_TEXT">
+&lt; get_config &gt;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp; DEPRECATED AS OF 2.0<br>
+&nbsp;<br>
+&nbsp; Purpose: return the current values of the TRACE and WRITE_WALL_TIME<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; elements.<br>
+&nbsp;<br>
+&nbsp; comments<br>
+&nbsp;<br>
+&nbsp; Provided for convenience...<br>
+&nbsp; Should use functions <A HREF=#get_trace>get_trace</A> and <A HREF=#get_write_wall_time>get_write_wall_time</A>
+
+<BR>
+</P>
+<HR>
+<A NAME="get_trace"></A>
+<P CLASS="TYPE_TITLE">
+get_trace
+</P>
+<PRE CLASS="DECL_TEXT">
+Function get_trace RETURN BOOLEAN
+</PRE>
+<P CLASS="DESC_TEXT">
+&lt; get_trace &gt;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp; DEPRECATED AS OF 2.0<br>
+&nbsp;<br>
+&nbsp; Purpose: return the current values of the TRACE element.<br>
+&nbsp;<br>
+&nbsp; comments<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="get_write_wall_time"></A>
+<P CLASS="TYPE_TITLE">
+get_write_wall_time
+</P>
+<PRE CLASS="DECL_TEXT">
+Function get_write_wall_time RETURN BOOLEAN
+</PRE>
+<P CLASS="DESC_TEXT">
+&lt; get_write_wall_time &gt;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp; DEPRECATED AS OF 2.0<br>
+&nbsp;<br>
+&nbsp; Purpose: return the current values of the write_wall_time element.<br>
+&nbsp;<br>
+&nbsp; comments<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="begin_task"></A>
+<P CLASS="TYPE_TITLE">
+begin_task
+</P>
+<PRE CLASS="DECL_TEXT">
+Procedure begin_task(module     IN VARCHAR2 DEFAULT NULL,
+                     action     IN VARCHAR2 DEFAULT NULL,
+                     client_id  IN VARCHAR2 DEFAULT NULL,
+                     COMMENT    IN VARCHAR2 DEFAULT NULL,
+                     begin_time IN TIMESTAMP default null)
+</PRE>
+<P CLASS="DESC_TEXT">
+&lt; begin_task &gt;<br>
+&nbsp;<br>
+&nbsp;&nbsp; Mark the beginning of an instrumented task.<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;&nbsp; %examples<br>
+&nbsp;&nbsp; Here is an instrumented block from an HR application:<BR>
+&nbsp;&nbsp; <CODE><br>
+&nbsp;&nbsp;&nbsp;&nbsp; CREATE or replace PROCEDURE add_employee(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; name VARCHAR2,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; salary NUMBER,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; manager NUMBER,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; title VARCHAR2,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; commission NUMBER,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; department NUMBER) AS<br>
+&nbsp;&nbsp;&nbsp;&nbsp; BEGIN<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ILO_TASK.BEGIN_TASK(module =&gt; 'Human Resources', action =&gt; 'Adding Employees');<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; INSERT INTO emp<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (ename, empno, sal, mgr, job, hiredate, comm, deptno)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; VALUES (name, emp_seq.nextval, salary, manager, title, SYSDATE,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; commission, department);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ILO_TASK.END_TASK;<br>
+&nbsp;&nbsp;&nbsp;&nbsp; EXCEPTION<br>
+&nbsp;&nbsp;&nbsp;&nbsp; WHEN OTHERS<br>
+&nbsp;&nbsp;&nbsp;&nbsp; THEN<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dbms_output.put_line('Exception thrown');<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ILO_TASK.END_TASK(error_num =&gt;SQLCODE);<br>
+&nbsp;&nbsp;&nbsp;&nbsp; END;<br>
+&nbsp;&nbsp; </CODE><BR>
+
+<BR>
+</P>
+<A NAME="Parameters"></A>
+<TABLE CLASS="LIST_TABLE"><TR><TD CLASS="LIST_TITLE">
+Parameters
+</TD></TR></TABLE>
+<TABLE CLASS="LIST_TABLE">
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+module&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+The module name for the task, truncated to 48 bytes.<br>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+action&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+The action name for the task, truncated to 32 bytes.<br>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+client_id&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+The client identifier for the task, truncated to 64 bytes.<br>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+comment&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+The comment for the task, truncated to 64 bytes.<br>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+begin_time&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+The (optional) begin time for the task.<br>
+
+</TD></TR>
+</TABLE>
+<BR>
+<A NAME="Usage Notes"></A>
+<TABLE CLASS="LIST_TABLE"><TR><TD CLASS="LIST_TITLE">
+Usage Notes
+</TD></TR></TABLE>
+<TABLE CLASS="LIST_TABLE">
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+<li>Marks the beginning of a unit of work. Should be placed right after the &quot;BEGIN&quot; in a procedure or function definition. <li>Performs, at a minimum, a DBMS_APPLICATION_INFO.SET_MODULE(module, action). <li>Writes a line to the trace file in this format: ILO_TASK.BEGIN_TASK[Sequence][Module Name][Action Name][Client Id][Comments] <li>Pushes the MODULE/ACTION on to a stack along with whether tracing is needed for the MODULE/ACTION. <li>The MODULE could be name of Package.Procedure or the name of a form. <li>If the MODULE is NULL and the MODULE of the parent is currently set, then the MODULE will inherit its parent task's MODULE. If the MODULE is NULL and there is no parent task, then the MODULE will be set to &quot;No Module Specified&quot;. <li>If the ACTION is NULL and the ACTION of the parent is currently set, then the ACTION will inherit its parent task's ACTION. If the ACTION is NULL and there is no parent task, then the ACTION will be 'No Action Specified'. <li>The ACTION should be the business event that is taking place. For example, 'Creating Sales Orders'. This policy makes trying to correlate database statistics to business functions much easier. <li>The CLIENT_IDENTIFIER should be more technical information or commentary that will be displayed in the V$SESSION view when this BEGIN_TASK is executed. <li>If the CLIENT_IDENTIFIER has not been set then a the default client_id will be set to: &lt;Client's OS User&gt;~&lt;Client's IP Address&gt;~&lt;Client's program&gt;~&lt;Service being accessed&gt;. For example, if JSmith is on a PC at IP address 192.168.1.40, using SQL*Plus to access the instance through the service name ORCL10G, then the default client identifier will be: <CODE>JSmith~192.168.1.40~SQLPLUS.exe~ORCL10G</CODE> <li>The BEGIN_TIME can be set explicitly to sync up with the application server rather than the database. Ensure that the time is also sent in <A HREF=#end_task>END_TASK</A> to avoid appearance of time travel...<br>
+
+</TD></TR>
+</TABLE>
+<BR>
+<HR>
+<A NAME="get_current_task"></A>
+<P CLASS="TYPE_TITLE">
+get_current_task
+</P>
+<PRE CLASS="DECL_TEXT">
+Function get_current_task RETURN stack_rec_t
+</PRE>
+<P CLASS="DESC_TEXT">
+&lt; Get_current_task&gt;<br>
+&nbsp;<br>
+&nbsp;&nbsp; Return a record representing the current task context.<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;&nbsp; %examples<br>
+&nbsp;&nbsp; To print out the value of the current record: <BR>
+&nbsp;&nbsp; <CODE><br>
+&nbsp;&nbsp; DECLARE<br>
+&nbsp;&nbsp;&nbsp;&nbsp; l_record ILO_TASK.stack_rec_t;<br>
+&nbsp;&nbsp; BEGIN<br>
+&nbsp;&nbsp;&nbsp;&nbsp; l_record := ILO_TASK.GET_CURRENT_TASK();<br>
+&nbsp;&nbsp;&nbsp;&nbsp; IF l_record.module IS NOT NULL THEN<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dbms_output.put_line('sequence =&gt;'&nbsp;&nbsp;&nbsp;&nbsp; || l_record.sequence<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; || ', module =&gt;'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; || l_record.module<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; || ', action =&gt;'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; || l_record.action<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; || ', client_id =&gt;'&nbsp;&nbsp;&nbsp; || l_record.client_id<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; || ', comment =&gt;'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; || l_record.comment<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; || ', widgets =&gt;'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; || l_record.widget_count);<br>
+&nbsp;&nbsp;&nbsp;&nbsp; ELSE<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dbms_output.put_line('The record contains no values');<br>
+&nbsp;&nbsp;&nbsp;&nbsp; END IF;<br>
+&nbsp;&nbsp; END;<br>
+&nbsp;&nbsp; </CODE><BR>
+
+<BR>
+</P>
+<A NAME="Usage Notes"></A>
+<TABLE CLASS="LIST_TABLE"><TR><TD CLASS="LIST_TITLE">
+Usage Notes
+</TD></TR></TABLE>
+<TABLE CLASS="LIST_TABLE">
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+<li>If no value found for the task then a NULL is returned.<br>
+
+</TD></TR>
+</TABLE>
+<BR>
+<HR>
+<A NAME="get_task_stack"></A>
+<P CLASS="TYPE_TITLE">
+get_task_stack
+</P>
+<PRE CLASS="DECL_TEXT">
+Function get_task_stack RETURN ilo_task.stack_t
+</PRE>
+<P CLASS="DESC_TEXT">
+&lt; Get_task_stack&gt;<br>
+&nbsp;<br>
+&nbsp;&nbsp; Return a list of records representing all the currently active task contexts. There will be more than one record returned when nested tasks are active.<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;&nbsp; %examples<br>
+&nbsp;&nbsp; To print out all values in the current stack: <BR>
+&nbsp;&nbsp; <CODE><br>
+&nbsp;&nbsp; DECLARE<br>
+&nbsp;&nbsp;&nbsp;&nbsp; l_list ILO_TASK.stack_t;<br>
+&nbsp;&nbsp; BEGIN<br>
+&nbsp;&nbsp;&nbsp;&nbsp; l_list := ILO_TASK.GET_TASK_STACK();<br>
+&nbsp;&nbsp;&nbsp;&nbsp; IF l_list.count &gt; 0 THEN<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FOR i in 1 .. l_list.count LOOP<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dbms_output.put_line('sequence =&gt;'&nbsp;&nbsp;&nbsp;&nbsp; || l_list(i).sequence<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; || ', module =&gt;'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; || l_list(i).module<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; || ', action =&gt;'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; || l_list(i).action<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; || ', client_id =&gt;'&nbsp;&nbsp;&nbsp; || l_list(i).client_id<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; || ', comment =&gt;'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; || l_list(i).comment<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; || ', widgets =&gt;'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; || l_list(i).widget_count);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; END LOOP;<br>
+&nbsp;&nbsp;&nbsp;&nbsp; ELSE<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dbms_output.put_line('No elements in the collection');<br>
+&nbsp;&nbsp;&nbsp;&nbsp; END IF;<br>
+&nbsp;&nbsp; END;<br>
+&nbsp;&nbsp; </CODE><BR>
+
+<BR>
+</P>
+<A NAME="Usage Notes"></A>
+<TABLE CLASS="LIST_TABLE"><TR><TD CLASS="LIST_TITLE">
+Usage Notes
+</TD></TR></TABLE>
+<TABLE CLASS="LIST_TABLE">
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+<li>The stack will be given in the order that the stack was created. Record 1 will contain the first record inserted. The last record will contains the record most recently added. <li>Because the return is a table type variable, its size is dynamically adjusted to the size of returned list.<br>
+
+</TD></TR>
+</TABLE>
+<BR>
+<HR>
+<A NAME="end_task"></A>
+<P CLASS="TYPE_TITLE">
+end_task
+</P>
+<PRE CLASS="DECL_TEXT">
+Procedure end_task(error_num    IN PLS_INTEGER DEFAULT 0,
+                   end_time     IN TIMESTAMP DEFAULT NULL,
+                   widget_count IN NUMBER DEFAULT NULL)
+</PRE>
+<P CLASS="DESC_TEXT">
+&lt; end_task &gt;<br>
+&nbsp;<br>
+&nbsp;&nbsp; Mark the end of an instrumented task.<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;&nbsp; %examples<br>
+&nbsp;&nbsp; An example would be a procedure used in the HR application to add employees: <BR>
+&nbsp;&nbsp; <CODE><br>
+&nbsp;&nbsp;&nbsp;&nbsp; CREATE or replace PROCEDURE add_employee(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; name VARCHAR2,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; salary NUMBER,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; manager NUMBER,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; title VARCHAR2,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; commission NUMBER,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; department NUMBER) AS<br>
+&nbsp;&nbsp;&nbsp;&nbsp; BEGIN<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ILO_TASK.BEGIN_TASK(module =&gt; 'Human Resources', action =&gt; 'Adding Employees');<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; INSERT INTO emp<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (ename, empno, sal, mgr, job, hiredate, comm, deptno)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; VALUES (name, emp_seq.nextval, salary, manager, title, SYSDATE,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; commission, department);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ILO_TASK.END_TASK;<br>
+&nbsp;&nbsp;&nbsp;&nbsp; EXCEPTION<br>
+&nbsp;&nbsp;&nbsp;&nbsp; WHEN OTHERS<br>
+&nbsp;&nbsp;&nbsp;&nbsp; THEN<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dbms_output.put_line('Exception thrown');<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ILO_TASK.END_TASK(error_num =&gt;SQLCODE);<br>
+&nbsp;&nbsp;&nbsp;&nbsp; END;<br>
+&nbsp;&nbsp; </CODE><BR>
+
+<BR>
+</P>
+<A NAME="Parameters"></A>
+<TABLE CLASS="LIST_TABLE"><TR><TD CLASS="LIST_TITLE">
+Parameters
+</TD></TR></TABLE>
+<TABLE CLASS="LIST_TABLE">
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+error_num&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+Any non-zero integer will be reflected in the timer table as an error.<br>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+end_time&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+The (optional) end time for the task.<br>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+widget_count&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+The (optional) widget count for the task.<br>
+
+</TD></TR>
+</TABLE>
+<BR>
+<A NAME="Usage Notes"></A>
+<TABLE CLASS="LIST_TABLE"><TR><TD CLASS="LIST_TITLE">
+Usage Notes
+</TD></TR></TABLE>
+<TABLE CLASS="LIST_TABLE">
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+<li>Expects that the <A HREF=#begin_task>BEGIN_TASK</A> procedure had been run prior to execution. <li>Marks the end of a task begun by <A HREF=#begin_task>BEGIN_TASK</A>. <li>In procedures, should be placed right before the &quot;END&quot; and &quot;EXCEPTION&quot; statements. <li>In &quot;EXCEPTION&quot; statements it would be best to pass the SQLCODE as the error_num. <li>In functions, should occur right before all &quot;RETURN&quot; statements (which should also be in the EXCEPTION blocks). <li>Pops the MODULE/ACTION off the stack created and pushed on too the stack created by the ILO_TASK.BEGIN_TASK to retrieve the previous MODULE/ACTION. If it is at the last END_TASK of the BEGIN_TASK/END_TASK pairs then it will perform a DBMS_APPLICATION_INFO.SET_MODULE(module=&gt;NULL,action=&gt;NULL). <li>Writes a line to the trace file in this format: ILO_TASK.END_TASK[Module Name][Action Name][Client Id][Comments][Widget Count] <li>The END_TIME can be set explicitly to sync up with the application server rather than the database. Ensure that the time is also sent in <A HREF=#begin_task>BEGIN_TASK</A> to avoid appearance of time travel...<br>
+
+</TD></TR>
+</TABLE>
+<BR>
+<HR>
+<A NAME="end_all_tasks"></A>
+<P CLASS="TYPE_TITLE">
+end_all_tasks
+</P>
+<PRE CLASS="DECL_TEXT">
+Procedure end_all_tasks(p_error_num IN PLS_INTEGER DEFAULT 0,
+                        p_end_time  IN TIMESTAMP DEFAULT NULL)
+</PRE>
+<P CLASS="DESC_TEXT">
+&lt; end_all_tasks &gt;<br>
+&nbsp;<br>
+&nbsp;&nbsp; Mark the end of all tasks and subtasks.<br>
+
+<BR>
+</P>
+<A NAME="Parameters"></A>
+<TABLE CLASS="LIST_TABLE"><TR><TD CLASS="LIST_TITLE">
+Parameters
+</TD></TR></TABLE>
+<TABLE CLASS="LIST_TABLE">
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+p_error_num&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+Any non-zero integer will be reflected in the timer table as an error.<br>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+p_end_time&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+The (optional) end time for the task.<br>
+
+</TD></TR>
+</TABLE>
+<BR>
+<A NAME="Usage Notes"></A>
+<TABLE CLASS="LIST_TABLE"><TR><TD CLASS="LIST_TITLE">
+Usage Notes
+</TD></TR></TABLE>
+<TABLE CLASS="LIST_TABLE">
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+<li>Deletes all tasks on the stack and marks the end of all tasks initiated with <A HREF=#begin_task>BEGIN_TASK</A>. <li>In &quot;EXCEPTION&quot; statements it would be best to pass the SQLCODE as the error_num.<br>
+
+</TD></TR>
+</TABLE>
+<BR>
+<HR>
+<A NAME="get_version"></A>
+<P CLASS="TYPE_TITLE">
+get_version
+</P>
+<PRE CLASS="DECL_TEXT">
+Function get_version RETURN NUMBER
+</PRE>
+<P CLASS="DESC_TEXT">
+&lt; Get_Version&gt;<br>
+&nbsp;<br>
+&nbsp;&nbsp; Returns the current version of the ILO Suite that is currently installed.<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;&nbsp; %examples<br>
+&nbsp;&nbsp; To get the current version of the ILO_TASK package <BR>
+&nbsp;&nbsp; <CODE><br>
+&nbsp;&nbsp; DECLARE<br>
+&nbsp;&nbsp;&nbsp;&nbsp; v_version number;<br>
+&nbsp;&nbsp; BEGIN<br>
+&nbsp;&nbsp;&nbsp;&nbsp; v_version := ilo_task.get_version();<br>
+&nbsp;&nbsp;&nbsp;&nbsp; DBMS_OUTPUT.PUT_LINE(to_char(v_version));<br>
+&nbsp;&nbsp; END;<br>
+&nbsp;&nbsp; </CODE><BR>
+
+<BR>
+</P>
+<A NAME="Usage Notes"></A>
+<TABLE CLASS="LIST_TABLE"><TR><TD CLASS="LIST_TITLE">
+Usage Notes
+</TD></TR></TABLE>
+<TABLE CLASS="LIST_TABLE">
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+<li>You can call this directly to return the version of ILO_TASK.<br>
+
+</TD></TR>
+</TABLE>
+<BR>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+</BODY>
+</HTML>

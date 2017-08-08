@@ -1,0 +1,89 @@
+-------------------------------------------------------------------------------
+-- Automatic startup and shutdown
+-------------------------------------------------------------------------------
+-- This is the old way, the new way is with oracle restart that requires oracle 
+-- restart installation.
+--
+-- For more information see: 
+--	 How to Automate Startup/Shutdown of Oracle Database on Linux [ID 222813.1] 
+--   https://support.oracle.com/CSP/main/article?cmd=show&type=NOT&doctype=BULLETIN&id=222813.1
+--
+-- Always as root
+
+-- Enable automatic startup of database via dbstart script by putting Y in /etc/oratab
+
+-- Create a new file and put this content
+nano /etc/init.d/oracle
+<-- BEGIN -->
+#!/bin/bash
+#
+# oracle Init file for starting and stopping
+# Oracle Database. Script is valid for 10g and 11g versions.
+#
+# chkconfig: 35 80 30
+# description: Oracle Database startup script
+
+# Source function library.
+
+. /etc/rc.d/init.d/functions
+
+ORACLE_OWNER="oracle"
+ORACLE_HOME="/u01/app/oracle/product/11.2.0/dbhome_1"
+
+case "$1" in
+start)
+echo -n $"Starting Oracle DB:"
+su - $ORACLE_OWNER -c "$ORACLE_HOME/bin/dbstart $ORACLE_HOME"
+echo "OK"
+;;
+stop)
+echo -n $"Stopping Oracle DB:"
+su - $ORACLE_OWNER -c "$ORACLE_HOME/bin/dbshut $ORACLE_HOME"
+echo "OK"
+;;
+*)
+echo $"Usage: $0 {start|stop}"
+esac
+<-- END -->
+
+-- Execute (as root) following commands
+chmod 750 /etc/init.d/oracle
+chkconfig --add oracle --level 0356	
+
+-- Create another new file and put this content
+nano /etc/init.d/oracleemctl
+<-- BEGIN -->
+#!/bin/bash
+#
+# oraemctl Starting and stopping Oracle Enterprise Manager Database Control.
+# Script is valid for 10g and 11g versions.
+#
+# chkconfig: 35 80 30
+# description: Enterprise Manager DB Control startup script
+
+# Source function library.
+
+. /etc/rc.d/init.d/functions
+
+ORACLE_OWNER="oracle"
+ORACLE_HOME="/u01/app/oracle/product/11.2.0/dbhome_1"
+
+case "$1" in
+start)
+echo -n $"Starting Oracle EM DB Console:"
+su - $ORACLE_OWNER -c "$ORACLE_HOME/bin/emctl start dbconsole"
+echo "OK"
+;;
+stop)
+echo -n $"Stopping Oracle EM DB Console:"
+su - $ORACLE_OWNER -c "$ORACLE_HOME/bin/emctl stop dbconsole"
+echo "OK"
+;;
+*)
+echo $"Usage: $0 {start|stop}"
+esac
+<-- END -->
+
+-- Execute (as root) following commands
+chmod 750 /etc/init.d/oracleemctl
+chkconfig --add oracleemctl --level 0356	

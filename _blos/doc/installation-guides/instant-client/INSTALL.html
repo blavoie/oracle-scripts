@@ -1,0 +1,337 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0079)http://blog.famillecollet.com/post/2010/11/12/RPM-Oracle-Instant-Client-11.2-en -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="MSSmartTagsPreventParsing" content="TRUE">
+  <meta name="ROBOTS" content="INDEX, FOLLOW">
+  
+  <title>RPM Oracle Instant Client 11.2 - Les RPM de Remi - Blog</title>
+  <meta name="description" lang="en" content="A short guide to build RPM of Oracle Instant Client. Installing the Oracle Instant Client is probably the simplest solution to get a Oracle server access from a">
+  <meta name="copyright" content="Licence: Creative Commons Paternité-Pas d&#39;Utilisation Commerciale-Partage des Conditions Initiales à l&#39;Identique 2.0 France License.">
+  <meta name="author" content="Remi">
+  <meta name="date" scheme="W3CDTF" content="2010-11-12T19:03:00+01:00">
+  
+  <link rel="schema.dc" href="http://purl.org/dc/elements/1.1/">
+  <meta name="dc.title" content="RPM Oracle Instant Client 11.2">
+  <meta name="dc.description" lang="en" content="A short guide to build RPM of Oracle Instant Client. Installing the Oracle Instant Client is probably the simplest solution to get a Oracle server access from a">
+  <meta name="dc.creator" content="Remi">
+  <meta name="dc.language" content="en">
+  <meta name="dc.publisher" content="Remi Collet">
+  <meta name="dc.rights" content="Licence: Creative Commons Paternité-Pas d&#39;Utilisation Commerciale-Partage des Conditions Initiales à l&#39;Identique 2.0 France License.">
+  <meta name="dc.date" scheme="W3CDTF" content="2010-11-12T19:03:00+01:00">
+  <meta name="dc.type" content="text">
+  <meta name="dc.format" content="text/html">
+  
+  <link rel="top" href="http://blog.famillecollet.com/" title="Accueil">
+  <link rel="contents" href="http://blog.famillecollet.com/archive" title="Archives">
+  
+  <link rel="next" href="http://blog.famillecollet.com/post/2010/11/15/GLPI-version-0.78.1-disponible" title="GLPI version 0.78.1 disponible">
+  
+  <link rel="previous" href="http://blog.famillecollet.com/post/2010/11/12/RPM-Oracle-Instant-Client-11.2" title="RPM Oracle Instant Client 11.2">
+  
+  <link rel="alternate" type="application/atom+xml" title="Atom 1.0" href="http://blog.famillecollet.com/feed/atom">
+  
+  <style type="text/css" media="screen">
+@import url(/themes/remi/style.css);
+</style>
+<style type="text/css" media="print">
+@import url(/themes/remi/../default/print.css);
+</style>
+<link rel="shortcut icon" href="http://blog.famillecollet.com/themes/remi/favicon.ico">
+
+<script src="./RPM Oracle Instant Client 11.2 - Les RPM de Remi - Blog_files/cb=gapi.loaded_1" async=""></script><script src="./RPM Oracle Instant Client 11.2 - Les RPM de Remi - Blog_files/cb=gapi.loaded_0" async=""></script><script type="text/javascript" async="" src="./RPM Oracle Instant Client 11.2 - Les RPM de Remi - Blog_files/plusone.js" gapi_processed="true"></script><script type="text/javascript" src="./RPM Oracle Instant Client 11.2 - Les RPM de Remi - Blog_files/jquery.js"></script><style type="text/css"></style>
+<script type="text/javascript" src="./RPM Oracle Instant Client 11.2 - Les RPM de Remi - Blog_files/jquery.cookie.js"></script>
+
+
+<style type="text/css" media="screen">
+#comment-form #subscribeToComments {width:auto;border:0;margin:0 5px 0 140px;}
+</style>  
+  <script type="text/javascript" src="./RPM Oracle Instant Client 11.2 - Les RPM de Remi - Blog_files/post.js"></script>
+  <script type="text/javascript">
+  //<![CDATA[
+  var post_remember_str = 'Se souvenir de moi sur ce blog';
+  //]]>
+  </script>
+<script>window["_GOOG_TRANS_EXT_VER"] = "1";</script></head>
+
+<body class="dc-post">
+<div id="page">
+
+
+<div id="top">
+  <h1><span><a href="http://blog.famillecollet.com/">Les RPM de Remi - Blog</a></span></h1>
+&nbsp;&nbsp;
+  </div>
+
+<p id="navlink"><a href="http://blog.famillecollet.com/post/2010/11/12/RPM-Oracle-Instant-Client-11.2-en#main">Aller au contenu</a> 
+<a href="http://blog.famillecollet.com/post/2010/11/12/RPM-Oracle-Instant-Client-11.2-en#blognav">Aller au menu</a> 
+<a href="http://blog.famillecollet.com/post/2010/11/12/RPM-Oracle-Instant-Client-11.2-en#search">Aller à la recherche</a></p>
+
+<p id="prelude"><a href="http://blog.famillecollet.com/">Blog</a> | 
+<a href="http://forums.famillecollet.com/">Forums</a> | 
+<a href="http://rpms.famillecollet.com/">Dépôt</a></p>
+
+<div id="wrapper">
+
+<div id="main">
+  <div id="content">
+  
+  <p id="navlinks">
+  <a href="http://blog.famillecollet.com/post/2010/11/12/RPM-Oracle-Instant-Client-11.2" title="RPM Oracle Instant Client 11.2" class="prev">« (fr) RPM Oracle Instant Client 11.2</a>
+   <span>-</span> <a href="http://blog.famillecollet.com/post/2010/11/15/GLPI-version-0.78.1-disponible" title="GLPI version 0.78.1 disponible" class="next">(fr) GLPI version 0.78.1 disponible »</a>
+  </p>
+  
+  <div id="p1127" class="post">
+    <h2 class="post-title"><img src="./RPM Oracle Instant Client 11.2 - Les RPM de Remi - Blog_files/en.gif"> RPM Oracle Instant Client 11.2	<!-- Place this tag where you want the +1 button to render -->
+	<div style="display: inline-block; margin-left: 1em"><div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; background-color: transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 90px; height: 20px; background-position: initial initial; background-repeat: initial initial;"><iframe frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 90px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 20px;" tabindex="0" vspace="0" width="100%" id="I0_1387389040870" name="I0_1387389040870" src="./RPM Oracle Instant Client 11.2 - Les RPM de Remi - Blog_files/fastbutton.html" data-gapiattached="true" title="+1"></iframe></div></div>
+    </h2>
+    
+    <p class="post-info">Par <a href="http://blog.famillecollet.com/">Remi</a>    le vendredi 12 novembre 2010, 19:03        - <a href="http://blog.famillecollet.com/category/Fiches-explicatives">Fiches explicatives</a>
+        - <a href="./RPM Oracle Instant Client 11.2 - Les RPM de Remi - Blog_files/RPM Oracle Instant Client 11.2 - Les RPM de Remi - Blog.html">Lien permanent</a>
+    </p>
+    
+        <ul class="post-tags">    <li><a href="http://blog.famillecollet.com/tag/oracle">oracle</a></li>
+    </ul>    
+    
+          <div class="post-excerpt"><p>A short guide to build RPM of <a href="http://www.oracle.com/technetwork/database/features/instant-client/index.html" hreflang="en">Oracle Instant Client</a>.</p></div>
+        
+    <div class="post-content"><p>Installing the <a href="http://www.oracle.com/technetwork/database/features/instant-client/index.html" hreflang="en">Oracle Instant Client</a>
+is probably the simplest solution to get a Oracle server access from a Unix/<strong>Linux</strong>/Windows/MacOS client. Oracle provides some RPM (usable with Fedora) for some versions and for some architectures. For others versions, only ZIP archives are available on their site.</p>
+<p>Personally, official RPM don't suits my need for various reasons:</p>
+<ul><li>Installation in /usr/<strong>lib</strong> instead of /usr/<strong>lib64</strong></li>
+<li>No <em>provides</em> (mandatory to solve dependencies between packages)</li>
+<li>No configuration for the shared libraries dynamic load</li>
+</ul>
+<p>For this reasons, I'm used, for years, to build my own RPM, which I use to build and run <strong>tora</strong> or <strong>php-oci8</strong>. Of course, it will be great if I could distribute them on my repository, but the Oracle license probably don't allow this.</p>
+<p>This is an update of this small guide for the new version <strong>11.2.0.2.0</strong> which will be used for my next build.</p>
+<h3>Setting the environment</h3>
+<p>About <strong>300Mio</strong> of disk space will be required.</p>
+<p>Under the <strong>root</strong> account, install the needed tools</p>
+<pre>yum install rpmdevtools rpm-build unzip</pre><p>Create a dedicated account, you must never build under the root account, and a dedicated account is always a good idea.</p>
+<pre>useradd orabuild</pre><p>Under the new <strong>orabuild</strong> account, setup the needed directories</p>
+<pre>rpmdev-setuptree</pre><h3>Getting the latest versions </h3>
+<p>Download from the <a hreflang="en" href="http://www.oracle.com/technetwork/database/features/instant-client/index-097480.html">Oracle</a> web site the last version of the available archives, and save them in the&nbsp; ~/rpmbuild/<strong>SOURCES</strong> folder</p>
+<p><strong>32 bits</strong> version :</p>
+<ul><li>instantclient-basic-linux32-11.2.0.2.0.zip</li>
+<li>instantclient-jdbc-linux32-11.2.0.2.0.zip</li>
+<li>instantclient-odbc-linux32-11.2.0.2.0.zip</li>
+<li>instantclient-sdk-linux32-11.2.0.2.0.zip</li>
+<li>instantclient-sqlplus-linux32-11.2.0.2.0.zip</li>
+<li>instantclient-tools-linux32-11.2.0.2.0.zip</li>
+</ul>
+<p><strong>64 bits</strong> version:</p>
+<ul><li>instantclient-basic-linux-x86-64-11.2.0.2.0.zip
+</li>
+<li>instantclient-jdbc-linux-x86-64-11.2.0.2.0.zip</li>
+<li>instantclient-odbc-linux-x86-64-11.2.0.2.0.zip</li>
+<li>instantclient-sdk-linux-x86-64-11.2.0.2.0.zip</li>
+<li>instantclient-sqlplus-linux-x86-64-11.2.0.2.0.zip</li>
+<li>instantclient-tools-linux-x86-64-11.2.0.2.0.zip</li>
+</ul>
+<p>Download from my <a href="http://rpms.famillecollet.com/SRPMS/">repository</a> the last version of the source RPM, into the ~/rpmbuild/<strong>SRPMS</strong> folder</p>
+<p>For <strong>i386</strong> : <a href="http://rpms.famillecollet.com/SRPMS/oracle-instantclient-i386-11.2.0.2.0-1.remi.nosrc.rpm">oracle-instantclient-i386-11.2.0.2.0-1.remi.nosrc.rpm</a></p>
+<p>For <strong>x86_64</strong> : <a href="http://rpms.famillecollet.com/SRPMS/oracle-instantclient-x86_64-11.2.0.2.0-1.remi.nosrc.rpm">oracle-instantclient-x86_64-11.2.0.2.0-1.remi.nosrc.rpm</a></p>
+<h3>Bulding the RPM</h3>
+<p>Always under the&nbsp; <strong>orabuild</strong> account:</p>
+<pre>rpmbuild --rebuild rpmbuild/SRPMS/oracle-instantclient-*-11.2.0.2.0-1.remi.nosrc.rpm</pre>
+<p>After a few minutes... you'll have the RPM available in the ~/rpmbuild/<strong>RPMS/i386</strong> or ~/rpmbuild/<strong>RPMS/x86_64</strong> folder:</p>
+<pre>Wrote: /home/orabuild/rpmbuild/RPMS/x86_64/oracle-instantclient-basic-11.2.0.2.0-1.fc14.x86_64.rpm<br>Wrote: /home/orabuild/rpmbuild/RPMS/x86_64/oracle-instantclient-devel-11.2.0.2.0-1.fc14.x86_64.rpm<br>Wrote: /home/orabuild/rpmbuild/RPMS/x86_64/oracle-instantclient-jdbc-11.2.0.2.0-1.fc14.x86_64.rpm<br>Wrote: /home/orabuild/rpmbuild/RPMS/x86_64/oracle-instantclient-odbc-11.2.0.2.0-1.fc14.x86_64.rpm<br>Wrote: /home/orabuild/rpmbuild/RPMS/x86_64/oracle-instantclient-sqlplus-11.2.0.2.0-1.fc14.x86_64.rpm<br>Wrote: /home/orabuild/rpmbuild/RPMS/x86_64/oracle-instantclient-tools-11.2.0.2.0-1.fc14.x86_64.rpm</pre>
+<h3>Installation / Utilisation</h3>
+<p>You can now <strong>install</strong> this RPM as usually, under the <strong>root</strong> account:</p>
+<pre>yum install --nogpgcheck /home/orabuild/rpmbuild/RPMS/*/oracle-instantclient-*-11.2.0.2.0-1.*.rpm</pre>
+<p>You can <strong>test</strong> your access to the server with the usual command:</p>
+<pre>sqlplus&nbsp; user/login@serveur:port/SID</pre><p>To continue, you can read, for example <a href="http://blog.famillecollet.com/post/2006/02/09/110-acces-aux-bases-de-donnees-oracle-en-php" hreflang="fr">Accès aux bases de données Oracle en PHP</a> (which need to be translated)</p>
+<p>As always, your feedback is welcome.</p></div>
+
+      </div>
+
+  
+
+                <div id="comments">
+        <h3>Commentaires</h3>
+      <dl>
+          <dt id="c3491" class=" odd first"><a href="http://blog.famillecollet.com/post/2010/11/12/RPM-Oracle-Instant-Client-11.2-en#c3491" class="comment-number">1.</a>
+      Le jeudi 18 novembre 2010, 10:54      par teekay</dt>
+      
+      <dd class=" odd first">
+
+            
+      <p>There is a problem with unixODBC:</p>
+
+
+<p>Fehler: Package: oracle-instantclient-odbc-11.2.0.2.0-1.fc14.i686 (/oracle-instantclient-odbc-11.2.0.2.0-1.fc14.i686)<br>
+Requires: libodbcinst.so.1</p>
+
+
+<p># rpm -q unixODBC<br>
+unixODBC-2.2.14-12.fc14.i686</p>
+
+
+<p># rpm -ql unixODBC|grep libodbcinst<br>
+/usr/lib/libodbcinst.so<br>
+/usr/lib/libodbcinst.so.2<br>
+/usr/lib/libodbcinst.so.2.0.0</p>
+            </dd>
+                  <dt id="c3492" class="me  "><a href="http://blog.famillecollet.com/post/2010/11/12/RPM-Oracle-Instant-Client-11.2-en#c3492" class="comment-number">2.</a>
+      Le jeudi 18 novembre 2010, 17:52      par <a href="http://blog.famillecollet.com/" rel="nofollow">Remi</a></dt>
+      
+      <dd class="me  ">
+
+            
+      <p>@teekay, RPM <strong>only detect</strong> libraries required by the binaries provided by Oracle.</p>
+<p>libodbcinst.so.<strong>1</strong> is available on <strong>RHEL-5</strong>, and on fedora &lt;= 10.</p>
+<p>As new <strong>RHEL-6</strong> (and fedora &gt;= 11) provides libodbcinst.so.<strong>2</strong>, we could expect Oracle to publish a new version (they only support commercial distributions).</p>
+<p>So, if you really need oracle ODBC client, you have to wait for Oracle. The others packages could be installed, and run without issue for the test I have done.</p>
+<p>I can't do miracle with proprietary software... this could be so simple with the sources...</p>
+<p>+</p>
+            </dd>
+                  <dt id="c3586" class=" odd "><a href="http://blog.famillecollet.com/post/2010/11/12/RPM-Oracle-Instant-Client-11.2-en#c3586" class="comment-number">3.</a>
+      Le samedi  1 janvier 2011, 18:13      par <a href="http://cyruspy.wordpress.com/" rel="nofollow">Ciro</a></dt>
+      
+      <dd class=" odd ">
+
+            
+      <p>@Remi<br>
+Just being curious, why did you split the SPEC file?.</p>
+
+
+<p>@teekay<br>
+About the libodbcinst library, you can create a link to libodbcinst.so.2 named libodbcinst.so.1, it's ugly but it'll work..</p>
+            </dd>
+                  <dt id="c3587" class="  "><a href="http://blog.famillecollet.com/post/2010/11/12/RPM-Oracle-Instant-Client-11.2-en#c3587" class="comment-number">4.</a>
+      Le samedi  1 janvier 2011, 18:19      par <a href="http://cyruspy.wordpress.com/" rel="nofollow">Ciro</a></dt>
+      
+      <dd class="  ">
+
+            
+      <p>@teekay<br>
+Well, it MIGHT work, I see that there are some ABI changes also</p>
+            </dd>
+                  <dt id="c3589" class="me odd "><a href="http://blog.famillecollet.com/post/2010/11/12/RPM-Oracle-Instant-Client-11.2-en#c3589" class="comment-number">5.</a>
+      Le dimanche  2 janvier 2011, 08:38      par <a href="http://blog.famillecollet.com/" rel="nofollow">Remi</a></dt>
+      
+      <dd class="me odd ">
+
+            
+      <p>@Ciro : spec is split to be simpler than a single one with a lot of conditional stuff. And each arch have separate release date.</p>
+<p>A <strong>soname</strong> bump (for libodbcinst) always means and <strong>ABI</strong> change. So the link solution should never be expected as a working one.</p>
+<p>+</p>
+            </dd>
+                  <dt id="c3591" class="  "><a href="http://blog.famillecollet.com/post/2010/11/12/RPM-Oracle-Instant-Client-11.2-en#c3591" class="comment-number">6.</a>
+      Le lundi  3 janvier 2011, 00:32      par <a href="http://cyruspy.wordpress.com/" rel="nofollow">Ciro</a></dt>
+      
+      <dd class="  ">
+
+            
+      <p>Hmm, did some modifications to your spec files, merged them again (sorry :P)<br>
+About the precomp subpackage, the *.h file should go in a *-devel package, so the package names started to look long and ugly. Maybe we should just merge the sdk and precomp zips content in oracle-instantclient-devel...</p>
+
+
+<p>%changelog<br>
+* Sat Jan 1 2011 Ciro Iriarte &lt;ciro.iriarte@gmail.com&gt; 11.2.0.2.0<br>
+- merge i386/x86_64 SPECs again<br>
+- fixed RPM Groups<br>
+- added Jean-Christophe Duberga's config script to help building Perl-DBD-Oracle<br>
+(this wasn't documented on my first change in 2007, and was lost in OBS)<br>
+- skip RPATH and BYTECODE verifications in OBS builds<br>
+- renamed oracle-instantclient-basic to oracle-instantclient<br>
+- added unzip to BuildRequires<br>
+- general cleanup to make openSUSE 11.3 sanity checks happy<br>
+o ToDo: Verify rpmlint filters<br>
+- add precomp and precomp-devel sub-packages</p>
+            </dd>
+                  <dt id="c3592" class="me odd "><a href="http://blog.famillecollet.com/post/2010/11/12/RPM-Oracle-Instant-Client-11.2-en#c3592" class="comment-number">7.</a>
+      Le lundi  3 janvier 2011, 05:59      par <a href="http://blog.famillecollet.com/" rel="nofollow">Remi</a></dt>
+      
+      <dd class="me odd ">
+
+            
+      <p>@Ciro : can you please share your changes ?</p>
+            </dd>
+                  <dt id="c3593" class="  "><a href="http://blog.famillecollet.com/post/2010/11/12/RPM-Oracle-Instant-Client-11.2-en#c3593" class="comment-number">8.</a>
+      Le lundi  3 janvier 2011, 12:25      par <a href="http://cyruspy.wordpress.com/" rel="nofollow">Ciro</a></dt>
+      
+      <dd class="  ">
+
+            
+      <p>Of course... I plan to do at least another minor change (today?). My changes are kind of large this time because of the merge, so won't be practical to make a patch</p>
+
+
+<p>Ref: <a href="http://cyruspy.wordpress.com/2011/01/03/instantclient-rpms/" title="http://cyruspy.wordpress.com/2011/01/03/instantclient-rpms/" rel="nofollow">http://cyruspy.wordpress.com/2011/0...</a></p>
+            </dd>
+                  <dt id="c4392" class="me odd "><a href="http://blog.famillecollet.com/post/2010/11/12/RPM-Oracle-Instant-Client-11.2-en#c4392" class="comment-number">9.</a>
+      Le mercredi 29 février 2012, 19:08      par <a href="http://blog.famillecollet.com/" rel="nofollow">Remi</a></dt>
+      
+      <dd class="me odd ">
+
+            
+      <p>Update to version <strong>11.2.0.3.0</strong></p>
+<ul><li><strong>32bits</strong> : <a href="http://rpms.famillecollet.com/SRPMS/oracle-instantclient-i386-11.2.0.3.0-1.remi.nosrc.rpm" rel="nofollow">oracle-instantclient-i386-11.2.0.3.0-1.remi.nosrc.rpm</a></li>
+<li><strong>64bits</strong> : <a href="http://rpms.famillecollet.com/SRPMS/oracle-instantclient-x86_64-11.2.0.3.0-1.remi.nosrc.rpm" rel="nofollow">oracle-instantclient-x86_64-11.2.0.3.0-1.remi.nosrc.rpm</a></li>
+</ul>
+            </dd>
+                  <dt id="c5066" class="me  "><a href="http://blog.famillecollet.com/post/2010/11/12/RPM-Oracle-Instant-Client-11.2-en#c5066" class="comment-number">10.</a>
+      Le vendredi 26 juillet 2013, 13:46      par <a href="http://blog.famillecollet.com/" rel="nofollow">Remi</a></dt>
+      
+      <dd class="me  ">
+
+            
+      <p>Update to version <strong>12.1.0.1.0</strong></p>
+<ul><li><strong>32bits</strong> : <a href="http://rpms.famillecollet.com/SRPMS/oracle-instantclient-i386-12.1.0.1.0-1.remi.nosrc.rpm" rel="nofollow">oracle-instantclient-i386-12.1.0.1.0-1.remi.nosrc.rpm</a></li>
+<li><strong>64bits</strong> : <a href="http://rpms.famillecollet.com/SRPMS/oracle-instantclient-x86_64-12.1.0.1.0-1.remi.nosrc.rpm" rel="nofollow">oracle-instantclient-x86_64-12.1.0.1.0-1.remi.nosrc.rpm</a></li>
+</ul>
+            </dd>
+                  <dt id="c5075" class="me odd "><a href="http://blog.famillecollet.com/post/2010/11/12/RPM-Oracle-Instant-Client-11.2-en#c5075" class="comment-number">11.</a>
+      Le lundi 29 juillet 2013, 16:11      par <a href="http://blog.famillecollet.com/" rel="nofollow">Remi</a></dt>
+      
+      <dd class="me odd ">
+
+            
+      <p>Client version <strong>11.1</strong> allow connection to server version 12.1, 11.2, 11.1, 10.2.0.2 and 9.2.0.4</p>
+<p>Client version <strong>12.1</strong> allow connection to server version 12.1, 11.2, 11.1, and 10.2.0.2.</p>
+            </dd>
+          </dl>
+      </div>
+            
+  
+    
+    
+    </div>
+</div> <!-- End #main -->
+
+<div id="sidebar">
+
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----MIIHLwYJKoZIhvcNAQcEoIIHIDCCBxwCAQExggEwMIIBLAIBADCBlDCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20CAQAwDQYJKoZIhvcNAQEBBQAEgYCCgxEE65DWq8388bFX5PaEG8cAOPUkBi8wbB8QZowA33/RG2ZL2AMMMYPuXfFUDB/oa1huOaWmTdoyi9vFuBYw8bxYniwXlkoZWOABdYIckvy5KMJX3bK8WU6wDLlVJvnPy6+Vp/nDK0c823zM1ZHX5ZEiMtO7ddCH4h5ckGVH6DELMAkGBSsOAwIaBQAwgawGCSqGSIb3DQEHATAUBggqhkiG9w0DBwQI4M5ItoPa/1iAgYh/cDUWOuv2PZOUYssgGD+Ntl6uQnpQX6KxqFpvIrbe6RwvDQncvvczSuXI+I7V2iWa/B5SMJnRXlbImrgnJrn6sFITNYzn0396jk89sd7auNYmP7zIKHxzUUNkiT3JeEagIJeHyiPSkVEcwYLFB5/sUVzY+8PtAbp+wwC5t7Q7AiHJiG9wY4UwoIIDhzCCA4MwggLsoAMCAQICAQAwDQYJKoZIhvcNAQEFBQAwgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMB4XDTA0MDIxMzEwMTMxNVoXDTM1MDIxMzEwMTMxNVowgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDBR07d/ETMS1ycjtkpkvjXZe9k+6CieLuLsPumsJ7QC1odNz3sJiCbs2wC0nLE0uLGaEtXynIgRqIddYCHx88pb5HTXv4SZeuv0Rqq4+axW9PLAAATU8w04qqjaSXgbGLP3NmohqM6bV9kZZwZLR/klDaQGo1u9uDb9lr4Yn+rBQIDAQABo4HuMIHrMB0GA1UdDgQWBBSWn3y7xm8XvVk/UtcKG+wQ1mSUazCBuwYDVR0jBIGzMIGwgBSWn3y7xm8XvVk/UtcKG+wQ1mSUa6GBlKSBkTCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb22CAQAwDAYDVR0TBAUwAwEB/zANBgkqhkiG9w0BAQUFAAOBgQCBXzpWmoBa5e9fo6ujionW1hUhPkOBakTr3YCDjbYfvJEiv/2P+IobhOGJr85+XHhN0v4gUkEDI8r2/rNk1m0GA8HKddvTjyGw/XqXa+LSTlDYkqI8OwR8GEYj4efEtcRpRYBxV8KxAW93YDWzFGvruKnnLbDAF6VR5w/cCMn5hzGCAZowggGWAgEBMIGUMIGOMQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxFDASBgNVBAoTC1BheVBhbCBJbmMuMRMwEQYDVQQLFApsaXZlX2NlcnRzMREwDwYDVQQDFAhsaXZlX2FwaTEcMBoGCSqGSIb3DQEJARYNcmVAcGF5cGFsLmNvbQIBADAJBgUrDgMCGgUAoF0wGAYJKoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMTAwNjA0MDU1NTEwWjAjBgkqhkiG9w0BCQQxFgQUo6DkEDxwjY+LFKOw0Vcxh7zRkPYwDQYJKoZIhvcNAQEBBQAEgYCzm9l6X7egJAMom1ZVdV1MqM30cxNGrQeQNQhgj8NnNs4N8uJ+sGeEXDlLdkkUJS4mUlAG6JwvOcCGr++NJUF+qmpQmX7YzbjBnt3pnWfcCrtYVkgCg/d0M+0ZEWTQEP3aMqIL/zeg70LYhg4/kgfR2jrN2IwxkChLoiZi6bQulQ==-----END PKCS7-----
+">
+<input align="right" type="image" src="./RPM Oracle Instant Client 11.2 - Les RPM de Remi - Blog_files/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+<img align="right" alt="" border="0" src="./RPM Oracle Instant Client 11.2 - Les RPM de Remi - Blog_files/pixel.gif" width="1" height="1">
+</form>
+  <div id="blognav">
+    <div class="pages"><h2>Informations</h2><ul><li><a href="http://blog.famillecollet.com/pages/English-site-introduction">English : Site introduction</a></li><li><a href="http://blog.famillecollet.com/pages/Config-en">English : Repository Configuration</a></li><li><a href="http://blog.famillecollet.com/pages/English-FAQ">English : FAQ</a></li><li><a href="http://blog.famillecollet.com/pages/OCS-GLPI-en">English : OCS and GLPI installation guide</a></li><li><a href="http://blog.famillecollet.com/pages/Pending-reviews">English : pending reviews</a></li><li><a href="http://blog.famillecollet.com/pages/Presentation">Présentation du site</a></li><li><a href="http://blog.famillecollet.com/pages/Config">Configuration du dépôt</a></li><li><a href="http://blog.famillecollet.com/pages/FAQ-en-Francais">FAQ en Français</a></li><li><a href="http://blog.famillecollet.com/pages/OCS-GLPI">Guide d'installation d'OCS et GLPI</a></li><li><a href="http://blog.famillecollet.com/pages/MerciThanks">Merci / Thanks</a></li><li><a href="http://blog.famillecollet.com/pages/PECL-extensions-RPM-status">PECL extensions RPM status</a></li></ul></div><h2>Statistiques de téléchargement Download counter</h2><ul><li>RPM : <img src="./RPM Oracle Instant Client 11.2 - Les RPM de Remi - Blog_files/index.php" alt="3"><img src="./RPM Oracle Instant Client 11.2 - Les RPM de Remi - Blog_files/index.php" alt="3"><img src="./RPM Oracle Instant Client 11.2 - Les RPM de Remi - Blog_files/index(1).php" alt="1"><img src="./RPM Oracle Instant Client 11.2 - Les RPM de Remi - Blog_files/index(1).php" alt="1"><img src="./RPM Oracle Instant Client 11.2 - Les RPM de Remi - Blog_files/index.php" alt="3"><img src="./RPM Oracle Instant Client 11.2 - Les RPM de Remi - Blog_files/index(2).php" alt="7"><img src="./RPM Oracle Instant Client 11.2 - Les RPM de Remi - Blog_files/index(3).php" alt="6"><img src="./RPM Oracle Instant Client 11.2 - Les RPM de Remi - Blog_files/index(4).php" alt="4"></li><li>Date : mercredi 18 décembre 2013 - 06:45</li></ul><div id="search"><h2><label for="q">Recherche</label></h2><form action="http://blog.famillecollet.com/" method="get"><fieldset><p><input type="text" size="10" maxlength="255" id="q" name="q" value=""> <input type="submit" class="submit" value="ok"></p></fieldset></form></div><div class="tags"><h2>Tags</h2><ul><li><a href="http://blog.famillecollet.com/tag/b%C3%A9ta" class="tag20">béta</a> </li><li><a href="http://blog.famillecollet.com/tag/dedibox" class="tag0">dedibox</a> </li><li><a href="http://blog.famillecollet.com/tag/dotclear" class="tag0">dotclear</a> </li><li><a href="http://blog.famillecollet.com/tag/d%C3%A9p%C3%B4t" class="tag10">dépôt</a> </li><li><a href="http://blog.famillecollet.com/tag/enigmail" class="tag0">enigmail</a> </li><li><a href="http://blog.famillecollet.com/tag/firefox" class="tag20">firefox</a> </li><li><a href="http://blog.famillecollet.com/tag/FusionInventory" class="tag0">FusionInventory</a> </li><li><a href="http://blog.famillecollet.com/tag/GLPI" class="tag10">GLPI</a> </li><li><a href="http://blog.famillecollet.com/tag/GUI" class="tag10">GUI</a> </li><li><a href="http://blog.famillecollet.com/tag/humeur" class="tag0">humeur</a> </li><li><a href="http://blog.famillecollet.com/tag/memcache" class="tag0">memcache</a> </li><li><a href="http://blog.famillecollet.com/tag/MySQL" class="tag20">MySQL</a> </li><li><a href="http://blog.famillecollet.com/tag/OCSNG" class="tag10">OCSNG</a> </li><li><a href="http://blog.famillecollet.com/tag/php" class="tag30">php</a> </li><li><a href="http://blog.famillecollet.com/tag/planetlibre" class="tag0">planetlibre</a> </li><li><a href="http://blog.famillecollet.com/tag/qelectrotech" class="tag0">qelectrotech</a> </li><li><a href="http://blog.famillecollet.com/tag/RHEL" class="tag0">RHEL</a> </li><li><a href="http://blog.famillecollet.com/tag/RPM" class="tag100">RPM</a> </li><li><a href="http://blog.famillecollet.com/tag/thunderbird" class="tag10">thunderbird</a> </li><li><a href="http://blog.famillecollet.com/tag/WebApp" class="tag0">WebApp</a> </li></ul><p><strong><a href="http://blog.famillecollet.com/tags">Tous les tags</a></strong></p></div>  </div> <!-- End #blognav -->
+  
+  <div id="blogextra">
+    <div class="syndicate"><h2>S'abonner</h2><ul><li><a type="application/rss+xml" href="http://blog.famillecollet.com/feed/rss2" title="Flux RSS des billets de ce blog" class="feed">Fil des billets</a></li><li><a type="application/rss+xml" href="http://blog.famillecollet.com/feed/rss2/comments" title="Flux RSS des commentaires de ce blog" class="feed">Fil des commentaires</a></li></ul></div>  </div> <!-- End #blogextra -->
+</div>
+
+</div> <!-- End #wrapper -->
+
+<hr style="clear:both">
+</div> <!-- End #page -->
+<div id="footer">
+  <p>Propulsé par <a href="http://dotclear.org/">Dotclear</a></p>
+</div>
+
+
+<!-- Place this render call where appropriate -->
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+
+<iframe name="oauth2relay362664659" id="oauth2relay362664659" src="./RPM Oracle Instant Client 11.2 - Les RPM de Remi - Blog_files/postmessageRelay.html" style="width: 1px; height: 1px; position: absolute; top: -100px;"></iframe></body></html>

@@ -1,0 +1,2 @@
+see:
+	http://mikepargeter.wordpress.com/2012/05/01/extensible-optimizer-bug/

@@ -1,0 +1,20 @@
+Index: latchprof.sql
+===================================================================
+--- latchprof.sql	(revision 16)
++++ latchprof.sql	(working copy)
+@@ -60,6 +60,7 @@
+ COL latchprof_avg_ms HEAD "Avg hold ms" FOR 999.999
+ COL dist_samples HEAD Gets
+ COL total_samples HEAD Held
++COL username FOR A15
+ 
+ BREAK ON lhp_name SKIP 1
+ 
+@@ -88,6 +89,7 @@
+             v$latchholder l,
+             (SELECT
+                     sid                                     indx
++                  , username                                username
+                   , sql_hash_value                          sqlhash
+                   , sql_address                             sqladdr 
+                   &_IF_ORA_10_OR_HIGHER , sql_child_number  sqlchild

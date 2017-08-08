@@ -1,0 +1,3 @@
+DIRECTORY_SERVERS= (oidnms-a.ulaval.ca:389:636,oidnms-b.ulaval.ca:389:636)
+DEFAULT_ADMIN_CONTEXT = "dc=ulaval,dc=ca"
+DIRECTORY_SERVER_TYPE = OID

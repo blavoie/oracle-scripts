@@ -1,0 +1,189 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+ <LINK REL="STYLESHEET" TYPE="text/css" HREF="../plsqldoc.css">
+ <TITLE>Package Ilo_util</TITLE>
+ <META name="object" content="PACKAGE">
+ <META name="name" content="ILO.Ilo_util">
+ <META name="description" content="Provides several utility functions">
+</HEAD>
+<BODY>
+<TABLE WIDTH="100%"><TR>
+<TD><P ALIGN="LEFT"><STRONG><SMALL>ILO</SMALL></STRONG></TD>
+<TD><P ALIGN="RIGHT"><STRONG><SMALL><A HREF="../index.html">index</A></SMALL></STRONG></TD>
+</TR></TABLE>
+<TABLE CLASS="MAIN_TABLE"><TR><TD CLASS="DESC_TEXT">
+<P CLASS="MAIN_TITLE">Package Ilo_util</P>
+Provides several utility functions<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;Instrumentation Library for Oracle<br>
+&nbsp;Copyright (C) 2006 - 2008&nbsp; Method R Corporation. All rights reserved.<br>
+&nbsp;<br>
+&nbsp;This library is free software; you can redistribute it and/or<br>
+&nbsp;modify it under the terms of the GNU Lesser General Public<br>
+&nbsp;License as published by the Free Software Foundation; either<br>
+&nbsp;version 2.1 of the License, or (at your option) any later version.<br>
+&nbsp;<br>
+&nbsp;This library is distributed in the hope that it will be useful,<br>
+&nbsp;but WITHOUT ANY WARRANTY; without even the implied warranty of<br>
+&nbsp;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&nbsp; See the GNU<br>
+&nbsp;Lesser General Public License for more details.<br>
+&nbsp;<br>
+&nbsp;You should have received a copy of the GNU Lesser General Public<br>
+&nbsp;License along with this library; if not, write to the Free Software<br>
+&nbsp;Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA&nbsp; 02110-1301&nbsp; USA<br>
+
+<BR>
+</TD></TR></TABLE>
+<HR>
+<A NAME="Program units"></A>
+<TABLE CLASS="SUB_TABLE"><TR><TD CLASS="SUB_TITLE">
+Program units
+</TD></TR></TABLE>
+<TABLE CLASS="SUB_TABLE">
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#get_version">get_version</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+&lt; get_version &gt;
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#set_raise_exceptions">set_raise_exceptions</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+&lt; set_raise_exceptions &gt;
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#get_raise_exceptions">get_raise_exceptions</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+&lt; get_raise_exceptions &gt;
+</TD></TR>
+</TABLE>
+<BR>
+<HR>
+<A NAME="get_version"></A>
+<P CLASS="TYPE_TITLE">
+get_version
+</P>
+<PRE CLASS="DECL_TEXT">
+Function get_version RETURN NUMBER
+</PRE>
+<P CLASS="DESC_TEXT">
+&lt; get_version &gt;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp; Purpose: Returns the version of the ILO_UTIL package<br>
+
+<BR>
+</P>
+<A NAME="Returns"></A>
+<TABLE CLASS="LIST_TABLE"><TR><TD CLASS="LIST_TITLE">
+Returns
+</TD></TR></TABLE>
+<TABLE CLASS="LIST_TABLE">
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+NUMBER&nbsp;&nbsp;&nbsp; NUMBER value that indicates version of ILO<br>
+
+</TD></TR>
+</TABLE>
+<BR>
+<HR>
+<A NAME="set_raise_exceptions"></A>
+<P CLASS="TYPE_TITLE">
+set_raise_exceptions
+</P>
+<PRE CLASS="DECL_TEXT">
+Procedure set_raise_exceptions(raise_exceptions boolean)
+</PRE>
+<P CLASS="DESC_TEXT">
+&lt; set_raise_exceptions &gt;<br>
+&nbsp;<br>
+&nbsp; Purpose: Normally, ILO will supress any exceptions raised during it's execution so that any instrumented application<br>
+&nbsp; won't be adversely affected by an error that might occur while processing ILO. This flag actually tells ILO to raise<br>
+&nbsp; any exceptions that it hits. This is probably most useful for testing purposes, but might have its advantages in a<br>
+&nbsp; production environment.<br>
+
+<BR>
+</P>
+<A NAME="Parameters"></A>
+<TABLE CLASS="LIST_TABLE"><TR><TD CLASS="LIST_TITLE">
+Parameters
+</TD></TR></TABLE>
+<TABLE CLASS="LIST_TABLE">
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+RAISE_EXCEPTIONS&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+BOOLEAN Value that indicates whether ILO will riase exceptions (TRUE) or not (FALSE).<br>
+
+</TD></TR>
+</TABLE>
+<BR>
+<A NAME="Usage Notes"></A>
+<TABLE CLASS="LIST_TABLE"><TR><TD CLASS="LIST_TITLE">
+Usage Notes
+</TD></TR></TABLE>
+<TABLE CLASS="LIST_TABLE">
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+<li> The default for RAISE_EXCEPTIONS is FALSE.<br>
+
+</TD></TR>
+</TABLE>
+<BR>
+<HR>
+<A NAME="get_raise_exceptions"></A>
+<P CLASS="TYPE_TITLE">
+get_raise_exceptions
+</P>
+<PRE CLASS="DECL_TEXT">
+Function get_raise_exceptions RETURN boolean
+</PRE>
+<P CLASS="DESC_TEXT">
+&lt; get_raise_exceptions &gt;<br>
+&nbsp;<br>
+&nbsp; Return the current value for RAISE_EXCEPTIONS.<br>
+
+<BR>
+</P>
+<A NAME="Parameters"></A>
+<TABLE CLASS="LIST_TABLE"><TR><TD CLASS="LIST_TITLE">
+Parameters
+</TD></TR></TABLE>
+<TABLE CLASS="LIST_TABLE">
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+None&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+</TABLE>
+<BR>
+<A NAME="Returns"></A>
+<TABLE CLASS="LIST_TABLE"><TR><TD CLASS="LIST_TITLE">
+Returns
+</TD></TR></TABLE>
+<TABLE CLASS="LIST_TABLE">
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+BOOLEAN<br>
+
+</TD></TR>
+</TABLE>
+<BR>
+<A NAME="Usage Notes"></A>
+<TABLE CLASS="LIST_TABLE"><TR><TD CLASS="LIST_TITLE">
+Usage Notes
+</TD></TR></TABLE>
+<TABLE CLASS="LIST_TABLE">
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+<li> Returns the value of RAISE_EXCEPTIONS set by the user. If the user has not called the <A HREF=#set_raise_exceptions>SET_RAISE_EXCEPTIONS</A> method, the default is FALSE.<br>
+
+</TD></TR>
+</TABLE>
+<BR>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+</BODY>
+</HTML>

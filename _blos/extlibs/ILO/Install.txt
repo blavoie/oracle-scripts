@@ -1,0 +1,54 @@
+=========================================================================
+
+    ILO
+    Copyright (c) 2006 - 2008 by Method R Corporation. All rights reserved.
+
+    This library is free software; you can redistribute it and/or
+    modify it under the terms of the GNU Lesser General Public
+    License as published by the Free Software Foundation; either
+    version 2.1 of the License, or (at your option) any later version.
+
+    This library is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+    Lesser General Public License for more details.
+
+    You should have received a copy of the GNU Lesser General Public
+    License along with this library; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+
+=========================================================================
+
+
+Before you re-install or upgrade ILO:
+The ILO installation script replaces packages in an existing installation. This
+means that any custom code you have added to those packages will be lost when you
+re-install or upgrade ILO. If you have added custom code, please save your code changes
+for re-implementation before installing this version of ILO.
+
+**********************************************************************************************
+IMPORTANT NOTE
+When upgrading, be aware that the script will login using the password entered,
+so if your password is not case sensitive, enter it in upper case. If your password
+is case sensitive, enter it correctly with no enclosing quotation marks.
+**********************************************************************************************
+
+To install, re-install, or upgrade the ILO packages:
+
+1. Change directory to the location of the ILO scripts. You must have write
+   permissions to this directory so that the install script can create files.
+   
+2. Using SQL*Plus, login to your database as the SYS user, or a user with SYSDBA privileges:
+
+	sqlplus SYS/<password>@<alias> AS SYSDBA
+
+3. Create a user that will own the ILO packages (i.e. ILO). You may
+   create this user manually, using the script ilo_create_user.sql as a guide, or 
+   you may just continue to step 4 and the user will be created during script execution.
+
+4. From the SQL prompt in SQL*Plus:
+
+	SQL> @ilo_install.sql
+
+5. Follow the on screen instructions.
+

@@ -1,0 +1,303 @@
+<html>
+<head>
+<title>trca_changes</title>
+
+<style type="text/css">
+body {font:10pt Arial, Helvetica, Verdana, Geneva, sans-serif; color:Black; background:White;}
+a {font-weight:bold; color:#663300;}
+pre {font:8pt Monaco, "Courier New", Courier, monospace; margin:1em 8em 1.5em 4em; padding:1em 0 1em 4em; border:1px solid #336699; background-color:#fcfcf0; overflow:auto;}
+code {font:10pt Monaco, "Courier New", Courier, monospace; font-weight:bold;}
+h1 {color:#336699; font-weight:bold; font-size:16pt;}
+h2 {color:#336699; font-weight:bold; font-size:14pt;}
+h3 {color:#336699; font-weight:bold; font-size:12pt;}
+h4 {color:#336699; font-weight:bold; font-size:10pt;}
+table {font-size:8pt; color:Black; background:White;}
+th {font-weight:bold; background:#cccc99; color:#336699; vertical-align:bottom; padding:0.25em 0.25em 0.25em 0.25em;}
+td {text-align:center; background:#fcfcf0; vertical-align:top; padding:0.25em 0.25em 0.25em 0.25em;}
+td.lw {text-align:left; background:white;}
+</style>
+
+</head>
+<body>
+<h2>224270.1 Trace Analyzer TRCANLZR (TRCA) Changes Log</h2>
+
+<!--------------------------------------------------------------------------------------------------------------------->
+
+<hr size="1">
+<h3>11.4.5.8 May 10, 2013</h3>
+
+<ol>
+<li>BUG: Fix TRCA parsing errors due to missing CURSOR information: invalid call at line 27 "1" "1" "" "2".</li>
+</ol>
+
+<!--------------------------------------------------------------------------------------------------------------------->
+
+<hr size="1">
+<h3>11.4.5.7 April 5, 2013</h3>
+
+<ol>
+<li>ENH: Purge of TRCA global temporary tables uses now a TRUNCATE instead of a DELETE.</li>
+<li>ENH: TRCA produces now a TRCA_installation_logs_archive.zip with all installation logs.</li>
+<li>ENH: Include Product Component Version in installation logs.</li>
+</ol>
+
+<!--------------------------------------------------------------------------------------------------------------------->
+
+<hr size="1">
+<h3>11.4.5.5 March 1, 2013</h3>
+
+<ol>
+<li>ENH: 11g PLSQL_CODE_TYPE is set to NATIVE by default (to improver performance). 10g defaults back to INTERPRETED.</li>
+</ol>
+
+<!--------------------------------------------------------------------------------------------------------------------->
+
+<hr size="1">
+<h3>11.4.5.4 February 4, 2013</h3>
+
+<ol>
+<li>BUG: Avoid on 9i:<br>BEGIN DBMS_STATS.LOCK_TABLE_STATS('TRCANLZR', 'trca_tables'); END;<br>ORA-06550: line 1, column 18: <br>PLS-00302: component 'LOCK_TABLE_STATS' must be declared <br>ORA-06550: line 1, column 7: <br>PL/SQL: Statement ignored </li>
+<li>ENH: PLSQL_CODE_TYPE changed from INTERPRETED to NATIVE in order to improver performance.</li>
+</ol>
+
+<!--------------------------------------------------------------------------------------------------------------------->
+
+<hr size="1">
+<h3>11.4.5.3 December 31, 2012</h3>
+
+<ol>
+<li>BUG: Avoid:<br>BEGIN trcadmin.trca$t.refresh_trca$_dict_from_that; END;<br>ORA-12838: cannot read/modify an object after modifying it in parallel.<br>ORA-06512: at "TRCADMIN.TRCA$T", line 200<br>ORA-06512: at "TRCADMIN.TRCA$T", line 918</li>
+</ol>
+
+<!--------------------------------------------------------------------------------------------------------------------->
+
+<hr size="1">
+<h3>11.4.5.2 December 12, 2012</h3>
+
+<ol>
+<li>ENH: Connect identifier parameter is now deprecated.</li>
+<li>ENH: New synonyms to allow the call of TRCA APIs with either TRCANLZR or TRCADMIN schema name.</li>
+</ol>
+
+<!--------------------------------------------------------------------------------------------------------------------->
+
+<hr size="1">
+<h3>11.4.5.1 November 27, 2012</h3>
+
+<ol>
+<li>ENH: Table audit_actions is now optional.</li>
+</ol>
+
+<!--------------------------------------------------------------------------------------------------------------------->
+
+<hr size="1">
+<h3>11.4.5.0 November 21, 2012</h3>
+
+<ol>
+<li>ENH: New Security Model.</li>
+</ol>
+
+<!--------------------------------------------------------------------------------------------------------------------->
+
+<hr size="1">
+<h3>11.4.4.8 September 27, 2012</h3>
+
+<ol>
+<li>ENH: Security related improvements.</li>
+</ol>
+
+<!--------------------------------------------------------------------------------------------------------------------->
+
+<hr size="1">
+<h3>11.4.4.2 February 2, 2012</h3>
+
+<ol>
+<li>BUG: Fix on 9i: Errors for PACKAGE BODY TRCA$G: 416/7 PLS-00306: wrong number or types of arguments in call to 'GATHER_TABLE_STATS'</li>
+</ol>
+
+<!--------------------------------------------------------------------------------------------------------------------->
+
+<hr size="1">
+<h3>11.4.4.1 January 2, 2012</h3>
+
+<ol>
+<li>ENH: Procedure sys.tasqdirset uses now double single quotes in the directory path before creating it: replace(p2_directory_path,'''','''''')</li>
+<li>ENH: Procedure sys.tasqdirset is now named sys.sqlt$_trca$_dir_set.</li>
+<li>ENH: TRCA: When producing an "Explain Plan" section, it includes now a warning:<br>
+"May not match the plan used for execution.".</li>
+<li>ENH: When trcanlzr is executed and the path/filename is passed, ignore the path and give a warning in log file.</li>
+<li>ENH: TRCA provides now a script trca/run/trcasplit.sql to split a trace file into a 10046 trace and the rest.<br>
+(In other words, it provides access to this capability of splitting a 10046/10053 trace to end users.)</li>
+</ol>
+
+<!--------------------------------------------------------------------------------------------------------------------->
+
+<hr size="1">
+<h3>11.4.4.0 December 4, 2011</h3>
+
+<ol>
+<li>BUG: Avoid following error when using SQLT on a distributed environment and remote SQL is executed as some user other than local user.<br>
+ORA-20210: To download this file you must connect as "SYS", "SYSTEM", "SQLTXPLAIN", or "remote user"</li>
+<li>ENH: Set the sequence sqlt$_sql_statement_id_s to NOCACHE. Caching is intended to speed frequent access to the sequence (which does not happen here), and results in the sequence tending jump by units of 20. This makes it harder to identify consecutive runs. This also applies to trca$_tool_execution_id.</li>
+</ol>
+
+<!--------------------------------------------------------------------------------------------------------------------->
+
+<hr size="1">
+<h3>11.4.3.1 June 17, 2011</h3>
+
+<ol>
+<li>TRCA was not handling a trace truncate on STAT lines where id is present but pid is not. Now it does.</li>
+<li>Orphan WAITs used to be ignored. That is WAITs without corresponding database call in trace. Now TRCA creates some dummy cursors to account for those waits instead of consider them un-accounted for.</li>
+<li>Fix error below when executing this command on 9i: EXEC DBMS_STATS.LOCK_TABLE_STATS(USER, 'trca_control');<br>PLS-00302: component 'LOCK_TABLE_STATS' must be declared.</li>
+<li>Fix error below when executing this command on 9i: GRANT SELECT ON trca$_log_v TO PUBLIC;<br>ORA-01720: grant option does not exist for 'SYS.V_$SESSION_LONGOPS'.</li>
+</ol>
+
+<!--------------------------------------------------------------------------------------------------------------------->
+
+<hr size="1">
+<h3>11.4.2.7 April 8, 2011</h3>
+
+<ol>
+<li>Lock statistics on external tables in order to avoid following errors when gathering statistics:<br>DBMS_STATS: GATHER_STATS_JOB encountered errors. Check the trace file.<br>ORA-20011:Approximate NDV failed:<br>ORA-29913: error in executing ODCIEXTTABLEOPE
+N callout<br>ORA-29400: data cartridge error<br>KUP-04040: file TRCA_CONTROL.txt in TRCA$STAGE not found.<br>Problem was introduced by bug 9056912.</li>
+<li>Filename sizes increased from 128 to 256 in order to accommodate output file identifier needed by EBS.</li>
+</ol>
+
+<!--------------------------------------------------------------------------------------------------------------------->
+
+<hr size="1">
+<h3>11.4.2.5 March 20, 2011</h3>
+
+<ol>
+<li>Default and temporary tablespace names for TRCANLZR schema owner are now case sensitive.</li>
+<li>Tool parameters "Top SQL Threshold" and "Top Execution Threshold" have been raised from 5 to 10%.</li>
+<li>New set of APIs under package TRCA$E to allow the execution of TRCA from a PL/SQL package.</li>
+<li>Parsing issue when a gap timestamp is in the SQL (between PARSING line and SQL text) is now fixed.</li>
+<li>TRCA progress is now recorded into v$session_longops and displayed using new view TRCA$_LOG_V.</li>
+<li>Module and Action are updated for TRCA using DBMS_APPLICATION_INFO.</li>
+</ol>
+
+<!--------------------------------------------------------------------------------------------------------------------->
+
+<hr size="1">
+<h3>11.4.2.4 February 18, 2011</h3>
+
+<ol>
+<li>Fix following error on 9.2.0.6 when passing oacfl2=4000000000000001: ORA-06502: PL/SQL: numeric or value error: character to number conversion error</li>
+</ol>
+
+<!--------------------------------------------------------------------------------------------------------------------->
+
+<hr size="1">
+<h3>11.4.2.3 January 6, 2011</h3>
+
+<ol>
+<li>Validate that SYSAUX is not specified as TABLESPACE for TRCANLZR during installation.</li>
+<li>CREATE script verifies that TABLESPACE to be used by this tool has at least 100 free megabytes.</li>
+<li>Wait events from V$EVENT_NAME are now updated as of 11.2.0.2</li>
+</ol>
+
+<!--------------------------------------------------------------------------------------------------------------------->
+
+<hr size="1">
+<h3>11.4.2.1 October 24, 2010</h3>
+
+<ol>
+<li>Fix "ORA-01426: numeric overflow" when analyzing a trace generated on 11.2.0.2 and cursor number is very large (after fix for 7309111 is applied).</li>
+<li>Relevant executions for Top SQL include now up to 5 FETCH calls: First, Second, Third, Last and the one with largest Elapsed Time. This functionality allows to measure time to return first set of rows.</li>
+</ol>
+
+<!--------------------------------------------------------------------------------------------------------------------->
+
+<hr size="1">
+<h3>11.4.1.6 August 20, 2010</h3>
+
+<ol>
+<li>Relevant executions are now included for Top SQL in terms of ET and CPU, and not only in terms of response time.</li>
+<li>Workaround bugs 9299013 and 9559544 producing<br>ORA-12801: error signaled in parallel query server P000<br>ORA-00600: internal error code, arguments: [15714], [], [], [], [], [], [], [], [], [], [], []<br>ORA-06512: at "SQLTXPLAIN.TRCA$T", line 459</li>
+<li>Update taconfig.sql with new parameters.</li>
+</ol>
+
+<!--------------------------------------------------------------------------------------------------------------------->
+
+<hr size="1">
+<h3>11.4.1.5 August 4, 2010</h3>
+
+<ol>
+<li>Installation asks now for "Connect Identifier". This parameter is useful when access to database server is restricted.</li>
+<li>Improved performance of API trca$t.refresh_trca$_dict_from_this. This API is executed as the last step of the installation and whenever the dictionary repository within TRCA needs to be refreshed.</li>
+<li>New parameter "capture_extents" to control if extents must be captured using parallel execution, serial execution, or no capture at all. Extents are captured during dictionary repository refresh within TRCA.</li>
+<li>New parameter "refresh_dict_repository" to control if dictionary repository within TRCA is refreshed or not.</li>
+<li>On PX plans, cost and cardinality should not be aggregated from all plans for given SQL.</li>
+<li>For PX traces, in addition to an aggregate row source plan, TRCA now displays one per session.</li>
+<li>Individual SQL section includes now the "First Call" column with timestamp where that SQL was first seen in trace.</li>
+</ol>
+
+<!--------------------------------------------------------------------------------------------------------------------->
+
+<hr size="1">
+<h3>11.4.1.4 July 12, 2010</h3>
+
+<ol>
+<li>Default for maximum trace file size that TRCA would analyze is now 999999999 bytes (less than 1GB) as per tool parameter trace_file_max_size_bytes. Prior default was 9999999999 bytes (about 9.31GB). Traces greater than 999999999 bytes are then analyzed up to first 999999999 bytes.</li>
+<li>New parameter "copy_file_max_size_bytes" to control size of 10053 and 10046 split files. Default value is 99999999 bytes (less than 100M).</li>
+</ol>
+
+<!--------------------------------------------------------------------------------------------------------------------->
+
+<hr size="1">
+<h3>11.4.1.2 June 2, 2010</h3>
+
+<ol>
+<li>Instructions and changes log are now html documents.</li>
+</ol>
+
+<!--------------------------------------------------------------------------------------------------------------------->
+
+<hr size="1">
+<h3>11.4.1.1 June 1, 2010</h3>
+
+<ol>
+<li>TRCA directories can now be specified during installation.</li>
+<li>New API for sqltrcanlzr.sql.</li>
+</ol>
+
+<!--------------------------------------------------------------------------------------------------------------------->
+
+<hr size="1">
+<h3>11.4.1.0 May 25, 2010</h3>
+
+<ol>
+<li>Change background color in titles from f0f0d0 to cccc99.</li>
+<li>Actual Number of Rows in Explain Plan is scaled down only when Actual Rows = Rows Processed.</li>
+<li>Include note number in reports.</li>
+<li>Improve performance and size of main HTML report by using one javascript function for +/- instead of several.</li>
+<li>Adapt TRCA so it can be included into SQLT.</li>
+</ol>
+
+<!--------------------------------------------------------------------------------------------------------------------->
+
+<hr size="1">
+<h3>11.3.1.0 April 11, 2010</h3>
+
+<ol>
+<li>Script trca/install/tautltest.sql no longer tests BDUMP nor TRCA$INPUT.</li>
+<li>Input files are searched now on TRCA$INPUT and BDUMP. The former can point to UDIMP (default) or any other designated directory.</li>
+<li>TRCA$OUTPUT is no longer used as a staging directory to place generated files (HTML, TEXT, LOG). Now files are created as CLOBs then copied into local SQL*Plus directory.</li>
+</ol>
+
+<!--------------------------------------------------------------------------------------------------------------------->
+
+<hr size="1">
+<h3>11.3.0.5 February 17, 2010</h3>
+
+<ol>
+<li>Extracts table and index names from row source plan operation even on partitioned objects.</li>
+</ol>
+
+<!--------------------------------------------------------------------------------------------------------------------->
+
+<hr size="3">
+</body>
+</html>

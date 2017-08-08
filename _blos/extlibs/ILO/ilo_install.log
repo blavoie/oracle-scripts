@@ -1,0 +1,31 @@
+
+... Creating public synonym ilo_task for ILO.ilo_task
+... Creating public synonym ilo_timer for ILO.ilo_timer
+... Creating public synonym ilo_util for ILO.ilo_util
+... Creating public synonym ilo_sysutil for ILO.ilo_sysutil
+... Granting EXECUTE privs on SYS.DBMS_MONITOR or SYS.DBMS_SUPPORT to ILO
+=========================================================================
+
+... Connecting as ILO
+Connected.
+... Installing ILO_UTIL Package Spec
+No errors.
+... Installing ILO_UTIL Package Body
+No errors.
+... Installing ILO_SYSUTIL Package Spec
+No errors.
+... Installing ILO_SYSUTIL Package Body
+No errors.
+... Installing ILO_TASK Package Spec
+No errors.
+... Installing ILO_TIMER Package Spec
+No errors.
+... Installing ILO_TIMER Package Body
+No errors.
+... Installing ILO_TASK Package Body
+No errors.
+... Granting EXECUTE privs on packages to PUBLIC
+
+=========================================================================
+Installation of ILO complete.
+=========================================================================

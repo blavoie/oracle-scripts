@@ -1,0 +1,1278 @@
+ADR block file read	Other
+ADR block file write	Other
+ADR file lock	Other
+affinity expansion in replay	Other
+alter rbs offline	Administrative
+alter system set dispatcher	Administrative
+AQ propagation connection	Other
+AQ spill debug idle	Other
+ARCH random i/o	System I/O
+ARCH sequential i/o	System I/O
+ARCH wait for archivelog lock	Other
+ARCH wait for flow-control	Network
+ARCH wait for net re-connect	Network
+ARCH wait for netserver detach	Network
+ARCH wait for netserver init 1	Network
+ARCH wait for netserver init 2	Network
+ARCH wait for netserver start	Network
+ARCH wait for pending I/Os	System I/O
+ARCH wait for process death 1	Other
+ARCH wait for process death 2	Other
+ARCH wait for process death 3	Other
+ARCH wait for process death 4	Other
+ARCH wait for process death 5	Other
+ARCH wait for process start 1	Other
+ARCH wait for process start 2	Other
+ARCH wait for process start 3	Other
+ARCH wait for process start 4	Other
+ARCH wait on ATTACH	Network
+ARCH wait on c/f tx acquire 1	Other
+ARCH wait on c/f tx acquire 2	Other
+ARCH wait on DETACH	Network
+ARCH wait on SENDREQ	Network
+Archive Manager file transfer I/O	User I/O
+Archiver slave I/O	System I/O
+ASM background running	Other
+ASM background starting	Other
+ASM background timer	Idle
+ASM cluster file access	Other
+ASM COD rollback operation completion	Administrative
+ASM db client exists	Other
+ASM DG Unblock	Other
+ASM file metadata operation	Other
+ASM Fixed Package I/O	User I/O
+ASM Instance startup	Other
+ASM internal hang test	Other
+ASM metadata cache frozen	Other
+ASM mount : wait for heartbeat	Administrative
+ASM network foreground exits	Other
+ASM PST query : wait for [PM][grp][0] grant	Cluster
+ASM Staleness File I/O	User I/O
+ASM Volume Background	Other
+ASM: MARK subscribe to msg channel	Other
+ASM: OFS Cluster membership update	Other
+asynch descriptor resize	Other
+Auto BMR completion	Other
+Auto BMR RPC standby catchup	Other
+auto-sqltune: wait graph update	Idle
+AWR Flush	Other
+AWR Metric Capture	Other
+Backup Restore Event 19778 sleep	Other
+Backup Restore Switch Bitmap sleep	Other
+Backup Restore Throttle sleep	Other
+Backup: MML command to channel	Administrative
+Backup: MML commit backup piece	Administrative
+Backup: MML create a backup piece	Administrative
+Backup: MML data movement done?	Administrative
+Backup: MML datafile proxy backup?	Administrative
+Backup: MML datafile proxy restore?	Administrative
+Backup: MML delete backup piece	Administrative
+Backup: MML extended initialization	Administrative
+Backup: MML get base address	Administrative
+Backup: MML initialization	Administrative
+Backup: MML obtain a direct buffer	Administrative
+Backup: MML obtain textual error	Administrative
+Backup: MML proxy cancel	Administrative
+Backup: MML proxy commit backup piece	Administrative
+Backup: MML proxy initialize backup	Administrative
+Backup: MML proxy initialize restore	Administrative
+Backup: MML proxy prepare to start	Administrative
+Backup: MML proxy session end	Administrative
+Backup: MML proxy start data movement	Administrative
+Backup: MML query backup piece	Administrative
+Backup: MML query for direct buffers	Administrative
+Backup: MML read backup piece	Administrative
+Backup: MML release a direct buffer	Administrative
+Backup: MML restore backup piece	Administrative
+Backup: MML shutdown	Administrative
+Backup: MML v1 close backup piece	Administrative
+Backup: MML v1 delete backup piece	Administrative
+Backup: MML v1 open backup piece	Administrative
+Backup: MML v1 query backup piece	Administrative
+Backup: MML v1 read backup piece	Administrative
+Backup: MML v1 write backup piece	Administrative
+Backup: MML write backup piece	Administrative
+Backup: sbtbackup	Administrative
+Backup: sbtbufinfo	Administrative
+Backup: sbtclose	Administrative
+Backup: sbtclose2	Administrative
+Backup: sbtcommand	Administrative
+Backup: sbtend	Administrative
+Backup: sbterror	Administrative
+Backup: sbtgetbuf	Administrative
+Backup: sbtinfo	Administrative
+Backup: sbtinfo2	Administrative
+Backup: sbtinit	Administrative
+Backup: sbtinit2	Administrative
+Backup: sbtmapbuf	Administrative
+Backup: sbtopen	Administrative
+Backup: sbtpcbackup	Administrative
+Backup: sbtpccancel	Administrative
+Backup: sbtpccommit	Administrative
+Backup: sbtpcend	Administrative
+Backup: sbtpcquerybackup	Administrative
+Backup: sbtpcqueryrestore	Administrative
+Backup: sbtpcrestore	Administrative
+Backup: sbtpcstart	Administrative
+Backup: sbtpcstatus	Administrative
+Backup: sbtpcvalidate	Administrative
+Backup: sbtread	Administrative
+Backup: sbtread2	Administrative
+Backup: sbtrelbuf	Administrative
+Backup: sbtremove	Administrative
+Backup: sbtremove2	Administrative
+Backup: sbtrestore	Administrative
+Backup: sbtwrite	Administrative
+Backup: sbtwrite2	Administrative
+BFILE check if exists	Other
+BFILE check if open	Other
+BFILE closure	Other
+BFILE get length	Other
+BFILE get name object	Other
+BFILE get path object	Other
+BFILE internal seek	Other
+BFILE open	Other
+BFILE read	User I/O
+block change tracking buffer space	Other
+blocking txn id for DDL	Other
+broadcast mesg queue transition	Other
+broadcast mesg recovery queue transition	Other
+buffer busy waits	Concurrency
+buffer busy	Other
+buffer deadlock	Other
+buffer dirty disabled	Other
+buffer exterminate	Other
+buffer freelistbusy	Other
+buffer invalidation wait	Other
+buffer latch	Other
+buffer pool resize	Administrative
+buffer read retry	User I/O
+buffer rememberlist busy	Other
+buffer resize	Other
+buffer write wait	Other
+buffer writeList full	Other
+cell list of blocks physical read	User I/O
+cell manager cancel work request	Other
+cell manager closing cell	System I/O
+cell manager discovering disks	System I/O
+cell manager opening cell	System I/O
+cell multiblock physical read	User I/O
+cell single block physical read	User I/O
+cell smart file creation	User I/O
+cell smart flash unkeep	Other
+cell smart incremental backup	System I/O
+cell smart index scan	User I/O
+cell smart restore from backup	System I/O
+cell smart table scan	User I/O
+cell statistics gather	User I/O
+cell worker idle	Idle
+cell worker online completion	Other
+cell worker retry	Other
+CGS skgxn join retry	Other
+CGS wait for IPC msg	Other
+change tracking file parallel write	Other
+change tracking file synchronous read	Other
+change tracking file synchronous write	Other
+check CPU wait times	Other
+checkpoint advanced	Other
+checkpoint completed	Configuration
+class slave wait	Idle
+cleanup of aborted process	Other
+Cluster stabilization wait	Other
+Cluster stablization wait	Other
+Cluster Suspension wait	Other
+cmon timer	Idle
+Compression analysis	Other
+concurrent I/O completion	Administrative
+connection pool wait	Administrative
+control file diagnostic dump	Other
+control file heartbeat	Other
+control file parallel write	System I/O
+control file sequential read	System I/O
+control file single write	System I/O
+cr request retry	Other
+CRS call completion	Other
+CSS group membership query	Other
+CSS group registration	Other
+CSS initialization	Other
+CSS operation: action	Other
+CSS operation: data query	Other
+CSS operation: data update	Other
+CSS operation: diagnostic	Other
+CSS operation: query	Other
+CSS Xgrp shared operation	Other
+CTWR media recovery checkpoint request	Other
+cursor: mutex S	Concurrency
+cursor: mutex X	Concurrency
+cursor: pin S wait on X	Concurrency
+cursor: pin S	Concurrency
+cursor: pin S	Other
+cursor: pin X	Concurrency
+cursor: pin X	Other
+Data file init write	User I/O
+Data Guard Broker Wait	Other
+Data Guard broker: single instance	Other
+Data Guard broker: wait upon ORA-12850 error	Other
+Data Guard: process clean up	Other
+Data Guard: process exit	Other
+Data Pump slave init	Other
+Data Pump slave startup	Other
+datafile copy range completion	Administrative
+datafile move cleanup during resize	Other
+Datapump dump file I/O	User I/O
+db file async I/O submit	System I/O
+db file parallel read	User I/O
+db file parallel write	System I/O
+db file scattered read	User I/O
+db file sequential read	User I/O
+db file single write	User I/O
+db flash cache dynamic disabling wait	Administrative
+db flash cache invalidate wait	Concurrency
+db flash cache multiblock physical read	User I/O
+db flash cache single block physical read	User I/O
+db flash cache write	User I/O
+DBFG waiting for reply	Other
+dbms_file_transfer I/O	User I/O
+DBMS_LDAP: LDAP operation	Other
+dbverify reads	User I/O
+DBWR range invalidation sync	Other
+DBWR slave I/O	System I/O
+debugger command	Other
+dedicated server timer	Network
+DFS db file lock	Other
+DFS lock handle	Other
+DG Broker configuration file I/O	User I/O
+DIAG idle wait	Idle
+direct path read temp	User I/O
+direct path read	User I/O
+direct path sync	User I/O
+direct path write temp	User I/O
+direct path write	User I/O
+Disk file I/O Calibration	User I/O
+Disk file Mirror Read	User I/O
+Disk file Mirror/Media Repair Write	User I/O
+Disk file operations I/O	User I/O
+dispatcher listen timer	Network
+dispatcher shutdown	Other
+dispatcher timer	Idle
+dma prepare busy	Other
+dupl. cluster key	Other
+EMON idle wait	Idle
+EMON slave idle wait	Idle
+EMON slave messages	Other
+EMON termination	Other
+enq: AB - ABMR process initialized	Other
+enq: AB - ABMR process start/stop	Other
+enq: AD - allocate AU	Other
+enq: AD - deallocate AU	Other
+enq: AD - relocate AU	Other
+enq: AE - lock	Other
+enq: AF - task serialization	Other
+enq: AG - contention	Other
+enq: AM - ASM ACD Relocation	Other
+enq: AM - ASM Amdu Dump	Other
+enq: AM - ASM cache freeze	Other
+enq: AM - ASM File Destroy	Other
+enq: AM - ASM Password File Update	Other
+enq: AM - ASM User	Other
+enq: AM - background COD reservation	Other
+enq: AM - client registration	Other
+enq: AM - disk offline	Other
+enq: AM - group block	Other
+enq: AM - group use	Other
+enq: AM - PST split check	Other
+enq: AM - rollback COD reservation	Other
+enq: AM - shutdown	Other
+enq: AO - contention	Other
+enq: AS - modify service	Other
+enq: AS - service activation	Other
+enq: AT - contention	Other
+enq: AU - audit index file	Other
+enq: AV - add/enable first volume in DG	Other
+enq: AV - AVD client registration	Other
+enq: AV - persistent DG number	Other
+enq: AV - volume relocate	Other
+enq: AW - AW generation lock	Other
+enq: AW - AW state lock	Other
+enq: AW - AW$ table lock	Other
+enq: AW - user access for AW	Other
+enq: AY - contention	Other
+enq: BB - 2PC across RAC instances	Commit
+enq: BF - allocation contention	Other
+enq: BF - PMON Join Filter cleanup	Other
+enq: BR - file shrink	Other
+enq: BR - multi-section restore header	Other
+enq: BR - multi-section restore section	Other
+enq: BR - perform autobackup	Other
+enq: BR - proxy-copy	Other
+enq: BR - request autobackup	Other
+enq: BR - space info datafile hdr update	Other
+enq: CA - contention	Other
+enq: CF - contention	Other
+enq: CI - contention	Other
+enq: CL - compare labels	Other
+enq: CL - drop label	Other
+enq: CM - gate	Other
+enq: CM - instance	Other
+enq: CN - race with init	Other
+enq: CN - race with reg	Other
+enq: CN - race with txn	Other
+enq: CO - master slave det	Other
+enq: CQ - contention	Other
+enq: CR - block range reuse ckpt	Other
+enq: CT - change stream ownership	Other
+enq: CT - CTWR process start/stop	Other
+enq: CT - global space management	Other
+enq: CT - local space management	Other
+enq: CT - reading	Other
+enq: CT - state change gate 1	Other
+enq: CT - state change gate 2	Other
+enq: CT - state	Other
+enq: CU - contention	Other
+enq: DB - contention	Administrative
+enq: DD - contention	Other
+enq: DF - contention	Other
+enq: DG - contention	Other
+enq: DL - contention	Other
+enq: DM - contention	Other
+enq: DN - contention	Other
+enq: DO - disk online operation	Other
+enq: DO - disk online recovery	Other
+enq: DO - disk online	Other
+enq: DO - Staleness Registry create	Other
+enq: DO - startup of MARK process	Other
+enq: DP - contention	Other
+enq: DR - contention	Other
+enq: DS - contention	Other
+enq: DT - contention	Other
+enq: DV - contention	Other
+enq: DW - contention	Other
+enq: DX - contention	Other
+enq: FA - access file	Other
+enq: FB - contention	Other
+enq: FC - open an ACD thread	Other
+enq: FC - recover an ACD thread	Other
+enq: FD - Flashback coordinator	Other
+enq: FD - Flashback logical operations	Other
+enq: FD - Flashback on/off	Other
+enq: FD - Marker generation	Other
+enq: FD - Restore point create/drop	Other
+enq: FD - Tablespace flashback on/off	Other
+enq: FE - contention	Other
+enq: FG - FG redo generation enq race	Other
+enq: FG - LGWR redo generation enq race	Other
+enq: FG - serialize ACD relocate	Other
+enq: FL - Flashback database log	Other
+enq: FL - Flashback db command	Other
+enq: FM - contention	Other
+enq: FP - global fob contention	Other
+enq: FR - contention	Other
+enq: FR - recover the thread	Other
+enq: FR - use the thread	Other
+enq: FS - contention	Other
+enq: FT - allow LGWR writes	Other
+enq: FT - disable LGWR writes	Other
+enq: FU - contention	Other
+enq: FX - issue ACD Xtnt Relocation CIC	Other
+enq: HD - contention	Other
+enq: HP - contention	Other
+enq: HQ - contention	Other
+enq: HV - contention	Other
+enq: HW - contention	Configuration
+enq: IA - contention	Other
+enq: ID - contention	Other
+enq: IL - contention	Other
+enq: IM - contention for blr	Other
+enq: IR - contention	Other
+enq: IR - contention2	Other
+enq: IS - contention	Other
+enq: IT - contention	Other
+enq: JD - contention	Other
+enq: JI - contention	Other
+enq: JQ - contention	Other
+enq: JS - aq sync	Other
+enq: JS - contention	Other
+enq: JS - evt notify	Other
+enq: JS - evtsub add	Other
+enq: JS - evtsub drop	Other
+enq: JS - job recov lock	Other
+enq: JS - job run lock - synchronize	Other
+enq: JS - q mem clnup lck	Other
+enq: JS - queue lock	Other
+enq: JS - sch locl enqs	Other
+enq: JS - wdw op	Other
+enq: JX - cleanup of  queue	Scheduler
+enq: JX - SQL statement queue	Scheduler
+enq: KD - determine DBRM master	Other
+enq: KK - context	Other
+enq: KM - contention	Other
+enq: KO - fast object checkpoint	Application
+enq: KP - contention	Other
+enq: KQ - access ASM attribute	Other
+enq: KT - contention	Other
+enq: MD - contention	Other
+enq: MH - contention	Other
+enq: MK - contention	Other
+enq: ML - contention	Other
+enq: MN - contention	Other
+enq: MO - contention	Other
+enq: MR - contention	Other
+enq: MR - standby role transition	Other
+enq: MS - contention	Other
+enq: MV - datafile move	Administrative
+enq: MW - contention	Other
+enq: MX - sync storage server info	Other
+enq: OC - contention	Other
+enq: OD - Serializing DDLs	Other
+enq: OL - contention	Other
+enq: OQ - xsoq*histrecb	Other
+enq: OQ - xsoqhiAlloc	Other
+enq: OQ - xsoqhiClose	Other
+enq: OQ - xsoqhiFlush	Other
+enq: OQ - xsoqhistrecb	Other
+enq: OW - initialization	Other
+enq: OW - termination	Other
+enq: PD - contention	Other
+enq: PE - contention	Other
+enq: PF - contention	Other
+enq: PG - contention	Other
+enq: PH - contention	Other
+enq: PI - contention	Other
+enq: PL - contention	Other
+enq: PR - contention	Other
+enq: PS - contention	Other
+enq: PT - contention	Other
+enq: PV - syncshut	Other
+enq: PV - syncstart	Other
+enq: PW - flush prewarm buffers	Application
+enq: PW - perwarm status in dbw0	Other
+enq: RB - contention	Other
+enq: RC - Result Cache: Contention	Application
+enq: RD - RAC load	Other
+enq: RE - block repair contention	Other
+enq: RF - atomicity	Other
+enq: RF - DG Broker Current File ID	Other
+enq: RF - FSFO Observer Heartbeat	Other
+enq: RF - new AI	Other
+enq: RF - RF - Database Automatic Disable	Other
+enq: RF - RF - FSFO connectivity	Other
+enq: RF - RF - FSFO Observed	Other
+enq: RF - RF - FSFO state	Other
+enq: RF - RF - FSFO synchronization	Other
+enq: RF - RF - FSFO wait	Other
+enq: RF - synch: DG Broker metadata	Other
+enq: RF - synchronization: aifo master	Other
+enq: RF - synchronization: chief	Other
+enq: RF - synchronization: critical ai	Other
+enq: RF - synchronization: HC master	Other
+enq: RK - set key	Other
+enq: RL - RAC wallet lock	Other
+enq: RN - contention	Other
+enq: RO - contention	Application
+enq: RO - fast object reuse	Application
+enq: RP - contention	Other
+enq: RR - contention	Other
+enq: RS - file delete	Other
+enq: RS - persist alert level	Other
+enq: RS - prevent aging list update	Other
+enq: RS - prevent file delete	Other
+enq: RS - read alert level	Other
+enq: RS - record reuse	Other
+enq: RS - write alert level	Other
+enq: RT - contention	Other
+enq: RT - thread internal enable/disable	Other
+enq: RU - contention	Other
+enq: RU - waiting	Other
+enq: RW - MV metadata contention	Other
+enq: RX - relocate extent	Other
+enq: SB - contention	Other
+enq: SE - contention	Other
+enq: SF - contention	Other
+enq: SH - contention	Other
+enq: SI - contention	Other
+enq: SJ - Slave Task Cancel	Other
+enq: SK - contention	Other
+enq: SL - escalate lock	Other
+enq: SL - get lock for undo	Other
+enq: SL - get lock	Other
+enq: SO - contention	Other
+enq: SP - contention 2	Other
+enq: SP - contention 3	Other
+enq: SP - contention 4	Other
+enq: SP - contention	Other
+enq: SQ - contention	Configuration
+enq: SR - contention	Other
+enq: SS - contention	Configuration
+enq: ST - contention	Configuration
+enq: SU - contention	Other
+enq: SW - contention	Other
+enq: TA - contention	Other
+enq: TB - SQL Tuning Base Cache Load	Other
+enq: TB - SQL Tuning Base Cache Update	Other
+enq: TC - contention	Other
+enq: TC - contention2	Other
+enq: TD - KTF dump entries	Other
+enq: TE - KTF broadcast	Other
+enq: TF - contention	Other
+enq: TH - metric threshold evaluation	Other
+enq: TK - Auto Task Serialization	Other
+enq: TK - Auto Task Slave Lockout	Other
+enq: TL - contention	Other
+enq: TM - contention	Application
+enq: TO - contention	Other
+enq: TP - contention	Other
+enq: TQ - DDL contention	Other
+enq: TQ - DDL-INI contention	Other
+enq: TQ - INI contention	Other
+enq: TQ - TM contention	Other
+enq: TS - contention	Other
+enq: TT - contention	Other
+enq: TW - contention	Administrative
+enq: TX - allocate ITL entry	Configuration
+enq: TX - contention	Other
+enq: TX - index contention	Concurrency
+enq: TX - row lock contention	Application
+enq: UL - contention	Application
+enq: US - contention	Other
+enq: WA - contention	Other
+enq: WF - contention	Other
+enq: WG - delete fso	Other
+enq: WG - lock fso	Concurrency
+enq: WL - contention	Other
+enq: WL - RAC-wide SGA contention	Other
+enq: WL - RFS global state contention	Other
+enq: WL - Test access/locking	Other
+enq: WM - WLM Plan activation	Other
+enq: WP - contention	Other
+enq: WR - contention	Other
+enq: XC - XDB Configuration	Other
+enq: XD - ASM disk drop/add	Other
+enq: XH - contention	Other
+enq: XL - fault extent map	Other
+enq: XQ - purification	Other
+enq: XQ - recovery	Other
+enq: XQ - relocation	Other
+enq: XR - database force logging	Other
+enq: XR - quiesce database	Other
+enq: XY - contention	Other
+enq: ZA - add std audit table partition	Other
+enq: ZF - add fga audit table partition	Other
+enq: ZG - contention	Administrative
+enq: ZH - compression analysis	Other
+enq: ZZ - update hash tables	Other
+events in waitclass Other	Other
+extent map load/unlock	Other
+External Procedure call	Application
+External Procedure initial connection	Application
+external table misc IO	User I/O
+external table read	User I/O
+external table write	User I/O
+FAL archive wait 1 sec for REOPEN minimum	Other
+fbar timer	Idle
+flashback buf free by RVWR	Configuration
+flashback buf free by RVWR	Other
+flashback free VI log	Other
+flashback log file read	System I/O
+flashback log file sync	User I/O
+flashback log file write	System I/O
+flashback log switch	Other
+free buffer waits	Configuration
+free global transaction table entry	Other
+free process state object	Other
+gc assume	Cluster
+gc block recovery request	Cluster
+gc buffer busy acquire	Cluster
+gc buffer busy release	Cluster
+gc buffer busy	Cluster
+gc cancel retry	Cluster
+gc claim	Cluster
+gc cr block 2-way	Cluster
+gc cr block 3-way	Cluster
+gc cr block busy	Cluster
+gc cr block congested	Cluster
+gc cr block lost	Cluster
+gc cr block unknown	Cluster
+gc cr cancel	Cluster
+gc cr disk read	Cluster
+gc cr disk request	Cluster
+gc cr failure	Cluster
+gc cr grant 2-way	Cluster
+gc cr grant busy	Cluster
+gc cr grant congested	Cluster
+gc cr grant unknown	Cluster
+gc cr multi block request	Cluster
+gc cr request	Cluster
+gc current block 2-way	Cluster
+gc current block 3-way	Cluster
+gc current block busy	Cluster
+gc current block congested	Cluster
+gc current block lost	Cluster
+gc current block unknown	Cluster
+gc current cancel	Cluster
+gc current grant 2-way	Cluster
+gc current grant busy	Cluster
+gc current grant congested	Cluster
+gc current grant unknown	Cluster
+gc current multi block request	Cluster
+gc current request	Cluster
+gc current retry	Cluster
+gc current split	Cluster
+gc domain validation	Cluster
+gc flushed buffer	Cluster
+gc freelist	Cluster
+gc object scan	Cluster
+gc prepare	Cluster
+gc quiesce wait	Cluster
+gc quiesce	Cluster
+gc recovery free	Cluster
+gc recovery quiesce	Cluster
+gc recovery	Cluster
+gc remaster	Cluster
+gcs ddet enter server mode	Other
+gcs domain validation	Other
+gcs drm freeze begin	Other
+gcs drm freeze in enter server mode	Other
+gcs enter server mode	Other
+gcs lmon dirtydetach step completion	Other
+GCS lock cancel	Other
+GCS lock cvt S	Other
+GCS lock cvt X	Other
+GCS lock esc X	Other
+GCS lock esc	Other
+GCS lock open S	Other
+GCS lock open X	Other
+GCS lock open	Other
+gcs log flush sync	Other
+GCS recovery lock convert	Other
+GCS recovery lock open	Other
+gcs remastering wait for read latch	Other
+gcs remastering wait for write latch	Other
+gcs remote message	Idle
+gcs resource directory to be unfrozen	Other
+gcs retry nowait latch get	Other
+gcs to be enabled	Other
+ges cached resource cleanup	Other
+ges cancel	Other
+ges cgs registration	Other
+ges client process to exit	Other
+ges DFS hang analysis phase 2 acks	Other
+ges enter server mode	Other
+ges generic event	Other
+ges global resource directory to be frozen	Other
+ges inquiry response	Other
+ges lmd and pmon to attach	Other
+ges LMD suspend for testing event	Other
+ges lmd sync during reconfig	Other
+ges LMD to inherit communication channels	Other
+ges LMD to shutdown	Other
+ges lmd/lmses to freeze in rcfg - mrcvr	Other
+ges lmd/lmses to freeze in rcfg	Other
+ges lmd/lmses to unfreeze in rcfg - mrcvr	Other
+ges lmd/lmses to unfreeze in rcfg	Other
+ges LMON for send queues	Other
+ges LMON to get to FTDONE	Other
+ges LMON to join CGS group	Other
+ges lms sync during dynamic remastering and reconfig	Other
+ges master to get established for SCN op	Other
+ges message buffer allocation	Other
+ges performance test completion	Other
+ges pmon to exit	Other
+ges process with outstanding i/o	Other
+ges reconfiguration to start	Other
+ges remote message	Idle
+ges resource cleanout during enqueue open	Other
+ges resource cleanout during enqueue open-cvt	Other
+ges resource directory to be unfrozen	Other
+ges retry query node	Other
+ges reusing os pid	Other
+ges RMS0 retry add redo log	Other
+ges user error	Other
+ges wait for lmon to be ready	Other
+ges yield cpu in reconfig	Other
+ges/gcs diag dump	Other
+ges1 LMON to wake up LMD - mrcvr	Other
+ges2 LMON to wake up LMD - mrcvr	Other
+ges2 LMON to wake up lms - mrcvr 2	Other
+ges2 LMON to wake up lms - mrcvr 3	Other
+ges2 proc latch in rm latch get 1	Other
+ges2 proc latch in rm latch get 2	Other
+GIPC operation: dump	Other
+global cache busy	Other
+global enqueue expand wait	Other
+global plug and play automatic resource creation	Other
+Global transaction acquire instance locks	Configuration
+GPnP Get Error	Other
+GPnP Get Item	Other
+GPnP Initialization	Other
+GPnP Set Item	Other
+GPnP Termination	Other
+GV$: slave acquisition retry wait time	Other
+heartbeat monitor sleep	Idle
+HS message to agent	Idle
+i/o slave wait	Idle
+imm op	Other
+IMR CSS join retry	Other
+IMR disk votes	Other
+IMR membership resolution	Other
+IMR mount phase II completion	Other
+IMR net-check message ack	Other
+IMR rr lock release	Other
+IMR rr update	Other
+inactive session	Other
+inactive transaction branch	Other
+index (re)build online cleanup	Administrative
+index (re)build online merge	Administrative
+index (re)build online start	Administrative
+index block split	Other
+instance state change	Other
+io done	System I/O
+IORM Scheduler Slave Idle Wait	Idle
+IPC busy async request	Other
+IPC send completion sync	Other
+IPC wait for name service busy	Other
+IPC waiting for OSD resources	Other
+job scheduler coordinator slave wait	Other
+jobq slave shutdown wait	Other
+jobq slave TJ process wait	Other
+jobq slave wait	Idle
+JOX Jit Process Sleep	Idle
+JS coord start wait	Administrative
+JS external job	Idle
+JS kgl get object wait	Administrative
+JS kill job wait	Administrative
+kcbzps	Other
+kcrrrcp	Other
+kdblil wait before retrying ORA-54	Other
+kdic_do_merge	Other
+kfcl: instance recovery	Other
+kfk: async disk IO	System I/O
+kgltwait	Other
+kjbdomalc allocate recovery domain - retry	Other
+kjbdrmcvtq lmon drm quiesce: ping completion	Other
+kjbopen wait for recovery domain attach	Other
+KJC: Wait for msg sends to complete	Other
+kjctcisnd: Queue/Send client message	Other
+kjctssqmg: quick message send wait	Other
+kjudomatt wait for recovery domain attach	Other
+kjudomdet wait for recovery domain detach	Other
+kjxgrtest	Other
+kkdlgon	Other
+kkdlhpon	Other
+kkdlsipon	Other
+kksfbc child completion	Other
+kksfbc research	Other
+kkshgnc reloop	Other
+kksscl hash split	Other
+knpc_acwm_AwaitChangedWaterMark	Other
+knpc_anq_AwaitNonemptyQueue	Other
+knpsmai	Other
+kpodplck wait before retrying ORA-54	Other
+ksbcic	Other
+ksbsrv	Other
+ksdxexeother	Other
+ksdxexeotherwait	Other
+ksfd: async disk IO	System I/O
+ksim generic wait event	Other
+kslwait unit test event 1	Other
+kslwait unit test event 2	Other
+kslwait unit test event 3	Other
+ksqded	Other
+kst: async disk IO	System I/O
+KSV master wait	Idle
+ksv slave avail wait	Other
+ksxr poll remote instances	Other
+ksxr wait for mount shared	Other
+ktfbtgex	Other
+ktm: instance recovery	Other
+ktsambl	Other
+kttm2d	Other
+Kupp process shutdown	Other
+kupp process wait	Other
+kxfxse	Other
+kxfxsp	Other
+L1 validation	Other
+latch activity	Other
+latch free	Other
+latch: cache buffer handles	Other
+latch: cache buffers chains	Concurrency
+latch: cache buffers lru chain	Other
+latch: call allocation	Other
+latch: change notification client cache latch	Other
+latch: Change Notification Hash table latch	Other
+latch: checkpoint queue latch	Other
+latch: enqueue hash chains	Other
+latch: gc element	Other
+latch: gcs resource hash	Other
+latch: ges resource hash list	Other
+latch: In memory undo latch	Concurrency
+latch: KCL gc element parent latch	Other
+latch: library cache lock	Concurrency
+latch: library cache pin	Concurrency
+latch: library cache	Concurrency
+latch: lob segment dispenser latch	Other
+latch: lob segment hash table latch	Other
+latch: lob segment query latch	Other
+latch: messages	Other
+latch: MQL Tracking Latch	Concurrency
+latch: object queue header heap	Other
+latch: object queue header operation	Other
+latch: parallel query alloc buffer	Other
+latch: PX hash array latch	Other
+latch: redo allocation	Other
+latch: redo copy	Configuration
+latch: redo writing	Configuration
+latch: row cache objects	Concurrency
+latch: session allocation	Other
+latch: shared pool	Concurrency
+latch: undo global data	Other
+latch: Undo Hint Latch	Concurrency
+latch: virtual circuit queues	Other
+latch: WCR: processes HT	Other
+latch: WCR: sync	Other
+LGWR ORL/NoExp FAL archival	Other
+LGWR random i/o	System I/O
+LGWR real time apply sync	Idle
+LGWR sequential i/o	System I/O
+LGWR simulation latency wait	Other
+LGWR slave I/O	System I/O
+LGWR wait for redo copy	Other
+LGWR wait on ATTACH	Network
+LGWR wait on DETACH	Network
+LGWR wait on full LNS buffer	Other
+LGWR wait on LNS	Network
+LGWR wait on SENDREQ	Network
+LGWR-LNS wait on channel	Other
+library cache load lock	Concurrency
+library cache lock	Concurrency
+library cache pin	Concurrency
+library cache revalidation	Other
+library cache shutdown	Other
+library cache: mutex S	Concurrency
+library cache: mutex X	Concurrency
+listen endpoint status	Other
+listener registration dump	Other
+LMON global data update	Other
+lms flush message acks	Other
+LNS ASYNC archive log	Idle
+LNS ASYNC control file txn	System I/O
+LNS ASYNC dest activation	Idle
+LNS ASYNC end of log	Idle
+LNS simulation latency wait	Other
+LNS wait for LGWR redo	Other
+LNS wait on ATTACH	Network
+LNS wait on DETACH	Network
+LNS wait on LGWR	Network
+LNS wait on SENDREQ	Network
+local write wait	User I/O
+lock close	Other
+lock deadlock retry	Other
+lock escalate retry	Other
+lock release pending	Other
+lock remastering	Cluster
+Log archive I/O	System I/O
+log buffer space	Configuration
+Log file init write	User I/O
+log file parallel write	System I/O
+log file sequential read	System I/O
+log file single write	System I/O
+log file switch (archiving needed)	Configuration
+log file switch (checkpoint incomplete)	Configuration
+log file switch (clearing log file)	Other
+log file switch (private strand flush incomplete)	Configuration
+log file switch completion	Configuration
+log file sync	Commit
+log switch/archive	Other
+log write(even)	Other
+log write(odd)	Other
+Logical Standby Apply Delay	Idle
+Logical Standby Apply shutdown	Other
+Logical Standby Debug	Other
+Logical Standby dictionary build	Other
+Logical Standby pin transaction	Other
+Logical Standby Terminal Apply	Other
+LogMiner builder: branch	Idle
+LogMiner builder: DDL	Queueing
+LogMiner builder: idle	Idle
+LogMiner builder: memory	Queueing
+LogMiner client: transaction	Idle
+LogMiner preparer: idle	Idle
+LogMiner preparer: memory	Queueing
+LogMiner reader: buffer	Queueing
+LogMiner reader: log (idle)	Idle
+LogMiner reader: redo (idle)	Idle
+LogMiner: activate	Idle
+LogMiner: builder idle	Idle
+LogMiner: client waiting for transaction	Idle
+LogMiner: find session	Idle
+LogMiner: generic process sleep	Idle
+LogMiner: internal	Idle
+LogMiner: other	Idle
+LogMiner: preparer idle	Idle
+LogMiner: reader idle	Idle
+LogMiner: reader waiting for more redo	Idle
+LogMiner: reset	Idle
+LogMiner: slave waiting for activate message	Idle
+LogMiner: waiting for processes to soft detach	Idle
+LogMiner: waiting for redo from new branch	Other
+LogMiner: waiting for session to become visible	Other
+LogMiner: wakeup event for builder	Idle
+LogMiner: wakeup event for preparer	Idle
+LogMiner: wakeup event for reader	Idle
+logout restrictor	Concurrency
+master diskmon startup	Other
+master exit	Other
+MMON (Lite) shutdown	Other
+MMON slave messages	Other
+MRP redo arrival	Idle
+MRP wait on archivelog archival	Other
+MRP wait on archivelog arrival	Other
+MRP wait on archivelog delay	Other
+MRP wait on process death	Other
+MRP wait on process restart	Other
+MRP wait on process start	Other
+MRP wait on startup clear	Other
+MRP wait on state change	Other
+MRP wait on state n_a	Other
+MRP wait on state reset	Other
+multiple dbwriter suspend/resume for file offline	Administrative
+name-service call wait	Other
+Network file transfer	System I/O
+NFS read delegation outstanding	Other
+no free buffers	Other
+no free locks	Other
+null event	Other
+OJVM: Generic	Other
+OLAP Aggregate Client Deq	Other
+OLAP Aggregate Client Enq	Other
+OLAP Aggregate Master Deq	Other
+OLAP Aggregate Master Enq	Other
+OLAP DML Sleep	Application
+OLAP Null PQ Reason	Other
+OLAP Parallel Temp Grew	Other
+OLAP Parallel Temp Grow Request	Other
+OLAP Parallel Temp Grow Wait	Other
+OLAP Parallel Type Deq	Other
+opishd	Other
+optimizer stats update retry	Other
+os thread startup	Concurrency
+OSD IPC library	Other
+parallel recovery change buffer free	Other
+parallel recovery control message reply	Idle
+parallel recovery control message reply	Other
+parallel recovery coord send blocked	Other
+parallel recovery coord wait for reply	Other
+parallel recovery coordinator waits for cleanup of slaves	Idle
+parallel recovery coordinator waits for slave cleanup	Idle
+parallel recovery read buffer free	Other
+parallel recovery slave idle wait	Idle
+parallel recovery slave next change	Idle
+parallel recovery slave wait for change	Other
+Parameter File I/O	User I/O
+pending global transaction(s)	Other
+pi renounce write complete	Cluster
+PING	Idle
+pipe get	Idle
+pipe put	Concurrency
+PL/SQL lock timer	Idle
+pmon dblkr tst event	Other
+pmon timer	Idle
+PMON to cleanup detached branches at shutdown	Other
+PMON to cleanup pseudo-branches at svc stop time	Other
+pool server timer	Idle
+prewarm transfer retry	Other
+prior spawner clean up	Other
+process diagnostic dump	Other
+process shutdown	Other
+process startup	Other
+process terminate	Other
+PX create server	Other
+PX Deq Credit: free buffer	Other
+PX Deq Credit: need buffer	Idle
+PX Deq Credit: send blkd	Idle
+PX Deq Credit: send blkd	Other
+PX Deq Credit: Session Stats	Other
+PX Deq: Execute Reply	Idle
+PX Deq: Execution Msg	Idle
+PX Deq: Index Merge Close	Idle
+PX Deq: Index Merge Execute	Idle
+PX Deq: Index Merge Reply	Idle
+PX Deq: Join ACK	Idle
+PX Deq: kdcph_mai	Idle
+PX Deq: kdcphc_ack	Idle
+PX Deq: Metadata Update	Idle
+PX Deq: Msg Fragment	Idle
+PX Deq: OLAP Update Close	Other
+PX Deq: OLAP Update Execute	Other
+PX Deq: OLAP Update Reply	Other
+PX Deq: Par Recov Change Vector	Idle
+PX Deq: Par Recov Execute	Idle
+PX Deq: Par Recov Reply	Idle
+PX Deq: Parse Reply	Idle
+PX Deq: reap credit	Other
+PX Deq: Signal ACK EXT	Other
+PX Deq: Signal ACK RSG	Other
+PX Deq: Signal ACK	Other
+PX Deq: Slave Join Frag	Other
+PX Deq: Slave Session Stats	Other
+PX Deq: Table Q Close	Other
+PX Deq: Table Q Get Keys	Other
+PX Deq: Table Q Normal	Idle
+PX Deq: Table Q qref	Other
+PX Deq: Table Q Sample	Idle
+PX Deq: Test for credit	Other
+PX Deq: Test for msg	Other
+PX Deq: Txn Recovery Reply	Idle
+PX Deq: Txn Recovery Start	Idle
+PX Deque wait	Idle
+PX hash elem being inserted	Other
+PX Idle Wait	Idle
+PX Nsq: PQ descriptor query	Other
+PX Nsq: PQ load info query	Other
+PX qref latch	Other
+PX Queuing: statement queue	Scheduler
+PX Send Wait	Other
+PX server shutdown	Other
+PX signal server	Other
+PX slave connection	Other
+PX slave release	Other
+qerex_gdml	Other
+queue slave messages	Other
+rdbms ipc message block	Other
+rdbms ipc message	Idle
+rdbms ipc reply	Other
+read by other session	User I/O
+readable standby redo apply remastering	Other
+recovery area: computing applied logs	Other
+recovery area: computing backed up files	Other
+recovery area: computing dropped files	Other
+recovery area: computing identical files	Other
+recovery area: computing obsolete files	Other
+recovery buffer pinned	Other
+recovery instance recovery completion	Other
+recovery read	System I/O
+reliable message	Other
+remote db file read	Network
+remote db file write	Network
+remote db operation	Network
+Replication Dequeue	Other
+resmgr:become active	Scheduler
+resmgr:cpu quantum	Scheduler
+resmgr:I/O prioritization	Scheduler
+resmgr:internal state change	Concurrency
+resmgr:internal state cleanup	Concurrency
+resmgr:large I/O queued	Scheduler
+resmgr:sessions to exit	Concurrency
+resmgr:small I/O queued	Scheduler
+retry contact SCN lock master	Cluster
+RF - FSFO Wait for Ack	Other
+rfi_drcx_site_del	Other
+rfi_insv_shut	Other
+rfi_insv_start	Other
+rfi_nsv_deldef	Other
+rfi_nsv_md_close	Other
+rfi_nsv_md_write	Other
+rfi_nsv_postdef	Other
+rfi_nsv_shut	Other
+rfi_nsv_start	Other
+rfi_recon1	Other
+rfi_recon2	Other
+rfm_dmon_last_gasp	Other
+rfm_dmon_pdefer	Other
+rfm_dmon_shut	Other
+rfm_dmon_timeout_op	Other
+rfm_pmon_dso_stall	Other
+rfrdb_dbop	Other
+rfrdb_recon1	Other
+rfrdb_recon2	Other
+rfrdb_try235	Other
+rfrla_lapp1	Other
+rfrla_lapp2	Other
+rfrla_lapp3	Other
+rfrla_lapp4	Other
+rfrla_lapp5	Other
+rfrld_rhmrpwait	Other
+rfrm_dbcl	Other
+rfrm_dbop	Other
+rfrm_nonzero_sub_count	Other
+rfrm_rsm_shut	Other
+rfrm_rsm_so_attach	Other
+rfrm_rsm_start	Other
+rfrm_stall	Other
+rfrm_zero_sub_count	Other
+rfrpa_mrpdn	Other
+rfrpa_mrpup	Other
+rfrxpt_pdl	Other
+rfrxptarcurlog	Other
+RFS announce	Other
+RFS attach	Other
+RFS close	Other
+RFS create	Other
+RFS detach	Other
+RFS dispatch	Other
+RFS ping	Other
+RFS random i/o	System I/O
+RFS register	Other
+RFS sequential i/o	System I/O
+RFS write	System I/O
+RMAN backup & recovery I/O	System I/O
+RMAN Disk slave I/O	System I/O
+RMAN Tape slave I/O	System I/O
+rollback operations active	Other
+rollback operations block full	Other
+rolling migration: cluster quiesce	Other
+row cache lock	Concurrency
+row cache read	Concurrency
+RSGA: RAC reconfiguration	Other
+RVWR wait for flashback copy	Other
+secondary event	Other
+securefile chain update	Concurrency
+securefile direct-read completion	User I/O
+securefile direct-write completion	User I/O
+SecureFile mutex	Concurrency
+select wait	Other
+set director factor wait	Other
+SGA: allocation forcing component growth	Other
+SGA: MMAN sleep for component shrink	Idle
+SGA: sga_target resize	Other
+Shared IO Pool IO Completion	User I/O
+Shared IO Pool Memory	Concurrency
+shared server idle wait	Idle
+simulated log write delay	Idle
+simulated log write delay	Other
+single-task message	Idle
+slave exit	Other
+smon timer	Idle
+sort segment request	Configuration
+Space Manager: slave idle wait	Idle
+Space Manager: slave messages	Other
+SQL*Net break/reset to client	Application
+SQL*Net break/reset to dblink	Application
+SQL*Net message from client	Idle
+SQL*Net message from dblink	Idle
+SQL*Net message from dblink	Network
+SQL*Net message to client	Network
+SQL*Net message to dblink	Network
+SQL*Net more data from client	Network
+SQL*Net more data from dblink	Network
+SQL*Net more data to client	Network
+SQL*Net more data to dblink	Network
+SQL*Net vector data from client	Network
+SQL*Net vector data from dblink	Network
+SQL*Net vector data to client	Network
+SQL*Net vector data to dblink	Network
+SQL*Net vector message from client	Idle
+SQL*Net vector message from dblink	Idle
+standby query scn advance	Other
+Standby redo I/O	System I/O
+statement suspended, wait error to be cleared	Configuration
+Streams apply: waiting for dependency	Concurrency
+Streams apply: waiting to commit	Configuration
+Streams AQ: deallocate messages from Streams Pool	Idle
+Streams AQ: delete acknowledged messages	Idle
+Streams AQ: emn coordinator idle wait	Idle
+Streams AQ: emn coordinator waiting for slave to start	Other
+Streams AQ: enqueue blocked due to flow control	Other
+Streams AQ: enqueue blocked due to flow control	Queueing
+Streams AQ: enqueue blocked on low memory	Configuration
+Streams AQ: enqueue blocked on low memory	Queueing
+Streams AQ: qmn coordinator idle wait	Idle
+Streams AQ: qmn coordinator waiting for slave to start	Other
+Streams AQ: qmn slave idle wait	Idle
+Streams AQ: QueueTable kgl locks	Other
+Streams AQ: RAC qmn coordinator idle wait	Idle
+Streams AQ: waiting for busy instance for instance_name	Other
+Streams AQ: waiting for messages in the queue	Idle
+Streams AQ: waiting for time management or cleanup tasks	Idle
+Streams capture: filter callback waiting for ruleset	Application
+Streams capture: resolve low memory condition	Configuration
+Streams capture: waiting for archive log	Idle
+Streams capture: waiting for archive log	Other
+Streams capture: waiting for database startup	Other
+Streams capture: waiting for subscribers to catch up	Configuration
+Streams capture: waiting for subscribers to catch up	Queueing
+Streams fetch slave: waiting for txns	Idle
+Streams miscellaneous event	Other
+Streams: apply reader waiting for DDL to apply	Application
+Streams: flow control	Queueing
+Streams: RAC waiting for inter instance ack	Cluster
+Streams: RAC waiting for inter instance ack	Other
+Streams: resolve low memory condition	Queueing
+Streams: waiting for messages	Idle
+SUPLOG PL wait for inflight pragma-d PL/SQL	Other
+switch logfile command	Administrative
+switch undo - offline	Administrative
+Sync ASM rebalance	Other
+TCP Socket (KGAS)	Network
+test long ops	Other
+TEST: action hang	Other
+TEST: action sync	Other
+TEXT: URL_DATASTORE network wait	Network
+transaction	Other
+TSE master key rekey	Other
+TSE SSO wallet reopen	Other
+tsm with timeout	Other
+txn to complete	Other
+unbound tx	Other
+undo segment extension	Configuration
+undo segment recovery	Other
+undo segment tx slot	Configuration
+undo_retention publish retry	Other
+unspecified wait event	Other
+utl_file I/O	User I/O
+virtual circuit status	Idle
+virtual circuit wait	Network
+VKRM Idle	Idle
+VKTM Init Wait for GSGA	Idle
+VKTM Logical Idle Wait	Idle
+wait active processes	Other
+wait for a paralle reco to abort	Other
+wait for a undo record	Other
+wait for another txn - rollback to savepoint	Other
+wait for another txn - txn abort	Other
+wait for another txn - undo rcv abort	Other
+wait for assert messages to be sent	Other
+wait for change	Other
+wait for EMON to die	Other
+wait for EMON to process ntfns	Configuration
+wait for EMON to spawn	Other
+wait for FMON to come up	Other
+wait for IMR CSS join retry	Other
+wait for kkpo ref-partitioning *TEST EVENT*	Other
+wait for master scn	Other
+wait for membership synchronization	Other
+wait for message ack	Other
+wait for MTTR advisory state object	Other
+wait for possible quiesce finish	Administrative
+wait for record update	Other
+wait for rr lock release	Other
+wait for scn ack	Other
+Wait for shrink lock	Other
+Wait for shrink lock2	Other
+wait for split-brain resolution	Other
+wait for stopper event to be increased	Other
+wait for sync ack	Other
+Wait for Table Lock	Application
+wait for tmc2 to complete	Other
+Wait for TT enqueue	Other
+wait for unread message on broadcast channel	Idle
+wait for unread message on multiple broadcast channels	Idle
+wait for verification ack	Other
+wait for votes	Other
+wait list latch activity	Other
+wait list latch free	Other
+Wait on stby instance close	Other
+waiting to get CAS latch	Other
+waiting to get RM CAS latch	Other
+watchdog main loop	Idle
+WCR: capture file IO write	Other
+WCR: RAC message context busy	Other
+WCR: replay client notify	Idle
+WCR: replay clock	Idle
+WCR: replay lock order	Application
+WCR: replay paused	Idle
+WCR: Sync context busy	Other
+write complete waits	Configuration
+write complete waits: flash cache	Configuration
+writes stopped by instance recovery or database suspension	Other
+xdb schema cache initialization	Other
+XDB SGA initialization	Other

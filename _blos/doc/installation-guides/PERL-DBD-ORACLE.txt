@@ -1,0 +1,26 @@
+----------------------------
+-- Installing via CPAN Shell
+----------------------------
+-- Last tested on Fedora 20
+
+-- 1. Installing Oracle Instant Client
+-- 	  See blos/instant-client for instructions
+
+-- 2. Under Fedora/CentOS install CPAN (perl-CPAN)
+
+-- 3. Setup CPAN settings by running it one time, with the wizard
+
+-- 4. Configure Perl to use local::lib configuration
+echo 'eval $(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)' >>~/.bashrc
+
+-- 5. Important to restart shell and cpan shell, then install:
+$ perl -MCPAN -Mlocal::lib -e shell
+CPAN> o conf makepl_arg "-l"
+CPAN> o conf commit
+CPAN> install DBD::Oracle
+
+----------------------------
+-- Manual install TIPS
+----------------------------
+
+perl Makefile.PL -l

@@ -1,0 +1,396 @@
+######################################################################
+######################################################################
+# Copyright (c)  2012 by Oracle Corporation
+######################################################################
+# Modifications Section:
+######################################################################
+##     Date        File                  Changes
+######################################################################
+##  09/18/2006                           Baseline version 2.0.4 
+##
+##  09/18/2007     oswgraph.java         Added user interface        
+##  V2.1.0	   OSWParser.java        enhancements, aix io graphs,
+##                 ProcessObject.java    html profiler
+##                 SortObject.java
+##                 GraphObject.java
+##                 ContainerObject.java
+##                 FileObjects.java
+##
+##  02/12/2008     OSWParser.java        Fixed problem reading aix        
+##  V2.1.2	                         iostat files   
+##  07/31/2009     OSWatcher.sh          Release 3.0 for EXADATA
+##  V3.0.0                                  
+##  02/11/11       OSWParser.java        Fixed linux bug for entries
+##  V3.0.1                               spanning multiple lines
+##  05/04/11                             Fixed directory permission on
+##  V3.0.2                               install of osw.tar
+##  02/01/12                             Release 4.0 Black Box
+##  V4.0.0
+######################################################################
+
+OSWbba is a graphing and analysis utility which comes shipped with OSW
+Black Box V4.0 This utility is a stand-alone java program which requires
+java 1.4.2 or higher. OSWbba must also be running in an x-windows 
+environment. OSWbba graphs vmstat data for all unix platforms and 
+graphs iostat for those platforms which support iostat extended disk 
+statistics (solaris, aix and linux). Once OSWbba has parsed the data,
+the data is placed into memory data structures. Once in memory the user
+can create graphs, build html profiles and change the baseline time 
+around the data collection. This gives the user the ability to zoom in
+and produce graphs and profiles during a time of particular interest. 
+The html profile collects all graphs around a specified time and puts them
+into an html file. This html profile contains information on what to 
+look for under each section. For more information on what to look for 
+please review MOS note 301137.1.
+
+Also new in this release is an analyzer which can analyze the oswbb
+logs and automatically look for problems and provide advice on what
+is the root cause of the problem. See the OSWBlackBoxAnnalyzer.pdf
+in the docs directory for more information.
+
+If you would like to add database metrics and see an integrated view
+of your system's performance use the LTOM System Profiler. 
+(MOS note 352363.1)
+ 
+
+######################################################################
+# UNIX CHECKLIST:
+######################################################################
+
+OSWbba uses Oracle ChartBuilder to produce graphs. This utility requires
+an X Windows environment to run.
+
+######################################################################
+# JAVA CHECKLIST:
+######################################################################
+
+This tool requires JAVA!
+Before running this tool, make sure you have java 1.4.2 or higher 
+installed on your system. Java can be obtained free of charge from your 
+os vendor or downloaded from the web. 
+
+To verify you have the correct version of 
+java installed on your system issue the following command...
+
+$java -version
+
+This should be version 1.4.2 or higher. If not, contact your sys admin to 
+get current version of java 1.4.2 installed on your system. Alternatively, 
+you can use the version of java that comes shipped with ORACLE. Here is an
+example of using the version of java that comes shipped with the database...
+(Depending upon the version of the database the jre may be in a different 
+location). In version 10, the location of java is in the directory
+$ORACLE_HOME/jre/1.4.2/bin  
+
+Now put this location in the UNIX PATH variable
+export PATH=$ORACLE_HOME/jre/1.4.2/bin:$PATH
+
+######################################################################
+# JAVA HEAP ERRORS
+######################################################################
+
+OSWbba parses all the datafiles in memory prior to building graphs. 
+If you have a large amount of files to parse you may need to allocate 
+more memory in the java heap. If you experience any error messages 
+regarding out of memory such as java.lang.OutOfMemoryError, you may 
+have to increase the size of the java heap. To increase the size of 
+the java heap use the -Xmx flag.
+
+$java -jar -Xmx512M oswbba.jar -i archive
+
+
+######################################################################
+# LINUX USERS ONLY:
+######################################################################
+
+Due to a licensing issue with linux, most linux systems will not have 
+java installed but simply a placeholder which can be confusing. You 
+should either download and install java from java.sun.com or use the
+version of java which comes shipped with ORACLE.
+
+######################################################################
+# RAC USERS ONLY:
+######################################################################
+
+A seperate archive directory is required for each node in the cluster. 
+For shared file systems this would require a seperate unique named
+archive directory for each node. Mixing files from different nodes in 
+the same directory structure will result in timestamp errors when
+running OSWbba.
+
+######################################################################
+STARTING OSWbba:
+######################################################################
+
+OSWbba must be run from the directory where it was installed because
+of underlying subdirectory dependencys.
+
+cd to location of where OSWbba is installed (default location is where
+oswbb is installed)
+
+After verifying java 1.4.2 or higher has been installed, start OSWbba
+by issuing the following on the command line...
+
+java -jar oswbba.jar -i <fully qualified path name of an oswbb archive 
+directory>
+
+Example 1:
+
+The oswbb files are in the archive directory
+
+java -jar oswbba.jar -i archive
+
+Example 2:
+
+You have a large archive and need to make the jvm larger to avoid java
+memory or heap errors
+
+java -jar -Xmx512M oswbba.jar -i archive
+
+OSWbba must be started with the -i flag. This flag is a fully qualified
+path name of an oswbb archive directory. This directory must contain all
+the respective oswbb archive subdirectories, i.e. oswvmstat, oswiostat,
+etc. It is important to note that this is an archive directory and NOT
+an individual log directory.
+
+######################################################################
+USING OSWbba:
+######################################################################
+
+OSWbba has multiple user interface options. If OSWbba is started as above,
+the user will be able to choose from a list of options on a menu. In 
+all cases OSWbba must be supplied the archive directory location with
+the -i flag. Not all of the Disk I/O options will be available to all 
+users. These options are only available for solaris, linux and aix, 
+and only if iostat is collected with the extended disk statistics option. 
+These options will also not be available if OSWbba encountered any parsing
+issues while parsing iostat archive files.
+
+######################################################################
+USING OSWbba: Menu Option
+######################################################################
+
+OSWbba can be run with a menu driven user interface. This option gives
+the user the most flexibility and allows graphs to be displayed real-
+time. 
+
+To start OSWbba with the menu option issue the following on the
+command line...
+
+java -jar oswbba.jar -i <fully qualified path name of an oswbb archive 
+directory>
+
+Enter 1 to Display CPU Process Queue Graphs
+Enter 2 to Display CPU Utilization Graphs
+Enter 3 to Display CPU Other Graphs
+Enter 4 to Display Memory Graphs
+Enter 5 to Display Disk IO Graphs
+
+Enter 6 to Generate All CPU Gif Files
+Enter 7 to Generate All Memory Gif Files
+Enter 8 to Generate All Disk Gif Files
+
+Enter L to Specify Alternate Location of Gif Directory
+Enter T to Specify Different Time Scale
+Enter D to Return to Default Time Scale
+Enter R to Remove Currently Displayed Graphs
+Enter P to Generate A Profile
+Enter A to Analyze Data
+Enter Q to Quit Program
+
+
+OPTIONS
+
+     The following options are supported:
+
+     -i <archive dir>   Required. This is the input archive directory
+                        location. 
+     			    
+     1:3	        These options display graphs of specific CPU 
+			components of vmstat. Option 1 displays the 
+			process run, wait and block queues. Option 1
+			displays CPU utilization graphs for system, 
+			user and idle. Option 3 displays graphs for 
+			context switches and interrupts.
+
+     4			This option displays memory graphs for free 
+			memory and available swap.
+
+     5			This option uses the extended disk statistics 
+			option of iostat to display a list of all devices 
+			for solaris, aix and linux platforms only. The 
+			device name along with the average service time 
+			of each device is then listed. The user then 
+			selects one of the devices out of the list of 
+			devices. Graphs are available for reads/second, 
+			writes/second, service time and percent busy.
+
+     6			Generates bitmapped image files of the graphs 
+			associated with OS CPU (Option 1, 2, 3 above). These 
+			files are by default written to the gif directory but 
+			can be written to any directory by the use of Option L 
+			below.
+
+     7			Generates bitmapped image files of the graphs 
+			associated with OS memory (Option 4 above). These 
+			files are by default written to the gif directory 
+			but can be written to any directory by the use of 
+			Option L below.
+
+     8			Generates bitmapped image files of the graphs 
+			associated with OS I/O for solaris,aix and linux 
+			platforms only (Option 5 above). These files are
+			by default written to the gif directory but can be  
+			written to any directory by the use of Option L below. 
+
+     L			This option allows the user to specify an alternative 
+			location to place the bitmapped image files for options 
+			6-8 above. 
+
+     T			By default OSWbba parses the entire oswbb archive  
+			directory and produces graphs based on the entire 
+			time span of the archive. This option allows the user to
+			specify a different subset of times within the entire 
+			collection. An example would be only to graph a 2 
+			hour period out of the entire 48 hour log file. 
+
+     D			This option resets the graphing timescale back to the 
+     			time encompassing the entire log collection.
+
+     R			This option removes all previously displayed graphs
+			from the screen.
+
+     P			This option generates a default system profile html 
+     			document. This document is located under the respective 
+     			profile directory under the OSWbba/profile directory. 
+     			This document contains a series of sections, each 
+			breaking down a different component of the overall
+			system. Each section also contains advise on what
+     			to look for each component. This report requires the  
+     			use of pop ups so make sure to allow pop ups 
+     			in your browser.
+
+     A			This option analyzes the data in the oswbb archive
+                        and produces a report in the analysis directory.
+
+
+     Q			Exits the program.
+
+######################################################################
+USING OSWbba: Command Line Option
+######################################################################
+
+All graphing and profile options are available to be passed into OSWbba
+from the command line. Only the -i option is required. All other
+options are optional. Please note if the -F option is used all other
+options are ignored as the -F option requires input to be read in from
+a text file.
+
+java -jar oswbba.jar -i <fully qualified path name of an oswbb archive 
+directory> -P <name> -L <name> -6 -7 -8 -B <time> -E <time>
+
+Example: 
+
+java -jar oswbba.jar -i archive -6 -7 -P tuesday_crash
+
+OPTIONS
+
+     The following options are supported:
+
+     -i <archive dir>   Required. This is the input archive directory
+                        location. 
+
+     -F <filename>      Filename of a text file containing a list of
+     			options. The user can script as many options
+     			as desired by using the option. If the -f option
+     			is entered on the command line all other options
+     			are ignored and commands are only allowed through
+     			the file interface. See a sample file named
+     			OSWbba_input.txt in the src directory.
+     			
+     -P <profile name>  User specified name of the html profile generated
+     			by OSWbba. This overrides the OSWbba automatic naming
+     			convention for html profiles. All profiles 
+     			whether user specified named or auto generated
+     			named will be located in the /profile directory.
+
+     -A              Same as option A from the menu. Will generate
+                     an analysis report in the /analysis directory
+     			
+     -L <location name> User specified location of an existing directory
+     			to place any gif files generated
+     			by OSWbba. This overrides the OSWbba automatic 
+     			convention for placing all gif files in the  
+     		        /gif directory. This directory must pre-exist!   			   			
+     			    
+     -6 	        Same as option 6 from the menu. Will generate
+                        all cpu gif files.
+                        
+                        
+     -7 	        Same as option 7 from the menu. Will generate
+                        all memory gif files.
+                        
+     -8 	        Same as option 8 from the menu. Will generate
+                        all disk gif files. 
+                        
+     -B <start time>	Same as option T from the menu. The start time will
+     			allow the user to select a start time from within
+     			the archive of files to graph/profile. This 
+     			overrides the default start time which is the 
+     			earliest time entry in the archive directory. 
+     			The format of the start time is 
+     			Mon DD HH:MM:SS YYYY.
+     			(Example :Jul 25 11:58:01 2007). An end time
+     			is required if selecting this option.
+
+     -E <end time>	Same as option T from the menu. The end time will
+     			allow the user to select an end time from within
+     			the archive of files to graph/profile. This 
+     			overrides the default end time which is the 
+     			latest time entry in the archive directory. 
+     			The format of the end time is 
+     			Mon DD HH:MM:SS YYYY.
+     			(Example :Jul 25 11:58:01 2007). A start time
+     			is required if selecting this option.
+                                                            
+######################################################################
+USING OSWbba: Input File Option
+######################################################################
+
+All graphing and profile options are available to be read from a user
+specified text file. The format of the file is individual lines
+containing command line options (see above). An example file exists
+in the src directory(OSWbba_input.txt). To specify the input file option
+the user must specify the -F <filename> option when running OSWbba.
+
+java -jar oswbba.jar -i <fully qualified path name of an oswbb archive 
+directory> -F <fully qualified path name of an input text file>
+
+Example: 
+
+java -jar oswbba.jar -i archive -F src/oswbba_input.txt
+
+
+######################################################################
+Problems with system dates:
+######################################################################
+
+Because OSWbba builds graphs based on the unix operating system date 
+function, the time stamp must be in standard English LANG format. To
+force OSWatcher to use a compatible date mask configure the parameter
+
+oswgCompliance=1
+
+in OSWatcher.sh
+
+######################################################################
+STOPPING OSWbba:
+######################################################################
+
+To stop the OSWbba utility select option "Q" if running the menu option.
+
+######################################################################
+SUPPORTING OSWbba:
+######################################################################
+
+For any issues or comments please email me directly carl.davis@oracle.com

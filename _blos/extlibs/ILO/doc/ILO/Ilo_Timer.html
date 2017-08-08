@@ -1,0 +1,469 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+ <LINK REL="STYLESHEET" TYPE="text/css" HREF="../plsqldoc.css">
+ <TITLE>Package Ilo_Timer</TITLE>
+ <META name="object" content="PACKAGE">
+ <META name="name" content="ILO.Ilo_Timer">
+ <META name="description" content="Provides a mechanism for inserting task begin and end times into a local table.">
+</HEAD>
+<BODY>
+<TABLE WIDTH="100%"><TR>
+<TD><P ALIGN="LEFT"><STRONG><SMALL>ILO</SMALL></STRONG></TD>
+<TD><P ALIGN="RIGHT"><STRONG><SMALL><A HREF="../index.html">index</A></SMALL></STRONG></TD>
+</TR></TABLE>
+<TABLE CLASS="MAIN_TABLE"><TR><TD CLASS="DESC_TEXT">
+<P CLASS="MAIN_TITLE">Package Ilo_Timer</P>
+Provides a mechanism for inserting task begin and end times into a local table.<br>
+&nbsp;<br>
+&nbsp;<br>
+Instrumentation Library for Oracle Copyright (C) 2006 - 2008&nbsp; Method R Corporation. All rights reserved.<br>
+&nbsp;<br>
+This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation; either version 2.1 of the License, or (at your option) any later version.<br>
+&nbsp;<br>
+This library is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&nbsp; See the GNU Lesser General Public License for more details.<br>
+&nbsp;<br>
+You should have received a copy of the GNU Lesser General Public License along with this library; if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA&nbsp; 02110-1301&nbsp; USA<br>
+
+<BR>
+</TD></TR></TABLE>
+<HR>
+<A NAME="Program units"></A>
+<TABLE CLASS="SUB_TABLE"><TR><TD CLASS="SUB_TITLE">
+Program units
+</TD></TR></TABLE>
+<TABLE CLASS="SUB_TABLE">
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#begin_timed_task">begin_timed_task</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+&lt; BEGIN_TIMED_TASK &gt;
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#end_timed_task">end_timed_task</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+&lt; END_TIMED_TASK &gt;
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#get_version">get_version</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+&lt; get_version &gt;
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#flush_ilo_runs">flush_ilo_runs</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+&lt; FLUSH_ILO_RUNS &gt;
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#GET_CONFIG">GET_CONFIG</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+&lt; get_config &gt;
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#refresh_schedule">refresh_schedule</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+&lt; Refresh_Schedule &gt;
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#set_mark_all_tasks_interesting">set_mark_all_tasks_interesting</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+&lt; set_mark_all_tasks_interesting &gt;
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#get_mark_all_tasks_interesting">get_mark_all_tasks_interesting</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+&lt; get_mark_all_tasks_interesting &gt;
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#get_ignore_schedule">get_ignore_schedule</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+&lt; get_ignore_schedule &gt;
+</TD></TR>
+</TABLE>
+<BR>
+<HR>
+<A NAME="begin_timed_task"></A>
+<P CLASS="TYPE_TITLE">
+begin_timed_task
+</P>
+<PRE CLASS="DECL_TEXT">
+Function begin_timed_task(p_begin_time timestamp) RETURN NUMBER
+</PRE>
+<P CLASS="DESC_TEXT">
+&lt; BEGIN_TIMED_TASK &gt;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp; Purpose: This is currently a null package which is called by BEGIN_TASK.<br>
+&nbsp; You may place logic in this package to track the &quot;start time&quot; of a given task.<br>
+
+<BR>
+</P>
+<A NAME="Returns"></A>
+<TABLE CLASS="LIST_TABLE"><TR><TD CLASS="LIST_TITLE">
+Returns
+</TD></TR></TABLE>
+<TABLE CLASS="LIST_TABLE">
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+NUMBER&nbsp;&nbsp;&nbsp; This number is used as the &quot;ID&quot; of the Timed task and is output into the trace file as such.<br>
+
+</TD></TR>
+</TABLE>
+<BR>
+<HR>
+<A NAME="end_timed_task"></A>
+<P CLASS="TYPE_TITLE">
+end_timed_task
+</P>
+<PRE CLASS="DECL_TEXT">
+Procedure end_timed_task(p_stack_rec    ilo_task.stack_rec_t,
+                         p_error_num    PLS_INTEGER default 0,
+                         p_end_time     timestamp DEFAULT NULL,
+                         p_widget_count NUMBER DEFAULT NULL)
+</PRE>
+<P CLASS="DESC_TEXT">
+&lt; END_TIMED_TASK &gt;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp; Purpose: This is currently a null package which is called by END_TASK.<br>
+&nbsp; You may place logic in this package to track the &quot;END time&quot; of a given task.<br>
+
+<BR>
+</P>
+<A NAME="Parameters"></A>
+<TABLE CLASS="LIST_TABLE"><TR><TD CLASS="LIST_TITLE">
+Parameters
+</TD></TR></TABLE>
+<TABLE CLASS="LIST_TABLE">
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+p_stack_rec&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+The current ILO stack as it exists in the session.<br>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+p_error_num&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+An arbitrary error number passed through from the END_TASK call.<br>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+p_end_time&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+A timestamp that replaces the natural end time of the task.<br>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+p_widget_count&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+The (optional) widget count for the task.<br>
+
+</TD></TR>
+</TABLE>
+<BR>
+<HR>
+<A NAME="get_version"></A>
+<P CLASS="TYPE_TITLE">
+get_version
+</P>
+<PRE CLASS="DECL_TEXT">
+Function get_version RETURN NUMBER
+</PRE>
+<P CLASS="DESC_TEXT">
+&lt; get_version &gt;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp; Purpose: Returns the version of the ILO_TIMER PACKAGE<br>
+
+<BR>
+</P>
+<A NAME="Returns"></A>
+<TABLE CLASS="LIST_TABLE"><TR><TD CLASS="LIST_TITLE">
+Returns
+</TD></TR></TABLE>
+<TABLE CLASS="LIST_TABLE">
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+NUMBER&nbsp;&nbsp;&nbsp; NUMBER value that indicates version of ILO<br>
+
+</TD></TR>
+</TABLE>
+<BR>
+<HR>
+<A NAME="flush_ilo_runs"></A>
+<P CLASS="TYPE_TITLE">
+flush_ilo_runs
+</P>
+<PRE CLASS="DECL_TEXT">
+Procedure flush_ilo_runs
+</PRE>
+<P CLASS="DESC_TEXT">
+&lt; FLUSH_ILO_RUNS &gt;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp; Purpose: This is currently a null package that is called at the very end of the &quot;end_task&quot; once the stack is empty.<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="GET_CONFIG"></A>
+<P CLASS="TYPE_TITLE">
+GET_CONFIG
+</P>
+<PRE CLASS="DECL_TEXT">
+Procedure GET_CONFIG(p_module   IN VARCHAR2,
+                     p_action   IN VARCHAR2,
+                     p_trace    OUT BOOLEAN,
+                     p_walltime OUT BOOLEAN,
+                     p_rtime    OUT BOOLEAN)
+</PRE>
+<P CLASS="DESC_TEXT">
+&lt; get_config &gt;<br>
+&nbsp;<br>
+&nbsp; Purpose: is used by ILO.BEGIN_TASK to determine whether a MODULE/ACTION pair<br>
+&nbsp; Should be traced, and to what nesting level it should store detail.<br>
+
+<BR>
+</P>
+<A NAME="Parameters"></A>
+<TABLE CLASS="LIST_TABLE"><TR><TD CLASS="LIST_TITLE">
+Parameters
+</TD></TR></TABLE>
+<TABLE CLASS="LIST_TABLE">
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+p_module&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+IN&nbsp; VARCHAR2 - The module passed into BEGIN_TASK<br>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+p_action&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+IN&nbsp; VARCHAR2 - The action passed into BEGIN_TASK<br>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+p_trace&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+OUT BOOLEAN&nbsp; - Whether or not to trace the current MODULE/ACTION pair<br>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+p_walltime&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+OUT BOOLEAN&nbsp; - Whether or not to write the WALL TIME out to the trace file for a TRACED task<br>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+p_rtime&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+OUT BOOLEAN&nbsp; - Whether or not to call the BEGIN_TIMED_TASK/END_TIMED_TASK ILO_TIMER methods.<br>
+
+</TD></TR>
+</TABLE>
+<BR>
+<A NAME="Usage Notes"></A>
+<TABLE CLASS="LIST_TABLE"><TR><TD CLASS="LIST_TITLE">
+Usage Notes
+</TD></TR></TABLE>
+<TABLE CLASS="LIST_TABLE">
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+<li> Currently all of the OUT values are hardcoded. Please see the package body for defaults <li> This package body can be changed to read the value of the OUT varables from tables, functions, or emit other defaults based upon your need.<br>
+
+</TD></TR>
+</TABLE>
+<BR>
+<HR>
+<A NAME="refresh_schedule"></A>
+<P CLASS="TYPE_TITLE">
+refresh_schedule
+</P>
+<PRE CLASS="DECL_TEXT">
+Procedure refresh_schedule
+</PRE>
+<P CLASS="DESC_TEXT">
+&lt; Refresh_Schedule &gt;<br>
+&nbsp;<br>
+&nbsp; Purpose: Used as a placeholder for a method that refreshes an<br>
+&nbsp; in memory schedule that might be used to determine whether or<br>
+&nbsp; not to trace and/or gather response time for a MODULE/ACTION pair.<br>
+&nbsp;<br>
+&nbsp; Comments:<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="set_mark_all_tasks_interesting"></A>
+<P CLASS="TYPE_TITLE">
+set_mark_all_tasks_interesting
+</P>
+<PRE CLASS="DECL_TEXT">
+Procedure set_mark_all_tasks_interesting(mark_all_tasks_interesting boolean,
+                                         ignore_schedule            boolean DEFAULT FALSE)
+</PRE>
+<P CLASS="DESC_TEXT">
+&lt; set_mark_all_tasks_interesting &gt;<br>
+&nbsp;<br>
+&nbsp; Purpose: This function can be used to override the schedule of tasks marked as interesting.<br>
+&nbsp; This should normally be used only for testing during setup and configuration. The two boolean<br>
+&nbsp; parameters indicate one of the following three paths.<br>
+&nbsp;<br>
+&nbsp; 1) MARK_ALL_TASKS_INTERESTING FALSE, IGNORE_SCHEDULE TRUE or FALSE<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The schedule is used exclusively.<br>
+&nbsp; 2) MARK_ALL_TASKS_INTERESTING TRUE, IGNORE_SCHEDULE FALSE<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The schedule is consulted first. Any task found within the schedule is marked as interesting based on trace and response time parameters in the schedule. Any task not found in the schedule is marked as interesting.<br>
+&nbsp; 3) MARK_ALL_TASKS_INTERESTING TRUE, IGNORE_SCHEDULE TRUE<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The schedule is ignored. All tasks are marked as interesting.<br>
+
+<BR>
+</P>
+<A NAME="Parameters"></A>
+<TABLE CLASS="LIST_TABLE"><TR><TD CLASS="LIST_TITLE">
+Parameters
+</TD></TR></TABLE>
+<TABLE CLASS="LIST_TABLE">
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+MARK_ALL_TASKS_INTERESTING&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+BOOLEAN Value<br>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+IGNORE_SCHEDULE&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+BOOLEAN Value<br>
+
+</TD></TR>
+</TABLE>
+<BR>
+<A NAME="Usage Notes"></A>
+<TABLE CLASS="LIST_TABLE"><TR><TD CLASS="LIST_TITLE">
+Usage Notes
+</TD></TR></TABLE>
+<TABLE CLASS="LIST_TABLE">
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+<li> The default for MARK_ALL_TASKS_INTERESTING and IGNORE_SCHEDULE is FALSE.<br>
+
+</TD></TR>
+</TABLE>
+<BR>
+<HR>
+<A NAME="get_mark_all_tasks_interesting"></A>
+<P CLASS="TYPE_TITLE">
+get_mark_all_tasks_interesting
+</P>
+<PRE CLASS="DECL_TEXT">
+Function get_mark_all_tasks_interesting RETURN BOOLEAN
+</PRE>
+<P CLASS="DESC_TEXT">
+&lt; get_mark_all_tasks_interesting &gt;<br>
+&nbsp;<br>
+&nbsp; Return the current value for MARK_ALL_TASKS_INTERESTING.<br>
+
+<BR>
+</P>
+<A NAME="Parameters"></A>
+<TABLE CLASS="LIST_TABLE"><TR><TD CLASS="LIST_TITLE">
+Parameters
+</TD></TR></TABLE>
+<TABLE CLASS="LIST_TABLE">
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+None&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+</TABLE>
+<BR>
+<A NAME="Returns"></A>
+<TABLE CLASS="LIST_TABLE"><TR><TD CLASS="LIST_TITLE">
+Returns
+</TD></TR></TABLE>
+<TABLE CLASS="LIST_TABLE">
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+BOOLEAN<br>
+
+</TD></TR>
+</TABLE>
+<BR>
+<A NAME="Usage Notes"></A>
+<TABLE CLASS="LIST_TABLE"><TR><TD CLASS="LIST_TITLE">
+Usage Notes
+</TD></TR></TABLE>
+<TABLE CLASS="LIST_TABLE">
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+<li> Returns the value of MARK_ALL_TASKS_INTERESTING set by the user. If the user has not called the <A HREF=#set_mark_all_tasks_interesting>SET_MARK_ALL_TASKS_INTERESTING</A> method, the default is FALSE.<br>
+
+</TD></TR>
+</TABLE>
+<BR>
+<HR>
+<A NAME="get_ignore_schedule"></A>
+<P CLASS="TYPE_TITLE">
+get_ignore_schedule
+</P>
+<PRE CLASS="DECL_TEXT">
+Function get_ignore_schedule RETURN BOOLEAN
+</PRE>
+<P CLASS="DESC_TEXT">
+&lt; get_ignore_schedule &gt;<br>
+&nbsp;<br>
+&nbsp; Return the current value for IGNORE_SCHEDULE.<br>
+
+<BR>
+</P>
+<A NAME="Parameters"></A>
+<TABLE CLASS="LIST_TABLE"><TR><TD CLASS="LIST_TITLE">
+Parameters
+</TD></TR></TABLE>
+<TABLE CLASS="LIST_TABLE">
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+None&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+</TABLE>
+<BR>
+<A NAME="Returns"></A>
+<TABLE CLASS="LIST_TABLE"><TR><TD CLASS="LIST_TITLE">
+Returns
+</TD></TR></TABLE>
+<TABLE CLASS="LIST_TABLE">
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+BOOLEAN<br>
+
+</TD></TR>
+</TABLE>
+<BR>
+<A NAME="Usage Notes"></A>
+<TABLE CLASS="LIST_TABLE"><TR><TD CLASS="LIST_TITLE">
+Usage Notes
+</TD></TR></TABLE>
+<TABLE CLASS="LIST_TABLE">
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+<li> Returns the value of IGNORE_SCHEDULE set by the user. If the user has not called the <A HREF=#set_mark_all_tasks_interesting>SET_MARK_ALL_TASKS_INTERESTING</A> method, the default is FALSE.<br>
+
+</TD></TR>
+</TABLE>
+<BR>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+</BODY>
+</HTML>

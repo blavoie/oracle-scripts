@@ -1,0 +1,238 @@
+-------------------------------------------------------------------------------
+-- Install RHEL/OEL/CentOS 6
+-------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------
+-- VirtualBox Configurations
+-------------------------------------------------------------------------------
+
+-- General --
+Name: EL6 
+OS: Linux 
+Version: Red Hat (64 bit)
+
+-- System --
+Base Memory: 1024 MB
+
+-- Storage --
+First drive (MAIN) that will hold OS and Oracle Home.
+	Size 20 GB
+Other drives (ASM01-04) will be raw devices for installing ASM.
+	Size 2 GB each
+
+For space efficiency, make all drives as «Dynamically allocated storage»
+
+-- Audio --
+Disable.
+
+-- Network interfaces --
+Adapter 1: NAT 
+	- this one will be changed to bridged from time to time and will be DHCP'd
+Adapter 2: Host only adapter
+	- this one will have a static address
+
+-------------------------------------------------------------------------------
+-- Installing & Updating OS
+-------------------------------------------------------------------------------
+
+-- .... The first steps are basic, I'll not cover it here .... --
+
+-- Hostname and Networking step --
+Hostname: el6.vms.brunol.com
+
+	Be sure to click in the «Configure Network» button.
+	-- Network Connections --
+	Edit each interfaces and check «Connect automatically»
+	For eth1 set manually IP settings to:
+		IP: 192.168.56.40
+		MASK: 255.255.255.0
+		Search Domains: vms.brunol.com lan.brunol.com brunol.com ulaval.ca
+
+-- .... Some other steps are basic, I'll not cover it here .... --
+		
+-- Partitionning step 1 --
+	Select «Use All Space»
+	Check «Review and modify partitioning layout»
+
+-- Partitionning step 2 --
+	Ensure that only sda device will be used & formatted.
+	Ensure that swap is 2048 big.
+
+-- .... Some other steps are basic, I'll not cover it here .... --
+
+-- Set of software --
+	Select «Basic Server»
+
+-------------------------------------------------------------------------------
+-- After rebooting
+-------------------------------------------------------------------------------
+
+-- Not necessary to disable firewall and selinux as of 11.2.0.3 on OEL6 and RHEL6
+-- See: http://docs.oracle.com/cd/E11882_01/install.112/e24321/pre_install.htm#CHDFFBIF
+	-- Disable SELinux by modifying /etc/selinux/config
+	nano /etc/selinux/config
+
+	-- Disable Firewall
+	system-config-firewall-tui
+	
+-- Update firewall, unblock ports 1521 and 1158
+system-config-firewall-tui
+
+-- Update system
+yum update -y
+
+-- Disable unused services
+chkconfig kdump off
+
+-- Adjust /etc/hosts, by adding
+<--- BEGIN --->
+192.168.56.40 el6.vms.brunol.com el6       
+<--- END --->
+
+-- Reboot to enable last changes
+reboot
+
+-------------------------------------------------------------------------------
+-- Clean old Kernels
+-------------------------------------------------------------------------------	
+
+package-cleanup --oldkernels --count=2
+
+-------------------------------------------------------------------------------
+-- Installing VirtualBox Additions
+-------------------------------------------------------------------------------	
+
+In VirtualBox, go to 'Devices' -> 'Install Guest Additions'
+
+yum -y install gcc kernel-devel make autoconf;   
+	OR for OEL:
+		yum -y install gcc kernel-uek-devel make autoconf;
+mkdir -p /media/cdrom
+mount /dev/cdrom /media/cdrom
+cd /media/cdrom/
+sh ./VBoxLinuxAdditions.run
+
+-------------------------------------------------------------------------------
+-- Manual Oracle Prerequisites
+-- They are not necessary if installing oracle-rdbms-server-11gR2-preinstall 
+-- package under Oracle Linux 6.2. 
+-- However, we may need to do some adjustments not done with package:
+--		- grid user
+--		- limits settings for grid user
+-------------------------------------------------------------------------------	
+-- Packages
+yum -y install xorg-x11-xauth xorg-x11-utils sysstat bc glibc libaio pam gcc compat-libcap1 nfs-utils compat-libstdc++-33 bind-utils ksh smartmontools libgcc openssh-clients libaio-devel make libstdc++-devel binutils glibc-devel module-init-tools util-linux-ng initscripts gcc-c++ procps ethtool libstdc++ elfutils-libelf-devel
+
+-- Groups & User (the user/groups created with oracle-rdbms-server-11gR2-preinstall are not exactly like this)
+groupadd oinstall
+groupadd dba
+useradd -g oinstall -Gdba,vboxsf grid
+useradd -g oinstall -Gdba,vboxsf oracle
+passwd grid
+passwd oracle
+
+-- Configure minimal kernel parameters for Oracle 
+-- Add thes lines to /etc/sysctl.conf
+<--- BEGIN --->
+fs.file-max = 6815744
+kernel.sem = 250 32000 100 128
+kernel.shmmni = 4096
+kernel.shmall = 1073741824
+kernel.shmmax = 4398046511104
+net.core.rmem_default = 262144
+net.core.rmem_max = 4194304
+net.core.wmem_default = 262144
+net.core.wmem_max = 1048576
+fs.aio-max-nr = 1048576
+net.ipv4.ip_local_port_range = 9000 65500
+<--- END --->
+
+-- Activate parameters
+sysctl -p
+
+-- Change user limits for oracle & grid users 
+-- Add thes lines to /etc/security/limits.conf
+-- If oracle|grid user is already logged, logout et login to these change take effect
+<--- BEGIN --->
+oracle           soft    nproc     2047
+oracle           hard    nproc    16384
+oracle           soft    nofile    1024
+oracle           hard    nofile   65536
+oracle           soft    stack    10240
+oracle           hard    stack    32768
+grid             soft    nproc     2047
+grid             hard    nproc    16384
+grid             soft    nofile    1024
+grid             hard    nofile   65536
+grid             soft    stack    10240
+grid             hard    stack    32768
+<--- END --->
+
+-------------------------------------------------------------------------------	
+-- Creating required directories
+-------------------------------------------------------------------------------	
+mkdir -p /u01/app/grid
+mkdir -p /u01/app/oracle
+chown -R grid:oinstall /u01
+chown oracle:oinstall /u01/app/oracle
+chmod -R 775 /u01/
+
+-------------------------------------------------------------------------------	
+-- Install ASMlib Packages
+-------------------------------------------------------------------------------	
+-- Oracle page about ASM : http://www.oracle.com/technetwork/topics/linux/asmlib/index-101839.html
+
+-- For Oracle Linux:
+-- See: http://www.oracle.com/technetwork/server-storage/linux/asmlib/ol6-1709075.html
+yum install oracleasm-support 
+wget http://download.oracle.com/otn_software/asmlib/oracleasmlib-2.0.4-1.el6.x86_64.rpm
+yum install oracleasmlib-2.0.4-1.el6.x86_64.rpm
+
+-- For Enterprise Linux: packages not availlable for EL6, and it will not be. 
+-- To test ASMlib stuff, must use OEL6
+
+-------------------------------------------------------------------------------	
+-- Enable Oracle ASM Disks
+-------------------------------------------------------------------------------	
+
+-- Disks are /dev/sd{b,c,d,e}
+-- For each of these drive, do:
+fdisk /dev/sdb
+Response sequence: n, p, 1, <enter>, <enter>, w
+
+-- Activate ASM
+/etc/init.d/oracleasm configure
+Response sequence: grid, dba, y, y
+
+-- Adding disks to ASM
+oracleasm listdisks
+oracleasm createdisk VOL01 /dev/sdb1
+oracleasm createdisk VOL02 /dev/sdc1
+oracleasm createdisk VOL03 /dev/sdd1
+oracleasm createdisk VOL04 /dev/sde1
+oracleasm createdisk VOL05 /dev/sdf1
+oracleasm createdisk VOL06 /dev/sdg1
+oracleasm createdisk VOL07 /dev/sdh1
+oracleasm createdisk VOL08 /dev/sdi1
+oracleasm listdisks
+
+-------------------------------------------------------------------------------	
+-- Adding supplemental goodies
+-------------------------------------------------------------------------------	
+-- Installing rlwrap
+wget http://dl.fedoraproject.org/pub/epel/6/x86_64/rlwrap-0.37-1.el6.x86_64.rpm
+rpm -ivh rlwrap*
+rm -rf rlwrap*
+
+-- dos2unix and unix2dos
+yum install -y dos2unix unix2dos
+
+-------------------------------------------------------------------------------	
+-- Hardening security
+-------------------------------------------------------------------------------	
+Disable root logins from SSH in /etc/ssh/sshd_config.
+PermitRootLogin no
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!! Congratulations, at this stage you are <Oracle Ready>
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

@@ -1,0 +1,100 @@
+IMPORTANT - READ CAREFULLY: 
+
+This 128 Consulting License Agreement is a legal agreement between you, the 
+customer ("LICENSEE") and 128 Consulting for the LAB128 software program 
+accompanying this agreement, which includes computer software and may include 
+"online" or electronic documentation, and associated authorization key 
+(SOFTWARE). By installing, copying, or otherwise using the SOFTWARE, you agree 
+to be bound by the terms of this agreement. If you do not agree to the terms 
+of this agreement, do not install, copy, or otherwise use the SOFTWARE.
+
+
+1. Definitions.
+(a) Named User ("NAMED USER"), is defined as an individual authorized by 
+    LICENSEE to use the SOFTWARE which is installed on a single or multiple 
+    computers, regardless of whether the individual is actively using the 
+    program at any given time.
+
+(b) Number of Oracle instances ("NUMBER OF INSTANCES"), is defined as the total
+    number of Oracle instances that can be connected simultaneously at any given 
+    time by the NAMED USER using the SOFTWARE.
+
+
+2. License.
+   Subject to the terms and conditions of this Agreement and upon LICENSEE's 
+   full payment of the applicable fees, the SOFTWARE shall be licensed, not 
+   sold, to LISENSEE by 128 Consulting. The "License" granted hereunder shall be 
+   perpetual, non-exclusive, non-sublicensable, and non-transferable. Depending 
+   on the type of purchased License, the License terms are defined as 
+   following: 
+
+(a) License type "Named User. Up to 2 Oracle instances".
+    This license allows the NAMED USER to use the SOFTWARE with  NUMBER OF 
+    INSTANCES limited to two.
+
+(b) License type "Named User. Unlimited number of Oracle instances".
+    This license allows the NAMED USER to use the SOFTWARE with no limit on 
+    NUMBER OF INSTANCES. 
+
+
+3. Ownership.
+   This License Agreement provides you with limited rights to use the SOFTWARE. 
+   128 Consulting retains all ownership, right, title and interest in, to and 
+   of the SOFTWARE and all copies of it. All rights not specifically granted in 
+   this License Agreement, including domestic and international copyrights, are
+   reserved by 128 Consulting.
+
+
+4. Restrictions. 
+(a) You may not reverse engineer, decompile, disassemble or otherwise reduce 
+    the SOFTWARE to any human perceivable form. 
+
+(b) You may not modify binary code, adapt, transfer, rent, lease, or loan the
+    SOFTWARE or any part thereof.
+
+(c) Refer your registration number or authorization key to third parties. 
+
+(d) You may not remove or alter any copyright, trademark or other proprietary 
+    rights and notices contained in any portion of SOFTWARE, help files 
+    or any other files that bear such a notice.
+
+
+5. "AS IS" Warranty.
+   LICENSEE and 128 Consulting agree that the SOFTWARE is licensed "AS IS" and
+   unsupported, and that 128 Consulting makes no warranty as to the SOFTWARE,
+   express or implied, including but not limited to the implied warranties
+   of merchantability and fitness for a particular purpose. 
+
+
+6. Limitation of Remedies and Damages. 
+   In no event will 128 Consulting, its subsidiaries, directors, officers, 
+   employees or affiliates of any of the foregoing be liable to LICENSEE under 
+   any contract, negligence, strict liability or other legal or equitable 
+   theory for any consequential, incidental, indirect or special damages 
+   whatsoever (including, but not limited to, damages for loss of business 
+   profits, business interruption, loss of business information and the like), 
+   whether foreseeable or unforeseeable, or for cost of procurement of 
+   substitute goods, technology or services, regardless of the basis of the 
+   claim and even if 128 Consulting or a 128 Consulting representative has 
+   been advised of the possibility of such damage.
+
+
+7. Copyright. 
+   All title and copyrights in and to the SOFTWARE (including but 
+   not limited to any images, demos, source code, intermediate files, 
+   and text, incorporated into the SOFTWARE) are owned by 128 Consulting or 
+   its subsidiaries. The SOFTWARE is protected by copyright laws and 
+   international treaty provisions. 
+
+
+8. Term.
+   The license granted hereunder is effective until terminated. You may 
+   terminate it at any time by destroying the SOTWARE and its associated 
+   documentation. This License Agreement will automatically terminate upon a 
+   material breach of its terms and conditions.
+
+
+9. General.
+   This Agreement shall be governed by the laws of the State of New Hampshire.
+   Address all correspondence regarding this license to 128 Consulting
+   electronic mail address <support@lab128.com>.         

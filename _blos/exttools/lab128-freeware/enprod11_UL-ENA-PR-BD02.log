@@ -1,0 +1,14 @@
+	
+2/22 14:02:47 - Lab 1.6.0.0 connected as BRLAV35 to enprod11, Host: UL-ENA-PR-BD02,  DB: ENPROD11:1.
+ Server version: 11.2.0.3.0, Client version: 11.2.0.1.0 Production	
+2/22 14:02:47 - X$KSLED/X$KSLEI views are not available. Will use V$SYSTEM_EVENT instead.	
+2/22 14:02:48 - X$KTSSO view is not available. Will use V$SORT_USAGE instead.	
+2/22 14:02:48 - Query not supported in this Oracle version:	
+2/22 14:02:48 - Query ID=961, Name='v$ges_stat' has been disabled.	
+2/22 14:02:49 - Query not supported in this Oracle version:	
+2/22 14:02:49 - Query ID=969, Name='v$block_server' has been disabled.	
+2/22 14:03:33 - X$KTFBUE view is not available. Will use DBA_EXTENTS instead.	
+2/22 14:08:52 - X$BH view is not available. Will use V$BH instead.	
+2/22 14:08:52 - X$KCBWDS view is not available. Buffer pool name will not be shown.	
+2/22 14:08:52 - Query initialization failed.	
+2/22 14:08:52 - Query ID=933, Name='v$buffer_pool' has been disabled.

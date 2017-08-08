@@ -1,0 +1,926 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+ <LINK REL="STYLESHEET" TYPE="text/css" HREF="../plsqldoc.css">
+ <TITLE>Package body Ilo_Sysutil</TITLE>
+ <META name="object" content="PACKAGE BODY">
+ <META name="name" content="ILO.Ilo_Sysutil">
+ <META name="description" content="Provides several utility functions and wraps calls to SYS.DBMS_SYSTEM.KSDDDT and SYS.DBMS_SYSTEM.KSDWRT.">
+</HEAD>
+<BODY>
+<TABLE WIDTH="100%"><TR>
+<TD><P ALIGN="LEFT"><STRONG><SMALL>ILO</SMALL></STRONG></TD>
+<TD><P ALIGN="RIGHT"><STRONG><SMALL><A HREF="../index.html">index</A></SMALL></STRONG></TD>
+</TR></TABLE>
+<TABLE CLASS="MAIN_TABLE"><TR><TD CLASS="DESC_TEXT">
+<P CLASS="MAIN_TITLE">Package body Ilo_Sysutil</P>
+Provides several utility functions and wraps calls to SYS.DBMS_SYSTEM.KSDDDT and SYS.DBMS_SYSTEM.KSDWRT.<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;Instrumentation Library for Oracle<br>
+&nbsp;Copyright (C) 2006 - 2008&nbsp; Method R Corporation. All rights reserved.<br>
+&nbsp;<br>
+&nbsp;This library is free software; you can redistribute it and/or<br>
+&nbsp;modify it under the terms of the GNU Lesser General Public<br>
+&nbsp;License as published by the Free Software Foundation; either<br>
+&nbsp;version 2.1 of the License, or (at your option) any later version.<br>
+&nbsp;<br>
+&nbsp;This library is distributed in the hope that it will be useful,<br>
+&nbsp;but WITHOUT ANY WARRANTY; without even the implied warranty of<br>
+&nbsp;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&nbsp; See the GNU<br>
+&nbsp;Lesser General Public License for more details.<br>
+&nbsp;<br>
+&nbsp;You should have received a copy of the GNU Lesser General Public<br>
+&nbsp;License along with this library; if not, write to the Free Software<br>
+&nbsp;Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA&nbsp; 02110-1301&nbsp; USA<br>
+
+<BR>
+</TD></TR></TABLE>
+<HR>
+<A NAME="Program units"></A>
+<TABLE CLASS="SUB_TABLE"><TR><TD CLASS="SUB_TITLE">
+Program units
+</TD></TR></TABLE>
+<TABLE CLASS="SUB_TABLE">
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#set_dbver">set_dbver</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+&lt; PRIVATE METHODS &gt;
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#get_version">get_version</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+&lt; PUBLIC METHODS &gt;
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#get_db_major_ver">get_db_major_ver</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+&lt; Get_DB_Major_Ver &gt;
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#write_datestamp">write_datestamp</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+&lt; write_datestamp &gt;
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#write_to_trace">write_to_trace</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+&lt; Write_to_trace &gt;
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#write_to_alert">write_to_alert</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+&lt; Write_to_alert &gt;
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#turn_trace_on">turn_trace_on</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+&lt; turn_trace_on &gt;
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#turn_trace_off">turn_trace_off</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+&lt; turn_trace_off &gt;
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#get_client_id">get_client_id</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+&lt; get_client_id &gt;
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#set_client_id">set_client_id</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+&lt; set_client_id &gt;
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#get_spid">get_spid</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+&lt; get_spid &gt;
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#get_session_type">get_session_type</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+&lt; get_session_type &gt;
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#get_instance_name">get_instance_name</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+&lt; get_Instance_name &gt;
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#get_service_name">get_service_name</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+&lt; get_service_name &gt;
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#get_session_user">get_session_user</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+&lt; get_session_user &gt;
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#get_ip_address">get_ip_address</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+&lt; get_ip_address &gt;
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#get_terminal">get_terminal</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+&lt; get_terminal &gt;
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#get_session_id">get_session_id</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+&lt; get_session_id &gt;
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#get_os_user">get_os_user</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+&lt; get_os_user &gt;
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#register">register</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+&lt; Register &gt;
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#waitany">waitany</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+&lt; waitany &gt;
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#waitone">waitone</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+&lt; waitone &gt;
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#SIGNAL">SIGNAL</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+&lt; signal &gt;
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#remove">remove</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+&lt; remove &gt;
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#removeall">removeall</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+&lt; removeall &gt;
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#set_raise_exceptions">set_raise_exceptions</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+&lt; set_raise_exceptions &gt;
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#get_raise_exceptions">get_raise_exceptions</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+&lt; get_raise_exceptions &gt;
+</TD></TR>
+</TABLE>
+<BR>
+<A NAME="Variables"></A>
+<TABLE CLASS="SUB_TABLE"><TR><TD CLASS="SUB_TITLE">
+Variables
+</TD></TR></TABLE>
+<TABLE CLASS="SUB_TABLE">
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#g_db_major_ver">g_db_major_ver</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+Naming Standards
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#g_db_prod">g_db_prod</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#g_db_ver">g_db_ver</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#g_spid">g_spid</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#g_session_type">g_session_type</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#g_instance_name">g_instance_name</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#g_service_name">g_service_name</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#g_session_user">g_session_user</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#g_terminal">g_terminal</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#g_ip_address">g_ip_address</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#g_session_id">g_session_id</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#g_os_user">g_os_user</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+</TABLE>
+<BR>
+<HR>
+<A NAME="g_db_major_ver"></A>
+<P CLASS="TYPE_TITLE">
+g_db_major_ver
+</P>
+<PRE CLASS="DECL_TEXT">
+g_db_major_ver  VARCHAR2(5)  := '&&g_db_major_ver';
+</PRE>
+<P CLASS="DESC_TEXT">
+Naming Standards<br>
+&nbsp;&nbsp;&nbsp; v_ &lt;&gt; Variables<br>
+&nbsp;&nbsp;&nbsp; c_&lt;&gt;&nbsp; Constants<br>
+&nbsp;&nbsp;&nbsp; g_&lt;&gt;&nbsp; Package Globals<br>
+&nbsp;&nbsp;&nbsp; ex_&nbsp;&nbsp; User defined Exceptions<br>
+&nbsp;&nbsp;&nbsp; r_&lt;&gt;&nbsp; Records<br>
+&nbsp;&nbsp;&nbsp; cs_&lt;&gt; Cursors<br>
+&nbsp;&nbsp;&nbsp; csp_&lt;&gt;&nbsp;&nbsp; Cursor Parameters<br>
+&nbsp;&nbsp;&nbsp; &lt;&gt;_T&nbsp; Types<br>
+&nbsp;&nbsp;&nbsp; &lt;&gt;_O&nbsp; Object Types<br>
+&nbsp;<br>
+&nbsp;<br>
+&lt; PRIVATE TYPES AND GLOBALS &gt;<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="g_db_prod"></A>
+<P CLASS="TYPE_TITLE">
+g_db_prod
+</P>
+<PRE CLASS="DECL_TEXT">
+g_db_prod       VARCHAR2(15) := '&&g_db_prod';
+</PRE>
+<HR>
+<A NAME="g_db_ver"></A>
+<P CLASS="TYPE_TITLE">
+g_db_ver
+</P>
+<PRE CLASS="DECL_TEXT">
+g_db_ver        VARCHAR2(64) := '&&g_db_ver';
+</PRE>
+<HR>
+<A NAME="g_spid"></A>
+<P CLASS="TYPE_TITLE">
+g_spid
+</P>
+<PRE CLASS="DECL_TEXT">
+g_spid          VARCHAR2(12);
+</PRE>
+<HR>
+<A NAME="g_session_type"></A>
+<P CLASS="TYPE_TITLE">
+g_session_type
+</P>
+<PRE CLASS="DECL_TEXT">
+g_session_type  VARCHAR2(255);
+</PRE>
+<HR>
+<A NAME="g_instance_name"></A>
+<P CLASS="TYPE_TITLE">
+g_instance_name
+</P>
+<PRE CLASS="DECL_TEXT">
+g_instance_name VARCHAR2(255);
+</PRE>
+<HR>
+<A NAME="g_service_name"></A>
+<P CLASS="TYPE_TITLE">
+g_service_name
+</P>
+<PRE CLASS="DECL_TEXT">
+g_service_name  VARCHAR2(255);
+</PRE>
+<HR>
+<A NAME="g_session_user"></A>
+<P CLASS="TYPE_TITLE">
+g_session_user
+</P>
+<PRE CLASS="DECL_TEXT">
+g_session_user  VARCHAR2(30);
+</PRE>
+<HR>
+<A NAME="g_terminal"></A>
+<P CLASS="TYPE_TITLE">
+g_terminal
+</P>
+<PRE CLASS="DECL_TEXT">
+g_terminal      VARCHAR2(255);
+</PRE>
+<HR>
+<A NAME="g_ip_address"></A>
+<P CLASS="TYPE_TITLE">
+g_ip_address
+</P>
+<PRE CLASS="DECL_TEXT">
+g_ip_address    VARCHAR2(15);
+</PRE>
+<HR>
+<A NAME="g_session_id"></A>
+<P CLASS="TYPE_TITLE">
+g_session_id
+</P>
+<PRE CLASS="DECL_TEXT">
+g_session_id      VARCHAR2(64);
+</PRE>
+<HR>
+<A NAME="g_os_user"></A>
+<P CLASS="TYPE_TITLE">
+g_os_user
+</P>
+<PRE CLASS="DECL_TEXT">
+g_os_user       VARCHAR2(64);
+</PRE>
+<HR>
+<A NAME="set_dbver"></A>
+<P CLASS="TYPE_TITLE">
+set_dbver
+</P>
+<PRE CLASS="DECL_TEXT">
+Procedure set_dbver
+</PRE>
+<P CLASS="DESC_TEXT">
+&lt; PRIVATE METHODS &gt;<br>
+&nbsp;<br>
+&nbsp;<br>
+&lt; Set_DBVer &gt;<br>
+&nbsp;<br>
+&nbsp; Purpose: We make decisions what calls will be executed based on<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; version of the database. Incorporating into util so that<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; we only need to do this once per session and therefore<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; reduce the executions over and over.<br>
+&nbsp;<br>
+&nbsp; Comments:<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="get_version"></A>
+<P CLASS="TYPE_TITLE">
+get_version
+</P>
+<PRE CLASS="DECL_TEXT">
+Function get_version RETURN NUMBER
+</PRE>
+<P CLASS="DESC_TEXT">
+&lt; PUBLIC METHODS &gt;<br>
+&nbsp;<br>
+&nbsp;<br>
+&lt; get_version &gt;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp; Purpose: Returns the version of the ILO_SYSUTIL package<br>
+
+<BR>
+</P>
+<A NAME="Returns"></A>
+<TABLE CLASS="LIST_TABLE"><TR><TD CLASS="LIST_TITLE">
+Returns
+</TD></TR></TABLE>
+<TABLE CLASS="LIST_TABLE">
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+NUMBER&nbsp;&nbsp;&nbsp; NUMBER value that indicates version of ILO<br>
+
+</TD></TR>
+</TABLE>
+<BR>
+<HR>
+<A NAME="get_db_major_ver"></A>
+<P CLASS="TYPE_TITLE">
+get_db_major_ver
+</P>
+<PRE CLASS="DECL_TEXT">
+Function get_db_major_ver RETURN VARCHAR2
+</PRE>
+<P CLASS="DESC_TEXT">
+&lt; Get_DB_Major_Ver &gt;<br>
+&nbsp;<br>
+&nbsp; Purpose: We make decisions based on the major version of the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; database.<br>
+&nbsp;<br>
+&nbsp; Comments:<br>
+&nbsp;<br>
+&nbsp; Using this function will allow the finding of the database major<br>
+&nbsp; version to only be executed once.<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="write_datestamp"></A>
+<P CLASS="TYPE_TITLE">
+write_datestamp
+</P>
+<PRE CLASS="DECL_TEXT">
+Procedure write_datestamp
+</PRE>
+<P CLASS="DESC_TEXT">
+&lt; write_datestamp &gt;<br>
+&nbsp;<br>
+&nbsp; Purpose: Forces Oracle to write a datestamp to the trace file for<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; the current session<br>
+&nbsp;<br>
+&nbsp; Comments:<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="write_to_trace"></A>
+<P CLASS="TYPE_TITLE">
+write_to_trace
+</P>
+<PRE CLASS="DECL_TEXT">
+Procedure write_to_trace(text IN VARCHAR2)
+</PRE>
+<P CLASS="DESC_TEXT">
+&lt; Write_to_trace &gt;<br>
+&nbsp;<br>
+&nbsp; Purpose: Writes the passed string to the trace file for the current<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; session<br>
+&nbsp;<br>
+&nbsp; Comments:<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="write_to_alert"></A>
+<P CLASS="TYPE_TITLE">
+write_to_alert
+</P>
+<PRE CLASS="DECL_TEXT">
+Procedure write_to_alert(text IN VARCHAR2)
+</PRE>
+<P CLASS="DESC_TEXT">
+&lt; Write_to_alert &gt;<br>
+&nbsp;<br>
+&nbsp; Purpose: Writes the passed string to the ALERT log<br>
+&nbsp;<br>
+&nbsp; Comments:<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="turn_trace_on"></A>
+<P CLASS="TYPE_TITLE">
+turn_trace_on
+</P>
+<PRE CLASS="DECL_TEXT">
+Procedure turn_trace_on
+</PRE>
+<P CLASS="DESC_TEXT">
+&lt; turn_trace_on &gt;<br>
+&nbsp;<br>
+&nbsp; Purpose: Turn trace on for the current session<br>
+&nbsp;<br>
+&nbsp; Comments:<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="turn_trace_off"></A>
+<P CLASS="TYPE_TITLE">
+turn_trace_off
+</P>
+<PRE CLASS="DECL_TEXT">
+Procedure turn_trace_off
+</PRE>
+<P CLASS="DESC_TEXT">
+&lt; turn_trace_off &gt;<br>
+&nbsp;<br>
+&nbsp; Purpose: Turn trace off for the current session<br>
+&nbsp;<br>
+&nbsp; Comments:<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="get_client_id"></A>
+<P CLASS="TYPE_TITLE">
+get_client_id
+</P>
+<PRE CLASS="DECL_TEXT">
+Function get_client_id RETURN VARCHAR2
+</PRE>
+<P CLASS="DESC_TEXT">
+&lt; get_client_id &gt;<br>
+&nbsp;<br>
+&nbsp; Purpose: Gets Client ID values for the current session.<br>
+&nbsp;<br>
+&nbsp; Comments:<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="set_client_id"></A>
+<P CLASS="TYPE_TITLE">
+set_client_id
+</P>
+<PRE CLASS="DECL_TEXT">
+Procedure set_client_id(text IN VARCHAR2)
+</PRE>
+<P CLASS="DESC_TEXT">
+&lt; set_client_id &gt;<br>
+&nbsp;<br>
+&nbsp; Purpose: Sets Client ID values for the current session.<br>
+&nbsp;<br>
+&nbsp; Comments:<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="get_spid"></A>
+<P CLASS="TYPE_TITLE">
+get_spid
+</P>
+<PRE CLASS="DECL_TEXT">
+Function get_spid RETURN VARCHAR2
+</PRE>
+<P CLASS="DESC_TEXT">
+&lt; get_spid &gt;<br>
+&nbsp;<br>
+&nbsp; Purpose: Gets spid from V_$PROCESS.<br>
+&nbsp;<br>
+&nbsp; Comments:<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="get_session_type"></A>
+<P CLASS="TYPE_TITLE">
+get_session_type
+</P>
+<PRE CLASS="DECL_TEXT">
+Function get_session_type RETURN VARCHAR2
+</PRE>
+<P CLASS="DESC_TEXT">
+&lt; get_session_type &gt;<br>
+&nbsp;<br>
+&nbsp; Purpose: Gets session type from V_$SESSION<br>
+&nbsp;<br>
+&nbsp; comments<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="get_instance_name"></A>
+<P CLASS="TYPE_TITLE">
+get_instance_name
+</P>
+<PRE CLASS="DECL_TEXT">
+Function get_instance_name RETURN VARCHAR2
+</PRE>
+<P CLASS="DESC_TEXT">
+&lt; get_Instance_name &gt;<br>
+&nbsp;<br>
+&nbsp; Purpose: Gets Instance name for current session<br>
+&nbsp;<br>
+&nbsp; comments<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="get_service_name"></A>
+<P CLASS="TYPE_TITLE">
+get_service_name
+</P>
+<PRE CLASS="DECL_TEXT">
+Function get_service_name RETURN VARCHAR2
+</PRE>
+<P CLASS="DESC_TEXT">
+&lt; get_service_name &gt;<br>
+&nbsp;<br>
+&nbsp; Purpose: Gets service name for the current session<br>
+&nbsp;<br>
+&nbsp; comments<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="get_session_user"></A>
+<P CLASS="TYPE_TITLE">
+get_session_user
+</P>
+<PRE CLASS="DECL_TEXT">
+Function get_session_user RETURN VARCHAR2
+</PRE>
+<P CLASS="DESC_TEXT">
+&lt; get_session_user &gt;<br>
+&nbsp;<br>
+&nbsp; Purpose: Gets session user for current session<br>
+&nbsp;<br>
+&nbsp; comments<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="get_ip_address"></A>
+<P CLASS="TYPE_TITLE">
+get_ip_address
+</P>
+<PRE CLASS="DECL_TEXT">
+Function get_ip_address RETURN VARCHAR2
+</PRE>
+<P CLASS="DESC_TEXT">
+&lt; get_ip_address &gt;<br>
+&nbsp;<br>
+&nbsp; Purpose: Gets IP Address for current session<br>
+&nbsp;<br>
+&nbsp; comments<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="get_terminal"></A>
+<P CLASS="TYPE_TITLE">
+get_terminal
+</P>
+<PRE CLASS="DECL_TEXT">
+Function get_terminal RETURN VARCHAR2
+</PRE>
+<P CLASS="DESC_TEXT">
+&lt; get_terminal &gt;<br>
+&nbsp;<br>
+&nbsp; Purpose: Gets TERMINAL for current session<br>
+&nbsp;<br>
+&nbsp; comments<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="get_session_id"></A>
+<P CLASS="TYPE_TITLE">
+get_session_id
+</P>
+<PRE CLASS="DECL_TEXT">
+Function get_session_id RETURN VARCHAR2
+</PRE>
+<P CLASS="DESC_TEXT">
+&lt; get_session_id &gt;<br>
+&nbsp;<br>
+&nbsp; Purpose: Gets TERMINAL for current session<br>
+&nbsp;<br>
+&nbsp; comments<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="get_os_user"></A>
+<P CLASS="TYPE_TITLE">
+get_os_user
+</P>
+<PRE CLASS="DECL_TEXT">
+Function get_os_user RETURN VARCHAR2
+</PRE>
+<P CLASS="DESC_TEXT">
+&lt; get_os_user &gt;<br>
+&nbsp;<br>
+&nbsp; Purpose: Gets TERMINAL for current session<br>
+&nbsp;<br>
+&nbsp; comments<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="register"></A>
+<P CLASS="TYPE_TITLE">
+register
+</P>
+<PRE CLASS="DECL_TEXT">
+Procedure register(p_name IN varchar2)
+</PRE>
+<P CLASS="DESC_TEXT">
+&lt; Register &gt;<br>
+&nbsp;<br>
+&nbsp; Purpose: Wraps the DBMS_ALERT.REGISTER procedure<br>
+&nbsp;<br>
+&nbsp; comments<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="waitany"></A>
+<P CLASS="TYPE_TITLE">
+waitany
+</P>
+<PRE CLASS="DECL_TEXT">
+Procedure waitany(p_name    OUT varchar2,
+                  p_message OUT varchar2,
+                  p_status  OUT number,
+                  p_timeout IN number)
+</PRE>
+<P CLASS="DESC_TEXT">
+&lt; waitany &gt;<br>
+&nbsp;<br>
+&nbsp; Purpose: Wraps the DBMS_ALERT.WAITANY procedure<br>
+&nbsp;<br>
+&nbsp; comments<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="waitone"></A>
+<P CLASS="TYPE_TITLE">
+waitone
+</P>
+<PRE CLASS="DECL_TEXT">
+Procedure waitone(p_name    IN varchar2,
+                  p_message OUT varchar2,
+                  p_status  OUT number,
+                  p_timeout IN number)
+</PRE>
+<P CLASS="DESC_TEXT">
+&lt; waitone &gt;<br>
+&nbsp;<br>
+&nbsp; Purpose: Wraps the DBMS_ALERT.WAITONE procedure<br>
+&nbsp;<br>
+&nbsp; comments<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="SIGNAL"></A>
+<P CLASS="TYPE_TITLE">
+SIGNAL
+</P>
+<PRE CLASS="DECL_TEXT">
+Procedure SIGNAL(p_name IN varchar2, p_message IN varchar2)
+</PRE>
+<P CLASS="DESC_TEXT">
+&lt; signal &gt;<br>
+&nbsp;<br>
+&nbsp; Purpose: Wraps the DBMS_ALERT.SIGNAL procedure<br>
+&nbsp;<br>
+&nbsp; comments<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="remove"></A>
+<P CLASS="TYPE_TITLE">
+remove
+</P>
+<PRE CLASS="DECL_TEXT">
+Procedure remove(p_name IN varchar2)
+</PRE>
+<P CLASS="DESC_TEXT">
+&lt; remove &gt;<br>
+&nbsp;<br>
+&nbsp; Purpose: Wraps the DBMS_ALERT.REMOVE procedure<br>
+&nbsp;<br>
+&nbsp; comments<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="removeall"></A>
+<P CLASS="TYPE_TITLE">
+removeall
+</P>
+<PRE CLASS="DECL_TEXT">
+Procedure removeall
+</PRE>
+<P CLASS="DESC_TEXT">
+&lt; removeall &gt;<br>
+&nbsp;<br>
+&nbsp; Purpose: Wraps the DBMS_ALERT.REMOVEALL procedure<br>
+&nbsp;<br>
+&nbsp; comments<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="set_raise_exceptions"></A>
+<P CLASS="TYPE_TITLE">
+set_raise_exceptions
+</P>
+<PRE CLASS="DECL_TEXT">
+Procedure set_raise_exceptions(raise_exceptions boolean)
+</PRE>
+<P CLASS="DESC_TEXT">
+&lt; set_raise_exceptions &gt;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp; DEPRECATED AS OF 2.3 - use ilo_util.get_raise_exceptions instead<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp; Purpose: Normally, ILO will supress any exceptions raised during it's execution so that any instrumented application<br>
+&nbsp; won't be adversely affected by an error that might occur while processing ILO. This flag actually tells ILO to raise<br>
+&nbsp; any exceptions that it hits. This is probably most useful for testing purposes, but might have its advantages in a<br>
+&nbsp; production environment.<br>
+
+<BR>
+</P>
+<A NAME="Parameters"></A>
+<TABLE CLASS="LIST_TABLE"><TR><TD CLASS="LIST_TITLE">
+Parameters
+</TD></TR></TABLE>
+<TABLE CLASS="LIST_TABLE">
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+RAISE_EXCEPTIONS&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+BOOLEAN Value that indicates whether ILO will riase exceptions (TRUE) or not (FALSE).<br>
+
+</TD></TR>
+</TABLE>
+<BR>
+<A NAME="Usage Notes"></A>
+<TABLE CLASS="LIST_TABLE"><TR><TD CLASS="LIST_TITLE">
+Usage Notes
+</TD></TR></TABLE>
+<TABLE CLASS="LIST_TABLE">
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+<li> The default for RAISE_EXCEPTIONS is FALSE.<br>
+
+</TD></TR>
+</TABLE>
+<BR>
+<HR>
+<A NAME="get_raise_exceptions"></A>
+<P CLASS="TYPE_TITLE">
+get_raise_exceptions
+</P>
+<PRE CLASS="DECL_TEXT">
+Function get_raise_exceptions RETURN boolean
+</PRE>
+<P CLASS="DESC_TEXT">
+&lt; get_raise_exceptions &gt;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp; DEPRECATED AS OF 2.3 - use ilo_util.get_raise_exceptions instead<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp; Return the current value for RAISE_EXCEPTIONS.<br>
+
+<BR>
+</P>
+<A NAME="Parameters"></A>
+<TABLE CLASS="LIST_TABLE"><TR><TD CLASS="LIST_TITLE">
+Parameters
+</TD></TR></TABLE>
+<TABLE CLASS="LIST_TABLE">
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+None&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+</TABLE>
+<BR>
+<A NAME="Returns"></A>
+<TABLE CLASS="LIST_TABLE"><TR><TD CLASS="LIST_TITLE">
+Returns
+</TD></TR></TABLE>
+<TABLE CLASS="LIST_TABLE">
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+BOOLEAN<br>
+
+</TD></TR>
+</TABLE>
+<BR>
+<A NAME="Usage Notes"></A>
+<TABLE CLASS="LIST_TABLE"><TR><TD CLASS="LIST_TITLE">
+Usage Notes
+</TD></TR></TABLE>
+<TABLE CLASS="LIST_TABLE">
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+<li> Returns the value of RAISE_EXCEPTIONS set by the user. If the user has not called the <A HREF=#set_raise_exceptions>SET_RAISE_EXCEPTIONS</A> method, the default is FALSE.<br>
+
+</TD></TR>
+</TABLE>
+<BR>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+</BODY>
+</HTML>

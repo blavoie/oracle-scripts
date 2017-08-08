@@ -1,0 +1,22 @@
+---------------------------------------------------------------------------------------------------
+--- TEST CASES 
+---------------------------------------------------------------------------------------------------
+	- Multi-row inserts tests
+	  Direct statements vs triggers for timestamp default (or force) value
+	- Join path method
+	- Merge statement generator
+
+---------------------------------------------------------------------------------------------------
+--- SCRIPTS TOOLKIT
+---------------------------------------------------------------------------------------------------
+	- Environmental setup 
+		- _VARS
+		- See TPT as example
+	- Multi/dual purpose scripts (if possible)
+		- parameters &1 &2
+		- interactive if no parameters
+	- Comment and descriptions standard, with copyright note
+	- Describe function to find ans describe scripts purpose (if possible)
+	- Rlwrap automation for tab completion (see TPT as example)
+	- Table childs FK index generator
+	- Account mini database with password hiding feature (http://www.dba-oracle.com/t_hide_oracle_password_sql_plus_sql_loader.htm)

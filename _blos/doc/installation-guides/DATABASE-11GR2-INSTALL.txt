@@ -1,0 +1,234 @@
+-------------------------------------------------------------------------------
+-- Install Oracle Grid Infrastructure under <Oracle Ready> configuration
+-------------------------------------------------------------------------------
+
+-- Login as user grid
+
+-- Goto to grid installation directory
+
+-- Launch runInstaller
+
+-- Step 1
+	Skip software updates
+-- Step 2
+	Install for standalone server
+-- Step X
+	Redundancy external
+	Select all disks
+	
+-- Step X
+	Select DBA group for:
+		ASM DBA
+		ASM Administrator
+	Ignore the warning
+
+-- Step X
+	Accept default values for 
+		Oracle Base (/u01/app/grid)
+		Software Location (/u01/app/grid/product/11.2.0/grid)
+
+-------------------------------------------------------------------------------
+-- Setting Shell Environment for Oracle Grid Infrastructure (grid user)
+-------------------------------------------------------------------------------
+		
+-- Add to: ~/.bash_profile
+<--- BEGIN --->
+# Oracle Stuff 
+ORACLE_BASE=/u01/app/grid
+export ORACLE_BASE
+
+ORACLE_HOME=$ORACLE_BASE/product/11.2.0/grid
+export ORACLE_HOME
+
+PATH=$ORACLE_HOME/bin:$ORACLE_HOME/OPatch:$PATH
+export PATH
+
+ORACLE_SID=+ASM
+export ORACLE_SID
+<--- END --->
+
+-- Add to: ~/.bashrc
+<--- BEGIN --->
+# Oracle Stuff
+alias sqlplus='rlwrap sqlplus'
+alias rman='rlwrap rman'
+alias adrci='rlwrap adrci'
+
+alias lsd='ls -altr | grep ^d'        
+
+# To see your instance values: show parameter dump_dest        
+# Here is the 11g format        
+# TODO: make it work for ASM
+#alias bd='cd $ORACLE_BASE/diag/rdbms/$ORACLE_SID/$ORACLE_SID/trace'        
+#alias ud='cd $ORACLE_BASE/diag/rdbms/$ORACLE_SID/$ORACLE_SID/trace'        
+#alias valert='view $ORACLE_BASE/diag/rdbms/$ORACLE_SID/$ORACLE_SID/trace/alert_$ORACLE_SID.log'        
+#alias talert='tail -n 100 -f $ORACLE_BASE/diag/rdbms/$ORACLE_SID/$ORACLE_SID/trace/alert_$ORACLE_SID.log'        
+
+alias sqlp='sqlplus "/ as sysasm"'        
+alias shutdb='echo "shutdown immediate;" | sqlp'        
+alias startdb='echo "startup;" | sqlp'        
+<--- END --->
+
+-------------------------------------------------------------------------------
+-- Install Oracle Database under <Oracle Ready> configuration
+-------------------------------------------------------------------------------
+-- Export minimal environment variables
+-- See https://support.oracle.com/CSP/main/article?cmd=show&type=NOT&doctype=BULLETIN&id=880989.1
+-- 7. The oracle account that is used to install Oracle 11.2.0.1, should not have the Oracle install related variables set by default. For example 
+--	  setting ORACLE_HOME, PATH, LD_LIBRARY_PATH to include Oracle binaries in .profile, .login file and /etc/profile.d should be completely avoided. 
+--     a.) Setting $ORACLE_BASE (not $ORACLE_HOME) is recommended, since it eases a few prompts in the OUI runInstaller tool. 
+--     b.) Following the succesful install, it is recommended to set $ORACLE_HOME, and to set $PATH to include $ORACLE_HOME/bin at the beginning of 
+--         the $PATH string. 
+ORACLE_BASE=/u01/app/oracle
+export ORACLE_BASE
+ORACLE_SID=ocp
+export ORACLE_SID
+
+-- TODO: complete
+
+-------------------------------------------------------------------------------
+-- Setting Shell Environment for Oracle Database (oracle user)
+-------------------------------------------------------------------------------
+
+-- Add to: ~/.bash_profile
+-- Don't forget to change ORACLE_SID
+<--- BEGIN --->
+#############################
+# Oracle Stuff 
+#############################
+
+ORACLE_BASE=/u01/app/oracle
+export ORACLE_BASE
+
+ORACLE_HOME=$ORACLE_BASE/product/11.2.0/dbhome_1
+export ORACLE_HOME
+
+PATH=$ORACLE_HOME/bin:$ORACLE_HOME/OPatch:$PATH
+export PATH
+
+LD_LIBRARY_PATH=$ORACLE_HOME/lib:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH
+  
+ORACLE_SID=db11203
+export ORACLE_SID
+
+TNS_ADMIN=$ORACLE_HOME/network/admin       
+export TNS_ADMIN
+
+# Using Oracle Provided JDK and Java Classes
+JAVA_HOME=$ORACLE_HOME/jdk
+export JAVA_HOME
+
+PATH=$JAVA_HOME/bin:$PATH
+export PATH
+
+CLASSPATH=.:$ORACLE_HOME/jdbc/lib:$ORACLE_HOME/jlib:$ORACLE_HOME/rdbms/jlib
+export CLASSPATH
+
+# Using Oracle Provided Perl and Perl Library
+PATH=$ORACLE_HOME/perl/bin:$PATH
+export PATH
+
+PERL5LIB=$ORACLE_HOME/perl/lib/5.10.0:$ORACLE_HOME/perl/lib/site_perl/5.10.0:$ORACLE_HOME/perl/lib/5.10.0/x86_64-linux-thread-multi:$ORACLE_HOME/perl/lib/site_perl/5.10.0/x86_64-linux-thread-multi
+export PERL5LIB
+
+# OWB Support
+PATH=$ORACLE_HOME/owb/bin:$PATH
+export PATH
+
+# blos/bin support
+PATH=$HOME/blos/bin:$PATH
+export PATH
+
+# sqlpath 
+SQLPATH=$HOME/blos
+export SQLPATH
+
+# Beautiful Date Format
+NLS_DATE_FORMAT="YYYY-MM-DD HH24:MI"
+export NLS_DATE_FORMAT
+<--- END --->
+
+-- Add to: ~/.bashrc
+<--- BEGIN --->
+#############################
+# Oracle Stuff
+#############################
+alias sqlplus='rlwrap sqlplus'
+alias rman='rlwrap rman'
+alias adrci='rlwrap adrci'
+
+alias lsd='ls -altr | grep ^d'        
+
+# To see your instance values: show parameter dump_dest        
+# Here is the 11g format        
+alias bd='cd $ORACLE_BASE/diag/rdbms/$ORACLE_SID/$ORACLE_SID/trace'        
+alias ud='cd $ORACLE_BASE/diag/rdbms/$ORACLE_SID/$ORACLE_SID/trace'        
+alias valert='view $ORACLE_BASE/diag/rdbms/$ORACLE_SID/$ORACLE_SID/trace/alert_$ORACLE_SID.log'        
+alias talert='tail -n 100 -f $ORACLE_BASE/diag/rdbms/$ORACLE_SID/$ORACLE_SID/trace/alert_$ORACLE_SID.log'        
+
+alias sqlp='sqlplus "/ as sysdba"'        
+alias shutdb='echo "shutdown immediate;" | sqlp'        
+alias startdb='echo "startup;" | sqlp'        
+
+alias shutall='emctl stop dbconsole; shutdb; lsnrctl stop;'
+alias startall='lsnrctl start; startdb; emctl start dbconsole;'
+<--- END --->
+
+-------------------------------------------------------------------------------
+-- Setting Database Environment for Oracle Database 
+-------------------------------------------------------------------------------
+
+-- Install PLUSTRACE role
+sqlplus / as sysdba
+@?/sqlplus/admin/plustrce.sql
+GRANT PLUSTRACE TO PUBLIC;
+
+-- Install STATSPACK (optionnal)
+cd $ORACLE_HOME/rdbms/admin
+sqlplus / as sysdba
+@spcreate
+
+-- Unlock network
+See file blos/disableacl.sql
+
+-- Install and test UTL_MAIL
+sqlplus / as sysdba
+@$ORACLE_HOME/rdbms/admin/utlmail.sql
+@$ORACLE_HOME/rdbms/admin/prvtmail.plb
+
+grant execute on utl_mail to public;
+alter system set smtp_out_server='smtp.ulaval.ca' scope=both;
+
+begin
+   utl_mail.send (sender       => 'bruno.lavoie@dti.ulaval.ca',
+                  recipients   => 'bruno.lavoie@dti.ulaval.ca',
+                  subject      => 'utl_mail test',
+                  message      => 'if you get this message it worked!');
+end;
+/
+
+-- Change AWR Snapshots Intervals & Retention 
+-- Interval : 10 minutes, Retention : 31 days
+prompt paramétrage des snapshots awr...
+begin
+  dbms_workload_repository.modify_snapshot_settings(
+    retention		=> 44640,
+    interval		=> 10
+  );
+end;
+/
+
+-- Auto implementation of SQL Profiles
+BEGIN
+	dbms_sqltune.set_auto_tuning_task_parameter( 'ACCEPT_SQL_PROFILES', 'TRUE');
+END;
+/
+
+-------------------------------------------------------------------------------
+-- Other adjustments
+-------------------------------------------------------------------------------
+Add to listener.ora:
+SUBSCRIBE_FOR_NODE_DOWN_EVENT_LISTENER = OFF
+
+For more info check MOS: 'Warning: Subscription For Node Down Event Still Pending' In Listener Log [ID 372959.1]

@@ -1,0 +1,61 @@
+-------------------------------------------------------------------------------
+-- Install Oracle Warehouse Builder 11gR2
+-------------------------------------------------------------------------------
+-- Official product documentation : http://docs.oracle.com/cd/E11882_01/owb.112/e17130.pdf
+
+-- Create dedicated tablespace
+CREATE TABLESPACE OWB DATAFILE 
+  '/u01/app/oracle/oradata/orcl112/owb01.dbf' SIZE 50M AUTOEXTEND ON NEXT 1M MAXSIZE UNLIMITED
+LOGGING
+ONLINE
+PERMANENT
+EXTENT MANAGEMENT LOCAL AUTOALLOCATE
+BLOCKSIZE 8K
+SEGMENT SPACE MANAGEMENT AUTO
+FLASHBACK ON;
+
+-- Clean and resinstall users (NOT NECESSARY?)
+cd $ORACLE_HOME/owb/UnifiedRepos
+sqlplus / as sysdba
+SQL> @clean_owbsys.sql
+SQL> @cat_owb.sql
+SQL> @reset_owbcc_home.sql /u01/app/oracle/product/11.2.0/dbhome_1 <-- ORACLE_HOME
+
+-- Enable and alter accounts
+SQL> alter user owbsys identified by PASS account unlock;
+SQL> alter user owbsys default tablespace owb;
+SQL> alter user owbsys quota unlimited on owb;
+
+SQL> alter user owbsys_audit identified by PASS account unlock;
+SQL> alter user owbsys_audit default tablespace owb;
+SQL> alter user owbsys_audit quota unlimited on owb;
+
+-- 4.2.7 Setting the Oracle Warehouse Builder Home for Remote Installations
+cd $ORACLE_HOME/owb/UnifiedRepos
+sqlplus / as sysdba @remote_owb_install.sql $ORACLE_HOME
+
+-- 4.3 Creating the First Workspace in the Repository
+cd $ORACLE_HOME/owb/bin/unix/
+./reposinst.sh
+
+When setting workspace owner:
+Owner: OWB_WKS01	
+Workspace Name: OWBWKS1
+
+-- Add to .bash_profile:
+<--- BEGIN --->
+# OWB Support
+OWB_HOME=$ORACLE_HOME/owb
+export OWB_HOME
+PATH=$OWB_HOME/bin:$PATH
+export PATH
+<--- END --->
+
+-- Reload .bash_profile:
+. ~/.bash_profile 
+
+-- Start OWB 
+owb &
+
+-- To stop csservice:
+sqlplus owbsys /u01/app/oracle/product/11.2.0/dbhome_1/owb/rtp/sql/stop_service.sql

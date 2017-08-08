@@ -1,0 +1,24 @@
+-- Weekly
+run {
+allocate channel oem_sbt_backup1 type 'SBT_TAPE' format '%U' parms 'SBT_LIBRARY=oracle.disksbt, ENV=(BACKUP_DIR=/backup/ENLABO01/tape)';
+backup incremental level 0 database;
+backup archivelog all not backed up;
+}
+allocate channel for maintenance device type 'SBT_TAPE' parms 'SBT_LIBRARY=oracle.disksbt, ENV=(BACKUP_DIR=/backup/ENLABO01/tape)';
+delete noprompt obsolete recovery window of 7 days device type 'SBT_TAPE';
+
+-- Daily
+run {
+allocate channel oem_sbt_backup1 type 'SBT_TAPE' format '%U' parms 'SBT_LIBRARY=oracle.disksbt, ENV=(BACKUP_DIR=/backup/ENLABO01/tape)';
+backup incremental level 1 cumulative database;
+backup archivelog all not backed up;
+}
+allocate channel for maintenance device type 'SBT_TAPE' parms 'SBT_LIBRARY=oracle.disksbt, ENV=(BACKUP_DIR=/backup/ENLABO01/tape)';
+delete noprompt obsolete recovery window of 7 days device type 'SBT_TAPE';
+
+-- Free space with archived log backup
+run {
+allocate channel oem_sbt_backup1 type 'SBT_TAPE' format '%U' parms 'SBT_LIBRARY=oracle.disksbt, ENV=(BACKUP_DIR=/backup/ENLABO01/tape)';
+backup archivelog all not backed up;
+delete noprompt archivelog all;
+}

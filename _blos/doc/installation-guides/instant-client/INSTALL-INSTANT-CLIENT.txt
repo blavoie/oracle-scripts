@@ -1,0 +1,6 @@
+--- USEFUL LINKS ---
+http://www.oracle.com/technetwork/database/features/instant-client/index.html
+http://blog.famillecollet.com/post/2010/11/12/RPM-Oracle-Instant-Client-11.2-en
+https://help.ubuntu.com/community/Oracle%20Instant%20Client
+
+--- STEPS ---

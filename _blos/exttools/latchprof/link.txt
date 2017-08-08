@@ -1,0 +1,3 @@
+http://tech.e2sn.com/oracle/troubleshooting/latch-contention-troubleshooting
+http://files.e2sn.com/scripts/latchprof.sql
+http://files.e2sn.com/scripts/latchprofx.sql
